@@ -17,6 +17,22 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     
     var locationChosen = Bool()
     
+    var firstNames = [String]()
+    
+    var lastNames = [String]()
+    
+    var place = String()
+    
+    var desc = String()
+    
+    var datumiB = [NSDate]()
+    
+    var craftsmenIds = [String]()
+    
+    var statuses = [String]()
+    
+    var descriptions = [String]()
+    
     @IBOutlet weak var descriptionField: UITextField!
     
     @IBOutlet weak var map: MKMapView!
@@ -83,6 +99,7 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
                         self.map.addAnnotation(annotation)
                         self.locationChosen = true
                         print(title)
+                        self.place = title
                     }
                 })
             }
@@ -93,6 +110,89 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
         if !locationChosen || descriptionField.text == "" || (!plumber.isOn && !shoeMaker.isOn && !electrician.isOn && !carpenter.isOn) {
             displayAlert(title: "Not enough information", message: "Please enter all information required")
         }
+        else {
+            desc = descriptionField.text!
+            let query = PFUser.query()
+            var craft = String()
+            if plumber.isOn {
+                craft = "plumber"
+            } else if electrician.isOn {
+                craft = "electrician"
+            } else if carpenter.isOn {
+                craft = "carpenter"
+            } else if shoeMaker.isOn {
+                craft = "shoemaker"
+            }
+            query?.whereKey("craft", equalTo: craft)
+            query?.findObjectsInBackground(block: { (objects, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                }
+                else if let craftsmen = objects {
+                    for object in craftsmen {
+                        if let craftsman = object as? PFUser {
+                            if let firstName = craftsman["firstName"] {
+                                if let lastName = craftsman["lastName"] {
+                                    self.firstNames.append(firstName as! String)
+                                    self.lastNames.append(lastName as! String)
+                                }
+                            }
+                        }
+                    }
+                }
+                self.performSegue(withIdentifier: "seeCraftsmenSegue", sender: nil)
+            })
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "seeCraftsmenSegue" {
+            let destinationVC = segue.destination as! SeeCraftsmenTableViewController
+            destinationVC.fNames = firstNames
+            destinationVC.lNames = lastNames
+            destinationVC.lokacija = place
+            destinationVC.opis = desc
+            firstNames.removeAll()
+            lastNames.removeAll()
+        }
+        else if segue.identifier == "requestsSegue" {
+            let destinationVC = segue.destination as! RequestsJobsTableViewController
+            destinationVC.datumiB = datumiB
+            destinationVC.craftsmenIds = craftsmenIds
+            destinationVC.statuses = statuses
+            destinationVC.descriptions = descriptions
+            datumiB.removeAll()
+            craftsmenIds.removeAll()
+            statuses.removeAll()
+            descriptions.removeAll()
+            print("here")
+        }
+    }
+    
+    @IBAction func seeRequests(_ sender: Any) {
+        let query = PFQuery(className: "Job")
+        query.whereKey("from", equalTo: PFUser.current()?.objectId)
+        query.findObjectsInBackground(block: { (objects, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let objects = objects {
+                for object in objects {
+                    if let datumB = object["date"] {
+                        if let craftsmanId = object["to"] {
+                            if let status = object["status"] {
+                                if let desc = object["description"] {
+                                    self.datumiB.append(datumB as! NSDate)
+                                    self.craftsmenIds.append(craftsmanId as! String)
+                                    self.statuses.append(status as! String)
+                                    self.desc.append(desc as! String)
+                                }
+                            }
+                        }
+                    }
+                }
+                self.performSegue(withIdentifier: "requestsSegue", sender: nil)
+            }
+        })
     }
     
     @IBAction func craftsmenChoice(_ sender: UISwitch) {

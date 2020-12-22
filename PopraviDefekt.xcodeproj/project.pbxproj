@@ -12,6 +12,10 @@
 		1E07C95D2586402A00F31493 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95B2586402A00F31493 /* Main.storyboard */; };
 		1E07C95F2586402D00F31493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95E2586402D00F31493 /* Assets.xcassets */; };
 		1E07C9622586402D00F31493 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C9602586402D00F31493 /* LaunchScreen.storyboard */; };
+		1EC6C2C52590E8DE00256120 /* SeeCraftsmenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2C42590E8DE00256120 /* SeeCraftsmenTableViewController.swift */; };
+		1EC6C2C9259114BC00256120 /* CraftsmanDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2C8259114BC00256120 /* CraftsmanDetailsTableViewController.swift */; };
+		1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */; };
+		1EC6C2CD259156F100256120 /* RequestsJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */; };
 		1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */; };
 		1EFA9D3E25868C0000AD3950 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */; };
 		56834AE6E0F12784C663D9F0 /* Pods_PopraviDefekt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E700E822C73E2A421CE5897 /* Pods_PopraviDefekt.framework */; };
@@ -25,6 +29,10 @@
 		1E07C95E2586402D00F31493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E07C9612586402D00F31493 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E07C9632586402D00F31493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EC6C2C42590E8DE00256120 /* SeeCraftsmenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeCraftsmenTableViewController.swift; sourceTree = "<group>"; };
+		1EC6C2C8259114BC00256120 /* CraftsmanDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanDetailsTableViewController.swift; sourceTree = "<group>"; };
+		1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsJobsTableViewController.swift; sourceTree = "<group>"; };
 		1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3DF093B3EE5F7D161EED38FC /* Pods-PopraviDefekt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopraviDefekt.release.xcconfig"; path = "Target Support Files/Pods-PopraviDefekt/Pods-PopraviDefekt.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +77,10 @@
 				1E07C9572586402A00F31493 /* AppDelegate.swift */,
 				1E07C9592586402A00F31493 /* ViewController.swift */,
 				1E07C95B2586402A00F31493 /* Main.storyboard */,
+				1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */,
+				1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */,
+				1EC6C2C42590E8DE00256120 /* SeeCraftsmenTableViewController.swift */,
+				1EC6C2C8259114BC00256120 /* CraftsmanDetailsTableViewController.swift */,
 				1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */,
 				1E07C95E2586402D00F31493 /* Assets.xcassets */,
 				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
@@ -210,9 +222,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EC6C2CD259156F100256120 /* RequestsJobsTableViewController.swift in Sources */,
 				1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */,
+				1EC6C2C9259114BC00256120 /* CraftsmanDetailsTableViewController.swift in Sources */,
+				1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */,
 				1E07C95A2586402A00F31493 /* ViewController.swift in Sources */,
 				1E07C9582586402A00F31493 /* AppDelegate.swift in Sources */,
+				1EC6C2C52590E8DE00256120 /* SeeCraftsmenTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

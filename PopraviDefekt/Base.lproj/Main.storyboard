@@ -24,7 +24,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npe-wJ-g45">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zaneta@gmail.com" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npe-wJ-g45">
                                 <rect key="frame" x="17" y="72" width="341" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -33,7 +33,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Lg8-DH-5nA"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Pm-pz-sJo">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zaneta123" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Pm-pz-sJo">
                                 <rect key="frame" x="17" y="110" width="341" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -367,6 +367,11 @@
                                 <action selector="logOut:" destination="gtQ-1U-cN2" id="4Jo-Qw-fYR"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Requests" id="OQk-5w-u2b">
+                            <connections>
+                                <action selector="seeRequests:" destination="gtQ-1U-cN2" id="OXY-AT-zhr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="carpenter" destination="soM-D6-2D4" id="9q7-bq-9Ep"/>
@@ -375,11 +380,174 @@
                         <outlet property="map" destination="cAG-Ow-FNL" id="EKE-l7-iFn"/>
                         <outlet property="plumber" destination="kd6-z4-aTB" id="4sV-qw-wQZ"/>
                         <outlet property="shoeMaker" destination="d0b-Ih-ho0" id="0b6-KN-TDQ"/>
+                        <segue destination="3yO-bz-a23" kind="show" identifier="seeCraftsmenSegue" id="Ykf-vx-wMU"/>
+                        <segue destination="vJ3-Eh-iOZ" kind="show" identifier="requestsSegue" id="3zw-9C-u06"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYs-0k-1IR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1840.8" y="129.98500749625188"/>
+        </scene>
+        <!--Requests/Jobs-->
+        <scene sceneID="q1F-f0-Qre">
+            <objects>
+                <tableViewController title="Requests/Jobs" id="vJ3-Eh-iOZ" customClass="RequestsJobsTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6ek-6f-I1g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Kelija" textLabel="A1X-f9-dlN" detailTextLabel="Ovo-4d-WPS" style="IBUITableViewCellStyleSubtitle" id="zkU-eV-F2W">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zkU-eV-F2W" id="ai1-Jx-wwb">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A1X-f9-dlN">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ovo-4d-WPS">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vJ3-Eh-iOZ" id="YRg-r6-s14"/>
+                            <outlet property="delegate" destination="vJ3-Eh-iOZ" id="5T9-m7-nrO"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdg-vQ-jpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1841" y="837"/>
+        </scene>
+        <!--Craftsmen-->
+        <scene sceneID="vMU-jS-jsH">
+            <objects>
+                <tableViewController id="3yO-bz-a23" customClass="SeeCraftsmenTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QYC-DZ-RC3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="kelija" textLabel="giI-G4-dVM" detailTextLabel="u9J-s7-SkV" style="IBUITableViewCellStyleSubtitle" id="ZZD-WK-XwZ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZZD-WK-XwZ" id="FCI-Fz-YgE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="giI-G4-dVM">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u9J-s7-SkV">
+                                            <rect key="frame" x="16" y="25.5" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3yO-bz-a23" id="UIy-LU-2sx"/>
+                            <outlet property="delegate" destination="3yO-bz-a23" id="He7-Vb-gEv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Craftsmen" id="nVO-2V-gBa"/>
+                    <connections>
+                        <segue destination="NK7-E8-i6X" kind="show" identifier="craftsmanDetailsSegue" id="wve-qS-CPy"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O4u-fQ-Z7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2607" y="130"/>
+        </scene>
+        <!--Craftsman Details Table View Controller-->
+        <scene sceneID="5Zw-zi-mB8">
+            <objects>
+                <tableViewController id="NK7-E8-i6X" customClass="CraftsmanDetailsTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="40B-gD-YlG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="F1y-iv-EVR">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3K-mA-91g">
+                                    <rect key="frame" x="129" y="7" width="118" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <state key="normal" title="Make a request"/>
+                                    <connections>
+                                        <action selector="makeARequest:" destination="NK7-E8-i6X" eventType="touchUpInside" id="dIN-2K-Pmn"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="375" id="8cc-W2-tcr" customClass="CraftsmanDetailsTableViewCell" customModule="PopraviDefekt" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="375"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8cc-W2-tcr" id="Yqq-44-PGU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="374.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-YY-TxL">
+                                            <rect key="frame" x="16" y="11" width="343" height="323"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="XnN-YY-TxL" secondAttribute="height" multiplier="343:323" id="OIh-Tb-Trw"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNK-4v-g3t">
+                                            <rect key="frame" x="166.5" y="342" width="42" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XnN-YY-TxL" firstAttribute="top" secondItem="Yqq-44-PGU" secondAttribute="topMargin" id="E9t-hH-Tyi"/>
+                                        <constraint firstItem="XnN-YY-TxL" firstAttribute="leading" secondItem="Yqq-44-PGU" secondAttribute="leadingMargin" id="Pdm-kh-23k"/>
+                                        <constraint firstItem="lNK-4v-g3t" firstAttribute="centerX" secondItem="Yqq-44-PGU" secondAttribute="centerX" id="Sq0-Jh-T3X"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="XnN-YY-TxL" secondAttribute="trailing" id="uMH-A6-c9y"/>
+                                        <constraint firstItem="lNK-4v-g3t" firstAttribute="top" secondItem="XnN-YY-TxL" secondAttribute="bottom" constant="8" id="xni-iA-TAW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateFinished" destination="lNK-4v-g3t" id="nG7-kY-X4B"/>
+                                    <outlet property="imageI" destination="XnN-YY-TxL" id="6l3-ur-ies"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="NK7-E8-i6X" id="LIG-wO-pAN"/>
+                            <outlet property="delegate" destination="NK7-E8-i6X" id="Jvf-i2-GWO"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R5C-Wy-GhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3413.5999999999999" y="133.5832083958021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ptz-Gc-vaB">
