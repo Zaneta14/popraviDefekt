@@ -43,7 +43,10 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                 }
             }
         }
-        //cell.dateFinished.text = dates[indexPath.row]
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let stringDate = dateFormatter.string(from: dates[indexPath.row] as Date)
+        cell.dateFinished.text = stringDate
         return cell
     }
 

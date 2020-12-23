@@ -21,12 +21,15 @@ class RequestsJobsTableViewController: UITableViewController {
     
     var descriptions = [String]()
     
-    var fNames = [String]()
-    var lNames = [String]()
+    var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateTable()
         print("viewDidLoad")
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(RequestsJobsTableViewController.updateTable), for: UIControl.Event.valueChanged)
+        self.view.addSubview(refresher)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,14 +39,39 @@ class RequestsJobsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datumiB.count
     }
+    
+    @objc func updateTable() {
+        datumiB.removeAll()
+        craftsmenIds.removeAll()
+        statuses.removeAll()
+        descriptions.removeAll()
+        let query = PFQuery(className: "Job")
+        query.whereKey("from", equalTo: PFUser.current()?.objectId)
+        query.findObjectsInBackground(block: { (objects, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let objects = objects {
+                for object in objects {
+                    if let datumB = object["date"] {
+                        if let craftsmanId = object["to"] {
+                            if let status = object["status"] {
+                                if let desc = object["description"] {
+                                    self.datumiB.append(datumB as! NSDate)
+                                    self.craftsmenIds.append(craftsmanId as! String)
+                                    self.statuses.append(status as! String)
+                                    self.descriptions.append(desc as! String)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            self.refresher.endRefreshing()
+            self.tableView.reloadData()
+        })
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("tableView")
-        
-        
-        
-        self.fNames.removeAll()
-        self.lNames.removeAll()
         let cell = tableView.dequeueReusableCell(withIdentifier: "Kelija", for: indexPath)
         let craftsmanId = craftsmenIds[indexPath.row]
         let queryT = PFUser.query()
@@ -59,15 +87,13 @@ class RequestsJobsTableViewController: UITableViewController {
                                 print(firstName)
                                 print(lastName)
                                 cell.textLabel?.text = (firstName as! String) + " " + (lastName as! String)
-                                //self.fNames.append(firstName as! String)
-                                //self.lNames.append(lastName as! String)
                             }
                         }
                     }
                 }
                 let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
                 let stringDate = dateFormatter.string(from: self.datumiB[indexPath.row] as Date)
-                print(stringDate)
                 cell.detailTextLabel?.text = stringDate
                 let status = self.statuses[indexPath.row]
                 if status == "active" {

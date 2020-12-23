@@ -24,7 +24,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zaneta@gmail.com" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npe-wJ-g45">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="majstor3@gmail.com" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npe-wJ-g45">
                                 <rect key="frame" x="17" y="72" width="341" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -33,7 +33,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Lg8-DH-5nA"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zaneta123" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Pm-pz-sJo">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="majstor123" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Pm-pz-sJo">
                                 <rect key="frame" x="17" y="110" width="341" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -109,7 +109,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="VPZ-N3-4fz"/>
                                 </connections>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="c8l-hx-sGR">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c8l-hx-sGR">
                                 <rect key="frame" x="17" y="394" width="51" height="31"/>
                                 <connections>
                                     <action selector="switchesChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="mL4-JX-7NM"/>
@@ -229,6 +229,7 @@
                         <outlet property="shoeMaker" destination="vsO-5w-3C9" id="Zrg-QV-nLM"/>
                         <outlet property="topButton" destination="LOi-rc-KR2" id="17N-PK-XJe"/>
                         <segue destination="GzI-AS-Wis" kind="presentation" identifier="customerSegue" id="DEH-ph-PIA"/>
+                        <segue destination="AfM-27-Zzz" kind="presentation" identifier="craftsmanSegue" id="x13-B4-K4M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -270,7 +271,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kd6-z4-aTB">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kd6-z4-aTB">
                                 <rect key="frame" x="17" y="517.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="craftsmenChoice:" destination="gtQ-1U-cN2" eventType="valueChanged" id="Wfg-wt-rBk"/>
@@ -433,7 +434,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdg-vQ-jpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="837"/>
+            <point key="canvasLocation" x="3719.1999999999998" y="836.13193403298362"/>
         </scene>
         <!--Request Details View Controller-->
         <scene sceneID="t72-3k-6et">
@@ -650,7 +651,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCy-yF-oZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600.8000000000002" y="834.33283358320841"/>
+            <point key="canvasLocation" x="4479.1999999999998" y="834.33283358320841"/>
         </scene>
         <!--Craftsmen-->
         <scene sceneID="vMU-jS-jsH">
@@ -769,6 +770,54 @@
             </objects>
             <point key="canvasLocation" x="3413.5999999999999" y="133.5832083958021"/>
         </scene>
+        <!--Craftsman-->
+        <scene sceneID="Bev-JU-5L7">
+            <objects>
+                <tableViewController id="bgP-ui-dPe" customClass="CraftsmanTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A4G-XA-fod">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cCell" textLabel="05F-pa-bMl" detailTextLabel="VTp-MF-Xcr" style="IBUITableViewCellStyleSubtitle" id="lTK-XO-c2P">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lTK-XO-c2P" id="wt9-HM-7X6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="05F-pa-bMl">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VTp-MF-Xcr">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bgP-ui-dPe" id="Pq2-Y1-D8m"/>
+                            <outlet property="delegate" destination="bgP-ui-dPe" id="hnN-xv-prf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Craftsman" id="SaL-OD-HP2">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="D3e-3T-1BT"/>
+                        <barButtonItem key="rightBarButtonItem" title="Jobs" id="36R-Gs-bRO"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4th-c9-Ena" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="902" y="861"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ptz-Gc-vaB">
             <objects>
@@ -786,6 +835,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNT-ds-PH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="901.60000000000002" y="129.98500749625188"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VzZ-Hz-U30">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AfM-27-Zzz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="26N-MF-pkK">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bgP-ui-dPe" kind="relationship" relationship="rootViewController" id="CLR-MW-YML"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9bb-g3-PG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134" y="861"/>
         </scene>
     </scenes>
 </document>

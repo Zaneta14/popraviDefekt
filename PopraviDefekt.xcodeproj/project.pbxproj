@@ -13,6 +13,7 @@
 		1E07C95F2586402D00F31493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95E2586402D00F31493 /* Assets.xcassets */; };
 		1E07C9622586402D00F31493 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C9602586402D00F31493 /* LaunchScreen.storyboard */; };
 		1E8D208F259261F4003F7E4C /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */; };
+		1EB39D5D2593D63D0001ED07 /* CraftsmanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB39D5C2593D63D0001ED07 /* CraftsmanTableViewController.swift */; };
 		1EC6C2C52590E8DE00256120 /* SeeCraftsmenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2C42590E8DE00256120 /* SeeCraftsmenTableViewController.swift */; };
 		1EC6C2C9259114BC00256120 /* CraftsmanDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2C8259114BC00256120 /* CraftsmanDetailsTableViewController.swift */; };
 		1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */; };
@@ -31,6 +32,7 @@
 		1E07C9612586402D00F31493 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E07C9632586402D00F31493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
+		1EB39D5C2593D63D0001ED07 /* CraftsmanTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanTableViewController.swift; sourceTree = "<group>"; };
 		1EC6C2C42590E8DE00256120 /* SeeCraftsmenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeCraftsmenTableViewController.swift; sourceTree = "<group>"; };
 		1EC6C2C8259114BC00256120 /* CraftsmanDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanDetailsTableViewController.swift; sourceTree = "<group>"; };
 		1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanDetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				1EC6C2C42590E8DE00256120 /* SeeCraftsmenTableViewController.swift */,
 				1EC6C2C8259114BC00256120 /* CraftsmanDetailsTableViewController.swift */,
 				1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */,
+				1EB39D5C2593D63D0001ED07 /* CraftsmanTableViewController.swift */,
 				1E07C95E2586402D00F31493 /* Assets.xcassets */,
 				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
 				1E07C9632586402D00F31493 /* Info.plist */,
@@ -229,6 +232,7 @@
 				1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */,
 				1EC6C2C9259114BC00256120 /* CraftsmanDetailsTableViewController.swift in Sources */,
 				1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */,
+				1EB39D5D2593D63D0001ED07 /* CraftsmanTableViewController.swift in Sources */,
 				1E07C95A2586402A00F31493 /* ViewController.swift in Sources */,
 				1E07C9582586402A00F31493 /* AppDelegate.swift in Sources */,
 				1EC6C2C52590E8DE00256120 /* SeeCraftsmenTableViewController.swift in Sources */,

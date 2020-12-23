@@ -53,6 +53,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if PFUser.current() != nil {
+            if PFUser.current()!["role"] as! String == "customer" {
+                performSegue(withIdentifier: "customerSegue", sender: self)
+            } else {
+                performSegue(withIdentifier: "craftsmanSegue", sender: self)
+            }
+        }
     }
     
     @IBAction func switchChanged(_ sender: UISwitch) {
@@ -172,7 +179,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         print("Sign up success!")
                         if PFUser.current()!["role"] as! String == "craftsman" {
-                            //self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
+                            self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
                             print("Signed up as craftsman")
                         }
                         else {
@@ -198,10 +205,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         print("Log in success!")
                         if user!["role"]  as! String == "craftsman" {
-                            //self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
+                            self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
                             print("Logged in as craftsman")
                         }
-                        else {
+                        else if user!["role"] as! String == "customer" {
                             self.performSegue(withIdentifier: "customerSegue", sender: self)
                             print("Logged in as customer")
                         }

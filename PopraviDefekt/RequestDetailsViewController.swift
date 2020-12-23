@@ -23,6 +23,12 @@ class RequestDetailsViewController: UIViewController {
     
     var imageFile = [PFFileObject]()
     
+    var propDate = NSDate()
+    
+    var propPrice = String()
+    
+    var scheduledDate = NSDate()
+    
     @IBOutlet weak var requestDate: UILabel!
     
     @IBOutlet weak var type: UILabel!
@@ -63,9 +69,11 @@ class RequestDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         desc.text = descr
-        //requestDate.text = dateReq
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let stringDate = formatter.string(from: dateReq as Date)
+        requestDate.text = stringDate
         status.text = statusS
         let query = PFUser.query()
         query?.whereKey("objectId", equalTo: craftsmanId)
@@ -108,6 +116,11 @@ class RequestDetailsViewController: UIViewController {
             rejectCancelO.isHidden = false
         }
         else if statusS == "pending" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+            let stringDate = dateFormatter.string(from: propDate as Date)
+            pDate.text = stringDate
+            pPrice.text = propPrice
             pDate.isHidden = false
             pPrice.isHidden = false
             pd.isHidden = false
@@ -119,6 +132,10 @@ class RequestDetailsViewController: UIViewController {
             scheduledOn.isHidden = true
             schDate.isHidden = true
         } else if statusS == "scheduled" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+            let stringDate = dateFormatter.string(from: scheduledDate as Date)
+            schDate.text = stringDate
             pDate.isHidden = true
             pPrice.isHidden = true
             pd.isHidden = true
@@ -130,6 +147,19 @@ class RequestDetailsViewController: UIViewController {
             acceptO.isHidden = true
             rejectCancelO.isHidden = true
         } else if statusS == "done" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let stringDate = dateFormatter.string(from: dateFinished as Date)
+            schDate.text = stringDate
+            let slika = imageFile[0]
+            slika.getDataInBackground { (data, error) in
+                if let imageData = data {
+                    if let imageToDisplay = UIImage(data: imageData) {
+                        self.imageV.image = imageToDisplay
+                    }
+                }
+            }
+            imageFile.removeAll()
             pDate.isHidden = true
             pPrice.isHidden = true
             pd.isHidden = true
@@ -145,31 +175,43 @@ class RequestDetailsViewController: UIViewController {
     
     
     @IBAction func accept(_ sender: Any) {
-        
+        let query = PFQuery(className: "Job")
+        query.whereKey("from", equalTo: PFUser.current()?.objectId)
+        query.whereKey("to", equalTo: craftsmanId)
+        query.whereKey("description", equalTo: descr)
+        query.whereKey("date", equalTo: dateReq)
+        query.findObjectsInBackground(block:  { (objects, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let objects = objects {
+                for object in objects {
+                    object["status"] = "scheduled"
+                    object.saveInBackground()
+                }
+            }
+        })
+        displayAlert(title: "Success", message: "The job is now scheduled.")
     }
     
     @IBAction func rejectCancel(_ sender: Any) {
-        if statusS == "active" {
-            print("active")
-            let query = PFQuery(className: "Job")
-            query.whereKey("from", equalTo: PFUser.current()?.objectId)
-            query.whereKey("to", equalTo: craftsmanId)
-            query.whereKey("description", equalTo: descr)
-            query.whereKey("date", equalTo: dateReq)
-            print("query")
-            query.findObjectsInBackground(block:  { (objects, error) in
-                if error != nil {
-                    print("error")
-                    print(error?.localizedDescription)
-                } else if let objects = objects {
-                    print("da")
-                    for object in objects {
-                        print("delete")
-                        object.deleteInBackground()
-                    }
+        let query = PFQuery(className: "Job")
+        query.whereKey("from", equalTo: PFUser.current()?.objectId)
+        query.whereKey("to", equalTo: craftsmanId)
+        query.whereKey("description", equalTo: descr)
+        query.whereKey("date", equalTo: dateReq)
+        query.findObjectsInBackground(block:  { (objects, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let objects = objects {
+                for object in objects {
+                    object.deleteInBackground()
                 }
-            })
+            }
+        })
+        if statusS == "active" {
             displayAlert(title: "Success", message: "The request has been canceled.")
+        } else {
+            displayAlert(title: "Success", message: "The offer has been rejected.")
         }
     }
     
