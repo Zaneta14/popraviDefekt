@@ -111,6 +111,8 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             displayAlert(title: "Not enough information", message: "Please enter all information required")
         }
         else {
+            firstNames.removeAll()
+            lastNames.removeAll()
             desc = descriptionField.text!
             let query = PFUser.query()
             var craft = String()
@@ -152,8 +154,6 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             destinationVC.lNames = lastNames
             destinationVC.lokacija = place
             destinationVC.opis = desc
-            firstNames.removeAll()
-            lastNames.removeAll()
         }
         else if segue.identifier == "requestsSegue" {
             let destinationVC = segue.destination as! RequestsJobsTableViewController
@@ -161,15 +161,15 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             destinationVC.craftsmenIds = craftsmenIds
             destinationVC.statuses = statuses
             destinationVC.descriptions = descriptions
-            datumiB.removeAll()
-            craftsmenIds.removeAll()
-            statuses.removeAll()
-            descriptions.removeAll()
-            print("here")
         }
     }
     
     @IBAction func seeRequests(_ sender: Any) {
+        print("segue")
+        datumiB.removeAll()
+        craftsmenIds.removeAll()
+        statuses.removeAll()
+        descriptions.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("from", equalTo: PFUser.current()?.objectId)
         query.findObjectsInBackground(block: { (objects, error) in
@@ -184,7 +184,7 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
                                     self.datumiB.append(datumB as! NSDate)
                                     self.craftsmenIds.append(craftsmanId as! String)
                                     self.statuses.append(status as! String)
-                                    self.desc.append(desc as! String)
+                                    self.descriptions.append(desc as! String)
                                 }
                             }
                         }

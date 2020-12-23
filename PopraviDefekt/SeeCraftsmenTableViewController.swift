@@ -13,7 +13,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
     
     var fNames = [String]()
     var lNames = [String]()
-    var dates = [String]()
+    var dates = [NSDate]()
     var imageFiles = [PFFileObject]()
     var selectedCraftsmanId = String()
     var opis = String()
@@ -99,7 +99,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
                                     for job in jobs {
                                         if let datum = job["finishDate"] {
                                             if let slika = job["imageFile"] {
-                                                self.dates.append(datum as! String)
+                                                self.dates.append(datum as! NSDate)
                                                 self.imageFiles.append(slika as! PFFileObject)
                                             }
                                         }

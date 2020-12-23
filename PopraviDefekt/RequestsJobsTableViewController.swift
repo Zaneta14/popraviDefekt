@@ -11,6 +11,8 @@ import Parse
 
 class RequestsJobsTableViewController: UITableViewController {
     
+    var indeks = Int()
+    
     var datumiB = [NSDate]()
     
     var craftsmenIds = [String]()
@@ -24,8 +26,9 @@ class RequestsJobsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -35,11 +38,17 @@ class RequestsJobsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("tableView")
+        
+        
+        
+        self.fNames.removeAll()
+        self.lNames.removeAll()
         let cell = tableView.dequeueReusableCell(withIdentifier: "Kelija", for: indexPath)
         let craftsmanId = craftsmenIds[indexPath.row]
-        let query = PFUser.query()
-        query?.whereKey("objectId", equalTo: craftsmanId)
-        query?.findObjectsInBackground(block: { (objects, error) in
+        let queryT = PFUser.query()
+        queryT?.whereKey("objectId", equalTo: craftsmanId)
+        queryT?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else if let objects = objects {
@@ -49,13 +58,13 @@ class RequestsJobsTableViewController: UITableViewController {
                             if let lastName = craftsman["lastName"] {
                                 print(firstName)
                                 print(lastName)
-                                self.fNames.append(firstName as! String)
-                                self.lNames.append(lastName as! String)
+                                cell.textLabel?.text = (firstName as! String) + " " + (lastName as! String)
+                                //self.fNames.append(firstName as! String)
+                                //self.lNames.append(lastName as! String)
                             }
                         }
                     }
                 }
-                cell.textLabel?.text = self.fNames[indexPath.row] + " " + self.lNames[indexPath.row]
                 let dateFormatter = DateFormatter()
                 let stringDate = dateFormatter.string(from: self.datumiB[indexPath.row] as Date)
                 print(stringDate)
@@ -72,54 +81,22 @@ class RequestsJobsTableViewController: UITableViewController {
                 }
             }
         })
-        fNames.removeAll()
-        lNames.removeAll()
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        indeks = (tableView.indexPathForSelectedRow?.row)!
+        performSegue(withIdentifier: "requestDetailsSegue", sender: nil)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "requestDetailsSegue" {
+            let destinationVC = segue.destination as! RequestDetailsViewController
+            destinationVC.craftsmanId = craftsmenIds[indeks]
+            destinationVC.descr = descriptions[indeks]
+            destinationVC.dateReq = datumiB[indeks]
+            destinationVC.statusS = statuses[indeks]
+        }
     }
-    */
 
 }
