@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E030893259913A000EB98F1 /* JobDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E030892259913A000EB98F1 /* JobDetailsViewController.swift */; };
+		1E03089525991B5B00EB98F1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03089425991B5B00EB98F1 /* MapViewController.swift */; };
 		1E07C9582586402A00F31493 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E07C9572586402A00F31493 /* AppDelegate.swift */; };
 		1E07C95A2586402A00F31493 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E07C9592586402A00F31493 /* ViewController.swift */; };
 		1E07C95D2586402A00F31493 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95B2586402A00F31493 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E030892259913A000EB98F1 /* JobDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsViewController.swift; sourceTree = "<group>"; };
+		1E03089425991B5B00EB98F1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1E07C9542586402A00F31493 /* PopraviDefekt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopraviDefekt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E07C9572586402A00F31493 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E07C9592586402A00F31493 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				1E07C9572586402A00F31493 /* AppDelegate.swift */,
 				1E07C9592586402A00F31493 /* ViewController.swift */,
 				1E07C95B2586402A00F31493 /* Main.storyboard */,
+				1E03089425991B5B00EB98F1 /* MapViewController.swift */,
+				1E030892259913A000EB98F1 /* JobDetailsViewController.swift */,
 				1EFCBCEB2597F97700026A25 /* JobsTableViewController.swift */,
 				1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */,
 				1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */,
@@ -235,10 +241,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EC6C2CD259156F100256120 /* RequestsJobsTableViewController.swift in Sources */,
+				1E030893259913A000EB98F1 /* JobDetailsViewController.swift in Sources */,
 				1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */,
 				1EC6C2C9259114BC00256120 /* CraftsmanDetailsTableViewController.swift in Sources */,
 				1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */,
 				1EB39D5D2593D63D0001ED07 /* CraftsmanTableViewController.swift in Sources */,
+				1E03089525991B5B00EB98F1 /* MapViewController.swift in Sources */,
 				1EFCBCEA25976AB800026A25 /* CRequestDetailsViewController.swift in Sources */,
 				1E07C95A2586402A00F31493 /* ViewController.swift in Sources */,
 				1E07C9582586402A00F31493 /* AppDelegate.swift in Sources */,
