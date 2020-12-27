@@ -25,6 +25,10 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     
     var desc = String()
     
+    var lat = Double()
+    
+    var lon = Double()
+    
     @IBOutlet weak var descriptionField: UITextField!
     
     @IBOutlet weak var map: MKMapView!
@@ -66,7 +70,6 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
                 let touchPoint = gestureRecognizer.location(in: self.map)
                 let newCoordinate = self.map.convert(touchPoint, toCoordinateFrom: self.map)
                 let newLocation = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
-                print(newCoordinate)
                 var title = ""
                 CLGeocoder().reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) in
                     if error != nil {
@@ -84,7 +87,6 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
                         if title == "" {
                             title = "Added \(NSDate())"
                         }
-                        
                         let annotation = MKPointAnnotation()
                         annotation.coordinate = newCoordinate
                         annotation.title = title
@@ -92,6 +94,8 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
                         self.locationChosen = true
                         print(title)
                         self.place = title
+                        self.lat = newCoordinate.latitude
+                        self.lon = newCoordinate.longitude
                     }
                 })
             }
@@ -146,6 +150,8 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             destinationVC.lNames = lastNames
             destinationVC.lokacija = place
             destinationVC.opis = desc
+            destinationVC.lat = lat
+            destinationVC.lon = lon
         }
     }
     

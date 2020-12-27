@@ -436,6 +436,50 @@
             </objects>
             <point key="canvasLocation" x="1841" y="860"/>
         </scene>
+        <!--Jobs-->
+        <scene sceneID="2FX-4X-kaB">
+            <objects>
+                <tableViewController title="Jobs" id="3xd-R5-F70" customClass="JobsTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GJJ-KD-6rx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="j1T-Gp-M6k" detailTextLabel="2SO-cx-K8v" style="IBUITableViewCellStyleSubtitle" id="yOi-mI-cQv">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yOi-mI-cQv" id="YwI-Tn-yvC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j1T-Gp-M6k">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2SO-cx-K8v">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3xd-R5-F70" id="HjZ-qF-DTf"/>
+                            <outlet property="delegate" destination="3xd-R5-F70" id="6mo-UN-zej"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uk9-zd-SZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1841" y="1611"/>
+        </scene>
         <!--Request Details View Controller-->
         <scene sceneID="t72-3k-6et">
             <objects>
@@ -815,7 +859,11 @@
                                 <action selector="logOut:" destination="bgP-ui-dPe" id="5ek-1A-Tga"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Jobs" id="36R-Gs-bRO"/>
+                        <barButtonItem key="rightBarButtonItem" title="Jobs" id="36R-Gs-bRO">
+                            <connections>
+                                <segue destination="3xd-R5-F70" kind="show" identifier="jobsSegue" id="dkV-hY-2FX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="4oc-WE-XB2" kind="show" identifier="rDetailsSegue" id="pcO-I5-LRn"/>
@@ -828,7 +876,7 @@
         <!--Details-->
         <scene sceneID="gp5-2A-2rj">
             <objects>
-                <viewController title="Details" id="4oc-WE-XB2" sceneMemberID="viewController">
+                <viewController title="Details" id="4oc-WE-XB2" customClass="CRequestDetailsViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Doh-xm-KYi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -921,6 +969,9 @@
                                 <state key="normal" title=" Make an offer ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="makeAnOffer:" destination="4oc-WE-XB2" eventType="touchUpInside" id="2La-Me-QbB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Osf-42-Q6Q">
                                 <rect key="frame" x="228" y="631.5" width="131" height="33"/>
@@ -929,6 +980,9 @@
                                 <state key="normal" title=" Reject request ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="rejectRequest:" destination="4oc-WE-XB2" eventType="touchUpInside" id="0ZZ-M5-uag"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -970,6 +1024,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hna-Lc-znY"/>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="PXG-TA-nU1" id="8tk-Ip-2wF"/>
+                        <outlet property="datumM" destination="xUG-DN-eWK" id="bdC-5g-17p"/>
+                        <outlet property="emailTelefon" destination="Rbi-Nc-oN2" id="YTm-Pi-V8J"/>
+                        <outlet property="imePrezime" destination="dyU-PF-WfI" id="9oQ-JN-hKE"/>
+                        <outlet property="map" destination="Lkw-6L-8RX" id="Vup-pA-aNo"/>
+                        <outlet property="opisS" destination="qF1-eA-Rkg" id="7W8-zg-jCX"/>
+                        <outlet property="priceTextField" destination="Sey-wc-eZk" id="9N6-BA-q7v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUy-1D-w7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

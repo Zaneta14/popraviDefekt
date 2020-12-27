@@ -18,6 +18,8 @@ class SeeCraftsmenTableViewController: UITableViewController {
     var selectedCraftsmanId = String()
     var opis = String()
     var lokacija = String()
+    var lat = Double()
+    var lon =  Double()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +124,8 @@ class SeeCraftsmenTableViewController: UITableViewController {
             destinationVC.selCraftsmanId = selectedCraftsmanId
             destinationVC.lokacija = lokacija
             destinationVC.opis = opis
+            destinationVC.lat = lat
+            destinationVC.lon = lon
             dates.removeAll()
             imageFiles.removeAll()
         }

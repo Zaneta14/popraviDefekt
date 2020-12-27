@@ -20,6 +20,8 @@
 		1EC6C2CD259156F100256120 /* RequestsJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */; };
 		1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */; };
 		1EFA9D3E25868C0000AD3950 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */; };
+		1EFCBCEA25976AB800026A25 /* CRequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */; };
+		1EFCBCEC2597F97700026A25 /* JobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFCBCEB2597F97700026A25 /* JobsTableViewController.swift */; };
 		56834AE6E0F12784C663D9F0 /* Pods_PopraviDefekt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E700E822C73E2A421CE5897 /* Pods_PopraviDefekt.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsJobsTableViewController.swift; sourceTree = "<group>"; };
 		1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRequestDetailsViewController.swift; sourceTree = "<group>"; };
+		1EFCBCEB2597F97700026A25 /* JobsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsTableViewController.swift; sourceTree = "<group>"; };
 		3DF093B3EE5F7D161EED38FC /* Pods-PopraviDefekt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopraviDefekt.release.xcconfig"; path = "Target Support Files/Pods-PopraviDefekt/Pods-PopraviDefekt.release.xcconfig"; sourceTree = "<group>"; };
 		7E700E822C73E2A421CE5897 /* Pods_PopraviDefekt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopraviDefekt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9403A63FEE56E579CBDB33B7 /* Pods-PopraviDefekt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopraviDefekt.debug.xcconfig"; path = "Target Support Files/Pods-PopraviDefekt/Pods-PopraviDefekt.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 				1E07C9572586402A00F31493 /* AppDelegate.swift */,
 				1E07C9592586402A00F31493 /* ViewController.swift */,
 				1E07C95B2586402A00F31493 /* Main.storyboard */,
+				1EFCBCEB2597F97700026A25 /* JobsTableViewController.swift */,
+				1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */,
 				1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */,
 				1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */,
 				1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */,
@@ -233,9 +239,11 @@
 				1EC6C2C9259114BC00256120 /* CraftsmanDetailsTableViewController.swift in Sources */,
 				1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */,
 				1EB39D5D2593D63D0001ED07 /* CraftsmanTableViewController.swift in Sources */,
+				1EFCBCEA25976AB800026A25 /* CRequestDetailsViewController.swift in Sources */,
 				1E07C95A2586402A00F31493 /* ViewController.swift in Sources */,
 				1E07C9582586402A00F31493 /* AppDelegate.swift in Sources */,
 				1EC6C2C52590E8DE00256120 /* SeeCraftsmenTableViewController.swift in Sources */,
+				1EFCBCEC2597F97700026A25 /* JobsTableViewController.swift in Sources */,
 				1E8D208F259261F4003F7E4C /* RequestDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

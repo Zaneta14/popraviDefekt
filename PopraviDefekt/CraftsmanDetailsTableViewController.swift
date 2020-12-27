@@ -14,9 +14,10 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     var dates = [NSDate]()
     var imageFiles = [PFFileObject]()
     var selCraftsmanId = String()
-    
     var opis = String()
     var lokacija = String()
+    var lat = Double()
+    var lon = Double()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,8 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         request["status"] = "active"
         request["description"] = opis
         request["location"] = lokacija
+        request["lat"] = lat
+        request["lon"] = lon
         request.saveInBackground { (success, error) in
             if success {
                 self.displayAlert(title: "Success!", message: "You have made a request.")

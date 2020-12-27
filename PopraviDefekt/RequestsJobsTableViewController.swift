@@ -21,6 +21,10 @@ class RequestsJobsTableViewController: UITableViewController {
     
     var descriptions = [String]()
     
+    var propDates = [NSDate]()
+    
+    var propPrices = [String]()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -45,6 +49,8 @@ class RequestsJobsTableViewController: UITableViewController {
         craftsmenIds.removeAll()
         statuses.removeAll()
         descriptions.removeAll()
+        propDates.removeAll()
+        propPrices.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("from", equalTo: PFUser.current()?.objectId)
         query.findObjectsInBackground(block: { (objects, error) in
@@ -60,6 +66,12 @@ class RequestsJobsTableViewController: UITableViewController {
                                     self.craftsmenIds.append(craftsmanId as! String)
                                     self.statuses.append(status as! String)
                                     self.descriptions.append(desc as! String)
+                                    if let pDateTime = object["pDateTime"] {
+                                        if let pPrice = object["pPrice"] {
+                                            self.propDates.append(pDateTime as! NSDate)
+                                            self.propPrices.append(pPrice as! String)
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -122,7 +134,10 @@ class RequestsJobsTableViewController: UITableViewController {
             destinationVC.descr = descriptions[indeks]
             destinationVC.dateReq = datumiB[indeks]
             destinationVC.statusS = statuses[indeks]
+            if propDates.count > 0 {
+                destinationVC.propDate = propDates[indeks]
+                destinationVC.propPrice = propPrices[indeks]
+            }
         }
     }
-
 }

@@ -11,13 +11,25 @@ import Parse
 
 class CraftsmanTableViewController: UITableViewController {
     
-    var count = Int()
-    
     var fNames = [String]()
     
     var lNames = [String]()
     
     var datumi = [NSDate]()
+    
+    var opisi = [String]()
+    
+    var lokacii = [String]()
+    
+    var telefoni = [String]()
+    
+    var emailovi = [String]()
+    
+    var lons = [Double]()
+    
+    var lats = [Double]()
+    
+    var indeks = Int()
     
     var refresher:UIRefreshControl = UIRefreshControl()
 
@@ -34,42 +46,70 @@ class CraftsmanTableViewController: UITableViewController {
         self.fNames.removeAll()
         self.lNames.removeAll()
         self.datumi.removeAll()
+        self.opisi.removeAll()
+        self.lokacii.removeAll()
+        self.lats.removeAll()
+        self.lons.removeAll()
+        self.telefoni.removeAll()
+        self.emailovi.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("to", equalTo: PFUser.current()?.objectId)
         query.whereKey("status", equalTo: "active")
-        query.findObjectsInBackground { (objects, error) in
+        query.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else if let objects = objects {
                 for object in objects {
+                    print(objects.count)
                     if let userId = object["from"] {
                         if let datum = object["date"] {
-                            self.datumi.append(datum as! NSDate)
-                            let userQuery = PFUser.query()
-                            userQuery?.whereKey("objectId", equalTo: userId)
-                            userQuery?.findObjectsInBackground(block: { (users, error) in
-                                if error != nil {
-                                    print(error?.localizedDescription)
-                                } else if let users = users {
-                                    for user in users {
-                                        if let user = user as? PFUser {
-                                            if let fName = user["firstName"] {
-                                                if let lName = user["lastName"] {
-                                                    self.fNames.append(fName as! String)
-                                                    self.lNames.append(lName as! String)
+                            if let opis = object["description"] {
+                                if let lokacija = object["location"] {
+                                    if let lat = object["lat"] {
+                                        if let lon = object["lon"] {
+                                            let userQuery = PFUser.query()
+                                            userQuery?.whereKey("objectId", equalTo: userId)
+                                            userQuery?.findObjectsInBackground(block: { (users, error) in
+                                                if error != nil {
+                                                    print(error?.localizedDescription)
+                                                } else if let users = users {
+                                                    for user in users {
+                                                        print(users.count)
+                                                        if let user = user as? PFUser {
+                                                            if let fName = user["firstName"] {
+                                                                if let lName = user["lastName"] {
+                                                                    if let pNumber = user["phoneNumber"] {
+                                                                        if let emailAdd = user.username {
+                                                                            self.datumi.append(datum as! NSDate)
+                                                                            self.opisi.append(opis as! String)
+                                                                            self.lokacii.append(lokacija as! String)
+                                                                            self.lats.append(lat as! Double)
+                                                                            self.lons.append(lon as! Double)
+                                                                            self.fNames.append(fName as! String)
+                                                                            self.lNames.append(lName as! String)
+                                                                            self.telefoni.append(pNumber as! String)
+                                                                            self.emailovi.append(emailAdd)
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                 }
-                                            }
+                                                self.refresher.endRefreshing()
+                                                self.tableView.reloadData()
+                                            })
                                         }
                                     }
                                 }
-                                self.refresher.endRefreshing()
-                                self.tableView.reloadData()
-                            })
+                            }
                         }
                     }
                 }
             }
-        }
+            self.refresher.endRefreshing()
+            self.tableView.reloadData()
+        })
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,56 +133,28 @@ class CraftsmanTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        indeks = (tableView.indexPathForSelectedRow?.row)!
+        performSegue(withIdentifier: "rDetailsSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "rDetailsSegue" {
+            let destVC = segue.destination as! CRequestDetailsViewController
+            destVC.fName = fNames[indeks]
+            destVC.lName = lNames[indeks]
+            destVC.lokacija = lokacii[indeks]
+            destVC.emailadresa = emailovi[indeks]
+            destVC.opis = opisi[indeks]
+            destVC.telefon = telefoni[indeks]
+            destVC.datum = datumi[indeks]
+            destVC.lat = lats[indeks]
+            destVC.lon = lons[indeks]
+        }
     }
 
     @IBAction func logOut(_ sender: Any) {
         PFUser.logOut()
         navigationController?.dismiss(animated: true, completion: nil)
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

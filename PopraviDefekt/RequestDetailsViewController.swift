@@ -81,12 +81,10 @@ class RequestDetailsViewController: UIViewController {
             if error != nil {
                 print(error?.localizedDescription)
             } else if let objects = objects {
-                print("nema error")
                 for object in objects {
                     if let craftsman = object as? PFUser {
                         if let firstName = craftsman["firstName"] {
                             if let lastName = craftsman["lastName"] {
-                                print(lastName)
                                 if let phoneNumber = craftsman["phoneNumber"] {
                                     print(phoneNumber)
                                     if let mailAddr = craftsman.username {
@@ -134,7 +132,7 @@ class RequestDetailsViewController: UIViewController {
         } else if statusS == "scheduled" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-            let stringDate = dateFormatter.string(from: scheduledDate as Date)
+            let stringDate = dateFormatter.string(from: propDate as Date)
             schDate.text = stringDate
             pDate.isHidden = true
             pPrice.isHidden = true
