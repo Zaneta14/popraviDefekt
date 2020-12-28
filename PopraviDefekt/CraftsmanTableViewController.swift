@@ -42,7 +42,6 @@ class CraftsmanTableViewController: UITableViewController {
     }
     
     @objc func updateTable() {
-        print("updateTable")
         self.fNames.removeAll()
         self.lNames.removeAll()
         self.datumi.removeAll()
@@ -55,12 +54,12 @@ class CraftsmanTableViewController: UITableViewController {
         let query = PFQuery(className: "Job")
         query.whereKey("to", equalTo: PFUser.current()?.objectId)
         query.whereKey("status", equalTo: "active")
+        query.addDescendingOrder("date")
         query.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else if let objects = objects {
                 for object in objects {
-                    print(objects.count)
                     if let userId = object["from"] {
                         if let datum = object["date"] {
                             if let opis = object["description"] {
@@ -74,7 +73,6 @@ class CraftsmanTableViewController: UITableViewController {
                                                     print(error?.localizedDescription)
                                                 } else if let users = users {
                                                     for user in users {
-                                                        print(users.count)
                                                         if let user = user as? PFUser {
                                                             if let fName = user["firstName"] {
                                                                 if let lName = user["lastName"] {

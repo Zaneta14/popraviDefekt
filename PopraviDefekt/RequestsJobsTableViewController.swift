@@ -30,7 +30,6 @@ class RequestsJobsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTable()
-        print("viewDidLoad")
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(RequestsJobsTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
@@ -53,6 +52,7 @@ class RequestsJobsTableViewController: UITableViewController {
         propPrices.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("from", equalTo: PFUser.current()?.objectId)
+        query.addDescendingOrder("date")
         query.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
@@ -96,8 +96,6 @@ class RequestsJobsTableViewController: UITableViewController {
                     if let craftsman = object as? PFUser {
                         if let firstName = craftsman["firstName"] {
                             if let lastName = craftsman["lastName"] {
-                                print(firstName)
-                                print(lastName)
                                 cell.textLabel?.text = (firstName as! String) + " " + (lastName as! String)
                             }
                         }

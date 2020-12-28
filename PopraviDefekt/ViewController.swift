@@ -60,6 +60,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 performSegue(withIdentifier: "craftsmanSegue", sender: self)
             }
         }
+        /*let request = PFObject(className: "Job")
+        request["from"] = "BI3t6nK8Yr"
+        request["to"] = "ofyiO0GyMk"
+        request["pDateTime"] = NSDate()
+        request["status"] = "done"
+        request.saveInBackground { (success, error) in
+            if success {
+                //self.displayAlert(title: "Success!", message: "You have made a request.")
+            } else {
+                //self.displayAlert(title: "Failed", message: (error?.localizedDescription)!)
+            }
+        }*/
     }
     
     @IBAction func switchChanged(_ sender: UISwitch) {
@@ -177,14 +189,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         let errorString = error.localizedDescription
                         self.displayAlert(title: "Error signing up", message: errorString)
                     } else {
-                        print("Sign up success!")
                         if PFUser.current()!["role"] as! String == "craftsman" {
                             self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
-                            print("Signed up as craftsman")
                         }
                         else {
                             self.performSegue(withIdentifier: "customerSegue", sender: self)
-                            print("Signed up as customer")
                         }
                     }
                 }
@@ -203,14 +212,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         let errorString = error.localizedDescription
                         self.displayAlert(title: "Error logging in", message: errorString)
                     } else {
-                        print("Log in success!")
                         if user!["role"]  as! String == "craftsman" {
                             self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
-                            print("Logged in as craftsman")
                         }
                         else if user!["role"] as! String == "customer" {
                             self.performSegue(withIdentifier: "customerSegue", sender: self)
-                            print("Logged in as customer")
                         }
                     }
                 }

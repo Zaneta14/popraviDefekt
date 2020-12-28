@@ -11,6 +11,14 @@ import Parse
 
 class JobsTableViewController: UITableViewController {
     
+    var statuses = [String]()
+    
+    var firstNames = [String]()
+    
+    var lastNames = [String]()
+    
+    var dates = [NSDate]()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -29,36 +37,72 @@ class JobsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return statuses.count
     }
     
     @objc func updateTable() {
+        statuses.removeAll()
+        dates.removeAll()
+        firstNames.removeAll()
+        lastNames.removeAll()
         let array = ["done", "scheduled"]
         let predicate = NSPredicate(format: "status = %@ OR status = %@", argumentArray: array)
         let query = PFQuery(className: "Job", predicate: predicate)
         query.whereKey("to", equalTo: PFUser.current()?.objectId)
+        query.addDescendingOrder("pDateTime")
         query.findObjectsInBackground { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else if let objects = objects {
                 for object in objects {
                     if let status = object["status"] {
-                        print(status)
+                        if let pDate = object["pDateTime"] {
+                            if let userId = object["from"] {
+                                let userQuery = PFUser.query()
+                                userQuery?.whereKey("objectId", equalTo: userId)
+                                userQuery?.findObjectsInBackground(block: { (success, error) in
+                                    if error != nil {
+                                        print(error?.localizedDescription)
+                                    } else if let users = success {
+                                        for user in users {
+                                            if let fName = user["firstName"] {
+                                                if let lName = user["lastName"] {
+                                                    self.dates.append(pDate as! NSDate)
+                                                    self.statuses.append(status as! String)
+                                                    self.firstNames.append(fName as! String)
+                                                    self.lastNames.append(lName as! String)
+                                                }
+                                            }
+                                        }
+                                    }
+                                    self.refresher.endRefreshing()
+                                    self.tableView.reloadData()
+                                })
+                            }
+                        }
                     }
                 }
             }
+            //self.refresher.endRefreshing()
+            //self.tableView.reloadData()
         }
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "kelijaK", for: indexPath)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let stringDate = formatter.string(from: dates[indexPath.row] as Date)
+        cell.textLabel?.text = stringDate
+        cell.detailTextLabel?.text = firstNames[indexPath.row] + " " + lastNames[indexPath.row]
+        if statuses[indexPath.row] == "scheduled" {
+            cell.backgroundColor = .red
+        }
+        else {
+            cell.backgroundColor = .green
+        }
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

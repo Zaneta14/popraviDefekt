@@ -86,7 +86,6 @@ class RequestDetailsViewController: UIViewController {
                         if let firstName = craftsman["firstName"] {
                             if let lastName = craftsman["lastName"] {
                                 if let phoneNumber = craftsman["phoneNumber"] {
-                                    print(phoneNumber)
                                     if let mailAddr = craftsman.username {
                                         if let craft = craftsman["craft"] {
                                             self.flName.text = (firstName as! String) + " " + (lastName as! String)
