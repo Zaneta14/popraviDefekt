@@ -64,6 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         request["from"] = "BI3t6nK8Yr"
         request["to"] = "ofyiO0GyMk"
         request["pDateTime"] = NSDate()
+        request["finishDate"] = NSDate()
         request["status"] = "done"
         request.saveInBackground { (success, error) in
             if success {

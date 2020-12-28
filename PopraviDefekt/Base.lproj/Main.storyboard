@@ -468,6 +468,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Zjm-ao-cn9" kind="show" identifier="jobDetailsSegue" id="S2F-VZ-1rk"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -475,9 +478,6 @@
                             <outlet property="delegate" destination="3xd-R5-F70" id="6mo-UN-zej"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="Zjm-ao-cn9" kind="show" identifier="jobDetailsSegue" id="aE6-Kh-CBp"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uk9-zd-SZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -491,14 +491,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQB-Tv-IcE">
-                                <rect key="frame" x="16" y="80" width="44" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scheduled on:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQB-Tv-IcE">
+                                <rect key="frame" x="16" y="80" width="118" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urd-YV-pXW">
-                                <rect key="frame" x="70" y="80" width="35" height="21"/>
+                                <rect key="frame" x="144" y="80" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -559,6 +559,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="seeLocation:" destination="Zjm-ao-cn9" eventType="touchUpInside" id="c66-5l-01F"/>
                                     <segue destination="uYR-rL-d00" kind="show" identifier="locationSegue" id="7Mg-HN-Whz"/>
                                 </connections>
                             </button>
@@ -593,18 +594,41 @@
                                 <rect key="frame" x="113" y="416" width="57" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Camera"/>
+                                <connections>
+                                    <action selector="cameraPressed:" destination="Zjm-ao-cn9" eventType="touchUpInside" id="aLq-fX-gNb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjp-z5-GO5">
                                 <rect key="frame" x="205" y="416" width="93" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Photo library"/>
+                                <connections>
+                                    <action selector="photoLibPressed:" destination="Zjm-ao-cn9" eventType="touchUpInside" id="2xl-s9-h3U"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J4V-OX-Wlg">
-                                <rect key="frame" x="16" y="456" width="343" height="191"/>
+                                <rect key="frame" x="16" y="456" width="343" height="170"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="J4V-OX-Wlg" secondAttribute="height" multiplier="343:191" id="Xr0-sc-Mt3"/>
+                                    <constraint firstAttribute="width" secondItem="J4V-OX-Wlg" secondAttribute="height" multiplier="343:170" id="6cR-ur-so6"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5A9-f7-PaQ">
+                                <rect key="frame" x="163" y="634" width="49" height="33"/>
+                                <color key="backgroundColor" red="1" green="0.1127064949" blue="0.56212700039999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <state key="normal" title=" Save ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePressed:" destination="Zjm-ao-cn9" eventType="touchUpInside" id="9HO-gH-7Zs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="finishDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTp-SY-nUI">
+                                <rect key="frame" x="140" y="259" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -623,6 +647,7 @@
                             <constraint firstItem="BBr-18-ytN" firstAttribute="centerX" secondItem="ByF-Sx-VTr" secondAttribute="centerX" id="Fak-6g-4Vu"/>
                             <constraint firstItem="0lY-ls-Qpz" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="HfH-kk-yRg"/>
                             <constraint firstItem="1sY-rT-VTb" firstAttribute="top" secondItem="kQB-Tv-IcE" secondAttribute="bottom" constant="8" id="Hgp-Tm-c0D"/>
+                            <constraint firstItem="5A9-f7-PaQ" firstAttribute="top" secondItem="J4V-OX-Wlg" secondAttribute="bottom" constant="8" id="HuH-GC-riZ"/>
                             <constraint firstItem="J4V-OX-Wlg" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="IVF-YK-hbX"/>
                             <constraint firstItem="0MR-RD-FMP" firstAttribute="top" secondItem="tRg-Ov-Hn4" secondAttribute="bottom" constant="8" id="KW7-uh-v9z"/>
                             <constraint firstItem="kQB-Tv-IcE" firstAttribute="top" secondItem="8Bf-8T-ab6" secondAttribute="top" constant="16" id="LKg-0L-qM9"/>
@@ -642,13 +667,33 @@
                             <constraint firstItem="KAV-lB-nyE" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="mnW-MJ-FaZ"/>
                             <constraint firstItem="Vx9-U4-sFj" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="pFy-cT-xae"/>
                             <constraint firstItem="yvB-zl-Zvd" firstAttribute="top" secondItem="1sY-rT-VTb" secondAttribute="bottom" constant="8" symbolic="YES" id="rDO-Rq-YGj"/>
+                            <constraint firstItem="KTp-SY-nUI" firstAttribute="leading" secondItem="0lY-ls-Qpz" secondAttribute="trailing" constant="10" id="tOb-IV-ENq"/>
                             <constraint firstItem="KAV-lB-nyE" firstAttribute="top" secondItem="yvB-zl-Zvd" secondAttribute="bottom" constant="8" id="x2K-sw-oez"/>
                             <constraint firstItem="Fue-8h-arq" firstAttribute="leading" secondItem="yvB-zl-Zvd" secondAttribute="trailing" constant="10" id="xVq-9L-EoQ"/>
                             <constraint firstItem="hjp-z5-GO5" firstAttribute="centerY" secondItem="0MR-RD-FMP" secondAttribute="centerY" id="yqC-21-z2z"/>
                             <constraint firstItem="Urd-YV-pXW" firstAttribute="leading" secondItem="kQB-Tv-IcE" secondAttribute="trailing" constant="10" id="ywG-fc-dzR"/>
+                            <constraint firstItem="5A9-f7-PaQ" firstAttribute="centerX" secondItem="ByF-Sx-VTr" secondAttribute="centerX" id="zNy-fJ-Rnh"/>
+                            <constraint firstItem="KTp-SY-nUI" firstAttribute="centerY" secondItem="0lY-ls-Qpz" secondAttribute="centerY" id="zpm-2J-pNK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Bf-8T-ab6"/>
                     </view>
+                    <connections>
+                        <outlet property="addess" destination="viz-Sa-CFo" id="NJ2-VH-aVD"/>
+                        <outlet property="camera" destination="4Tl-l3-trs" id="Tja-wz-N0p"/>
+                        <outlet property="contact" destination="DtF-6R-3XD" id="WB2-HU-wMT"/>
+                        <outlet property="customer" destination="Fue-8h-arq" id="VaO-CZ-zYZ"/>
+                        <outlet property="dateFinished" destination="0lY-ls-Qpz" id="Qh2-HJ-3ie"/>
+                        <outlet property="dateLabel" destination="Urd-YV-pXW" id="pBn-nU-isy"/>
+                        <outlet property="datePicker" destination="khm-4r-et5" id="6Ai-vM-vjf"/>
+                        <outlet property="finishDate" destination="KTp-SY-nUI" id="wZk-fX-LQG"/>
+                        <outlet property="imageView" destination="J4V-OX-Wlg" id="l6H-1d-gAY"/>
+                        <outlet property="or" destination="0MR-RD-FMP" id="sIs-No-gCW"/>
+                        <outlet property="photoLibrary" destination="hjp-z5-GO5" id="ifL-QK-wMp"/>
+                        <outlet property="save" destination="5A9-f7-PaQ" id="aYb-pB-wAx"/>
+                        <outlet property="scheduledOn" destination="kQB-Tv-IcE" id="FXv-0o-oLM"/>
+                        <outlet property="status" destination="FC3-RZ-8c2" id="RAP-Dz-JuL"/>
+                        <outlet property="upload" destination="tRg-Ov-Hn4" id="hif-1w-dFA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cmr-PJ-NQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -72,6 +72,10 @@ class RequestsJobsTableViewController: UITableViewController {
                                             self.propPrices.append(pPrice as! String)
                                         }
                                     }
+                                    else {
+                                        self.propDates.append(NSDate()) //za da ne e prazno
+                                        self.propPrices.append("")
+                                    }
                                 }
                             }
                         }

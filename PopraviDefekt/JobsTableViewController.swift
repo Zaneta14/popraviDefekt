@@ -19,6 +19,14 @@ class JobsTableViewController: UITableViewController {
     
     var dates = [NSDate]()
     
+    var finishDates = [NSDate]()
+    
+    var pNumbers = [String]()
+    
+    var emailAs = [String]()
+    
+    var adresi = [String]()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -45,6 +53,7 @@ class JobsTableViewController: UITableViewController {
         dates.removeAll()
         firstNames.removeAll()
         lastNames.removeAll()
+        finishDates.removeAll()
         let array = ["done", "scheduled"]
         let predicate = NSPredicate(format: "status = %@ OR status = %@", argumentArray: array)
         let query = PFQuery(className: "Job", predicate: predicate)
@@ -57,27 +66,46 @@ class JobsTableViewController: UITableViewController {
                 for object in objects {
                     if let status = object["status"] {
                         if let pDate = object["pDateTime"] {
-                            if let userId = object["from"] {
-                                let userQuery = PFUser.query()
-                                userQuery?.whereKey("objectId", equalTo: userId)
-                                userQuery?.findObjectsInBackground(block: { (success, error) in
-                                    if error != nil {
-                                        print(error?.localizedDescription)
-                                    } else if let users = success {
-                                        for user in users {
-                                            if let fName = user["firstName"] {
-                                                if let lName = user["lastName"] {
-                                                    self.dates.append(pDate as! NSDate)
-                                                    self.statuses.append(status as! String)
-                                                    self.firstNames.append(fName as! String)
-                                                    self.lastNames.append(lName as! String)
+                            if let adresa = object["location"] {
+                                if let lat = object["lat"] {
+                                    if let lon = object["lon"] {
+                                        if let fDate = object["finishDate"] {
+                                         self.finishDates.append(fDate as! NSDate)
+                                         } else {
+                                         self.finishDates.append(NSDate()) //za da ne e prazno
+                                         }
+                                        if let userId = object["from"] {
+                                            let userQuery = PFUser.query()
+                                            userQuery?.whereKey("objectId", equalTo: userId)
+                                            userQuery?.findObjectsInBackground(block: { (success, error) in
+                                                if error != nil {
+                                                    print(error?.localizedDescription)
+                                                } else if let users = success {
+                                                    for user in users {
+                                                        if let user = user as? PFUser {
+                                                            if let fName = user["firstName"] {
+                                                                if let lName = user["lastName"] {
+                                                                    if let emailA = user.username {
+                                                                        if let pNumber = user["phoneNumber"] {
+                                                                            self.dates.append(pDate as! NSDate)
+                                                                            self.statuses.append(status as! String)
+                                                                            self.firstNames.append(fName as! String)
+                                                                            self.lastNames.append(lName as! String)
+                                                                            self.pNumbers.append(pNumber as! String)
+                                                                            self.emailAs.append(emailA as! String)
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                 }
-                                            }
+                                                self.refresher.endRefreshing()
+                                                self.tableView.reloadData()
+                                            })
                                         }
                                     }
-                                    self.refresher.endRefreshing()
-                                    self.tableView.reloadData()
-                                })
+                                }
                             }
                         }
                     }
@@ -104,49 +132,12 @@ class JobsTableViewController: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "jobDetailsSegue" {
+            if let index = tableView.indexPathForSelectedRow?.row {
+                let dVC = segue.destination as! JobDetailsViewController
+            }
+        }
     }
-    */
-
+    
 }
