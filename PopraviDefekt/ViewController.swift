@@ -54,25 +54,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if PFUser.current() != nil {
+            print("true")
             if PFUser.current()!["role"] as! String == "customer" {
+                print("cus")
                 performSegue(withIdentifier: "customerSegue", sender: self)
             } else {
+                print("craft")
                 performSegue(withIdentifier: "craftsmanSegue", sender: self)
             }
         }
-        /*let request = PFObject(className: "Job")
-        request["from"] = "BI3t6nK8Yr"
-        request["to"] = "ofyiO0GyMk"
-        request["pDateTime"] = NSDate()
-        request["finishDate"] = NSDate()
-        request["status"] = "done"
-        request.saveInBackground { (success, error) in
-            if success {
-                //self.displayAlert(title: "Success!", message: "You have made a request.")
-            } else {
-                //self.displayAlert(title: "Failed", message: (error?.localizedDescription)!)
-            }
-        }*/
     }
     
     @IBAction func switchChanged(_ sender: UISwitch) {

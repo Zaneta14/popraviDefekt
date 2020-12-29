@@ -21,6 +21,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("date = \(dates[0])")
     }
 
     // MARK: - Table view data source
@@ -39,8 +40,10 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CraftsmanDetailsTableViewCell
         imageFiles[indexPath.row].getDataInBackground { (data, error) in
             if let imageData = data {
+                print("here")
                 if let imageToDisplay = UIImage(data: imageData) {
                     cell.imageI.image = imageToDisplay
+                    print("success")
                 }
             }
         }
