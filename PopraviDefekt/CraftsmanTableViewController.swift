@@ -8,8 +8,12 @@
 
 import UIKit
 import Parse
+import MapKit
+import CoreLocation
 
-class CraftsmanTableViewController: UITableViewController {
+class CraftsmanTableViewController: UITableViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    
+    let locationManager = CLLocationManager()
     
     var fNames = [String]()
     
@@ -31,6 +35,10 @@ class CraftsmanTableViewController: UITableViewController {
     
     var indeks = Int()
     
+    var currentLat = Double()
+    
+    var currentLon = Double()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -39,6 +47,21 @@ class CraftsmanTableViewController: UITableViewController {
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(CraftsmanTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLat = locations[0].coordinate.latitude
+        currentLon = locations[0].coordinate.longitude
+        PFUser.current()!["currentLat"] = currentLat
+        PFUser.current()!["currentLon"] = currentLon
+        PFUser.current()?.saveInBackground()
     }
     
     @objc func updateTable() {

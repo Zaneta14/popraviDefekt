@@ -20,12 +20,6 @@ class SeeCraftsmenTableViewController: UITableViewController {
     var craftsmanIds = [String]()
     var i = Int()
     var selectedCraftsmanId = String()
-    //var firstName = String()
-    //var lastName = String()
-
-    /*override func viewDidLoad() {
-        super.viewDidLoad()
-    }*/
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -43,7 +37,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
         craftsmanIds.removeAll()
         let cell = tableView.dequeueReusableCell(withIdentifier: "kelija", for: indexPath)
         cell.textLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row]
-        
+        let defectLocation = CLLocation(latitude: lat, longitude: lon)
         let firstName = fNames[indexPath.row]
         print(firstName)
         let lastName = lNames[indexPath.row]
@@ -60,22 +54,27 @@ class SeeCraftsmenTableViewController: UITableViewController {
                 for object in craftsmen {
                     if let craftsman = object as? PFUser {
                         if let objectId = craftsman.objectId {
-                            //self.craftsmanIds.append(objectId)
-                            print(objectId)
-                            //print("CraftsmanIds = \(self.craftsmanIds.count)")
-                            let query = PFQuery(className: "Job")
-                            query.whereKey("from", equalTo: PFUser.current()?.objectId)
-                            query.whereKey("to", equalTo: objectId)
-                            query.whereKey("status", equalTo: "active")
-                            query.findObjectsInBackground(block: { (objects, error) in
-                                if error != nil {
-                                    print(error?.localizedDescription)
-                                } else if let objects = objects {
-                                    if objects.count > 0 {
-                                        cell.accessoryType = UITableViewCell.AccessoryType.checkmark
-                                    }
+                            if let currLat = craftsman["currentLat"] {
+                                if let currLon = craftsman["currentLon"] {
+                                    let craftsmanLocation = CLLocation(latitude: currLat as! Double, longitude: currLon as! Double)
+                                    let distance = craftsmanLocation.distance(from: defectLocation) / 1000
+                                    let roundedDistance = round(distance * 100) / 100
+                                    cell.detailTextLabel?.text = "\(roundedDistance)km away"
+                                    let query = PFQuery(className: "Job")
+                                    query.whereKey("from", equalTo: PFUser.current()?.objectId)
+                                    query.whereKey("to", equalTo: objectId)
+                                    query.whereKey("status", equalTo: "active")
+                                    query.findObjectsInBackground(block: { (objects, error) in
+                                        if error != nil {
+                                            print(error?.localizedDescription)
+                                        } else if let objects = objects {
+                                            if objects.count > 0 {
+                                                cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+                                            }
+                                        }
+                                    })
                                 }
-                            })
+                            }
                         }
                     }
                 }
@@ -87,12 +86,10 @@ class SeeCraftsmenTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("clicked")
         i = indexPath.row
-        //fetchData(i: i)
         performSegue(withIdentifier: "craftsmanDetailsSegue", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare")
         if segue.identifier == "craftsmanDetailsSegue" {
             let destinationVC = segue.destination as! CraftsmanDetailsTableViewController
             destinationVC.lat = lat
@@ -101,40 +98,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
             destinationVC.opis = opis
             destinationVC.firstName = fNames[i]
             destinationVC.lastName = lNames[i]
-            //destinationVC.selCraftsmanId = selectedCraftsmanId//craftsmanIds[i]
-            //print(craftsmanIds[i])
-            //print("Selected craftsmanId: \(self.selectedCraftsmanId)")
-            print("dVC")
-            /*destinationVC.dates = self.dates
-            print(self.dates.count)
-            destinationVC.imageFiles = self.imageFiles*/
         }
     }
     
-    /*func fetchData(i: Int) {
-        print("fetchData")
-        let firstName = fNames[i]
-        let lastName = lNames[i]
-        print(firstName)
-        let craftsmanQuery = PFUser.query()
-        craftsmanQuery?.whereKey("role", equalTo: "craftsman")
-        craftsmanQuery?.whereKey("firstName", equalTo: firstName)
-        craftsmanQuery?.whereKey("lastName", equalTo: lastName)
-        craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
-            if error != nil {
-                print(error?.localizedDescription)
-            } else if let craftsmen = objects {
-                print("ovde")
-                for object in craftsmen {
-                    print("ima")
-                    if let craftsman = object as? PFUser {
-                        if let objectId = craftsman.objectId {
-                            print(objectId)
-                            self.selectedCraftsmanId = objectId
-                        }
-                    }
-                }
-            }
-        })
-    }*/
 }

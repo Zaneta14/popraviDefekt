@@ -23,7 +23,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         fetchData()
         let craftsmanQuery = PFUser.query()
         craftsmanQuery?.whereKey("role", equalTo: "craftsman")
@@ -36,7 +35,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                 for object in craftsmen {
                     if let craftsman = object as? PFUser {
                         if let objectId = craftsman.objectId {
-                            print("tuka")
                             self.selCraftsmanId = objectId
                         }
                     }
@@ -44,8 +42,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
             }
         })
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -59,7 +55,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CraftsmanDetailsTableViewCell
         imageFiles[indexPath.row].getDataInBackground { (data, error) in
             if let imageData = data {
-                print("here")
                 if let imageToDisplay = UIImage(data: imageData) {
                     cell.imageI.image = imageToDisplay
                     print("success")
@@ -100,7 +95,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     }
     
     func fetchData() {
-        print("fetchData")
         self.imageFiles.removeAll()
         self.dates.removeAll()
         let craftsmanQuery = PFUser.query()
@@ -119,16 +113,11 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                             let query = PFQuery(className: "Job")
                             query.whereKey("to", equalTo: objectId)
                             query.whereKey("status", equalTo: "done")
-                            print("lala")
                             query.findObjectsInBackground(block: { (jobs, error) in
-                                print("mhm")
                                 if error != nil {
                                     print(error?.localizedDescription)
-                                    print("greska")
                                 } else if let jobs = jobs {
-                                    print("nema greska")
                                     for job in jobs {
-                                        print("ima2")
                                         if let datum = job["finishDate"] {
                                             if let slika = job["imageFile"] {
                                                 self.dates.append(datum as! NSDate)
