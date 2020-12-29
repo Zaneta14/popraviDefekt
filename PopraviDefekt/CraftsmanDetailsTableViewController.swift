@@ -21,7 +21,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("date = \(dates[0])")
+        fetchData()
     }
 
     // MARK: - Table view data source
@@ -77,5 +77,36 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                 self.displayAlert(title: "Failed", message: (error?.localizedDescription)!)
             }
         }
+    }
+    
+    func fetchData() {
+        print("fetchData")
+        self.imageFiles.removeAll()
+        self.dates.removeAll()
+        let query = PFQuery(className: "Job")
+        query.whereKey("to", equalTo: selCraftsmanId)
+        query.whereKey("status", equalTo: "done")
+        print("lala")
+        query.findObjectsInBackground(block: { (jobs, error) in
+            print("mhm")
+            if error != nil {
+                print(error?.localizedDescription)
+                print("greska")
+            } else if let jobs = jobs {
+                print("nema greska")
+                for job in jobs {
+                    print("ima2")
+                    if let datum = job["finishDate"] {
+                        if let slika = job["imageFile"] {
+                            self.dates.append(datum as! NSDate)
+                            print("Vo funkcija: \(self.dates.count)")
+                            print("Datum: \(datum)")
+                            self.imageFiles.append(slika as! PFFileObject)
+                        }
+                    }
+                }
+            }
+            self.tableView.reloadData()
+        })
     }
 }

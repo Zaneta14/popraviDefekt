@@ -982,7 +982,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Craftsmen" id="nVO-2V-gBa"/>
                     <connections>
-                        <segue destination="NK7-E8-i6X" kind="show" identifier="craftsmanDetailsSegue" id="wve-qS-CPy"/>
+                        <segue destination="NK7-E8-i6X" kind="show" identifier="craftsmanDetailsSegue" id="SeU-ma-2p6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4u-fQ-Z7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -993,7 +993,7 @@
         <scene sceneID="5Zw-zi-mB8">
             <objects>
                 <tableViewController id="NK7-E8-i6X" customClass="CraftsmanDetailsTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="40B-gD-YlG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="320" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="40B-gD-YlG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1014,25 +1014,25 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="375" id="8cc-W2-tcr" customClass="CraftsmanDetailsTableViewCell" customModule="PopraviDefekt" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="375"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="320" id="8cc-W2-tcr" customClass="CraftsmanDetailsTableViewCell" customModule="PopraviDefekt" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8cc-W2-tcr" id="Yqq-44-PGU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="374.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-YY-TxL">
-                                            <rect key="frame" x="16" y="11" width="343" height="323"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="XnN-YY-TxL" secondAttribute="height" multiplier="343:323" id="OIh-Tb-Trw"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNK-4v-g3t">
-                                            <rect key="frame" x="166.5" y="342" width="42" height="24"/>
+                                            <rect key="frame" x="166.5" y="287" width="42" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-YY-TxL">
+                                            <rect key="frame" x="16" y="11" width="343" height="268"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="XnN-YY-TxL" secondAttribute="height" multiplier="343:268" id="lLx-hK-V3j"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="XnN-YY-TxL" firstAttribute="top" secondItem="Yqq-44-PGU" secondAttribute="topMargin" id="E9t-hH-Tyi"/>
