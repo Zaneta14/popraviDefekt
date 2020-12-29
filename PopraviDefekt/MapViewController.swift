@@ -2,29 +2,34 @@
 //  MapViewController.swift
 //  PopraviDefekt
 //
-//  Created by Zaneta on 12/27/20.
+//  Created by Zaneta on 12/29/20.
 //  Copyright © 2020 Zaneta. All rights reserved.
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController {
+    
+    var lat = Double()
+    
+    var lon = Double()
+    
+    var lok = String()
 
+    @IBOutlet weak var map: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        self.map.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = lok
+        self.map.addAnnotation(annotation)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

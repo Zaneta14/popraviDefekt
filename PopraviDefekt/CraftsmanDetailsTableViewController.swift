@@ -18,21 +18,40 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     var lokacija = String()
     var lat = Double()
     var lon = Double()
+    var firstName = String()
+    var lastName = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         fetchData()
+        let craftsmanQuery = PFUser.query()
+        craftsmanQuery?.whereKey("role", equalTo: "craftsman")
+        craftsmanQuery?.whereKey("firstName", equalTo: firstName)
+        craftsmanQuery?.whereKey("lastName", equalTo: lastName)
+        craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let craftsmen = objects {
+                for object in craftsmen {
+                    if let craftsman = object as? PFUser {
+                        if let objectId = craftsman.objectId {
+                            print("tuka")
+                            self.selCraftsmanId = objectId
+                        }
+                    }
+                }
+            }
+        })
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return dates.count
     }
 
@@ -61,6 +80,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     }
     
     @IBAction func makeARequest(_ sender: Any) {
+        
         let request = PFObject(className: "Job")
         request["from"] = PFUser.current()?.objectId
         request["to"] = selCraftsmanId
@@ -83,30 +103,49 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         print("fetchData")
         self.imageFiles.removeAll()
         self.dates.removeAll()
-        let query = PFQuery(className: "Job")
-        query.whereKey("to", equalTo: selCraftsmanId)
-        query.whereKey("status", equalTo: "done")
-        print("lala")
-        query.findObjectsInBackground(block: { (jobs, error) in
-            print("mhm")
+        let craftsmanQuery = PFUser.query()
+        craftsmanQuery?.whereKey("role", equalTo: "craftsman")
+        craftsmanQuery?.whereKey("firstName", equalTo: firstName)
+        craftsmanQuery?.whereKey("lastName", equalTo: lastName)
+        craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
-                print("greska")
-            } else if let jobs = jobs {
-                print("nema greska")
-                for job in jobs {
-                    print("ima2")
-                    if let datum = job["finishDate"] {
-                        if let slika = job["imageFile"] {
-                            self.dates.append(datum as! NSDate)
-                            print("Vo funkcija: \(self.dates.count)")
-                            print("Datum: \(datum)")
-                            self.imageFiles.append(slika as! PFFileObject)
+            } else if let craftsmen = objects {
+                print("ovde")
+                for object in craftsmen {
+                    print("ima")
+                    if let craftsman = object as? PFUser {
+                        if let objectId = craftsman.objectId {
+                            let query = PFQuery(className: "Job")
+                            query.whereKey("to", equalTo: objectId)
+                            query.whereKey("status", equalTo: "done")
+                            print("lala")
+                            query.findObjectsInBackground(block: { (jobs, error) in
+                                print("mhm")
+                                if error != nil {
+                                    print(error?.localizedDescription)
+                                    print("greska")
+                                } else if let jobs = jobs {
+                                    print("nema greska")
+                                    for job in jobs {
+                                        print("ima2")
+                                        if let datum = job["finishDate"] {
+                                            if let slika = job["imageFile"] {
+                                                self.dates.append(datum as! NSDate)
+                                                print("Vo funkcija: \(self.dates.count)")
+                                                print("Datum: \(datum)")
+                                                self.imageFiles.append(slika as! PFFileObject)
+                                            }
+                                        }
+                                    }
+                                }
+                                self.tableView.reloadData()
+                            })
                         }
                     }
                 }
             }
-            self.tableView.reloadData()
         })
     }
+    
 }

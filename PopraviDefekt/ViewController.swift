@@ -53,16 +53,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if PFUser.current() != nil {
-            print("true")
-            if PFUser.current()!["role"] as! String == "customer" {
-                print("cus")
-                performSegue(withIdentifier: "customerSegue", sender: self)
-            } else {
-                print("craft")
-                performSegue(withIdentifier: "craftsmanSegue", sender: self)
-            }
-        }
     }
     
     @IBAction func switchChanged(_ sender: UISwitch) {
@@ -170,7 +160,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     user["craft"] = craft
                 }
                 else {
-                    //korisnik
                     user["role"] = "customer"
                 }
                 user.signUpInBackground { (success, error) in

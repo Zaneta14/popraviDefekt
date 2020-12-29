@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import CoreLocation
 import Parse
 
 class CRequestDetailsViewController: UIViewController {
@@ -104,14 +103,6 @@ class CRequestDetailsViewController: UIViewController {
                 }
             })
             displayAlert(title: "Success!", message: "You have made an offer.")
-            /*let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let stringDate = dateFormatter.string(from: schDateAndTime as Date)
-            print(stringDate)
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateFormat = "HH:mm"
-            let stringTime = timeFormatter.string(from: schDateAndTime as Date)
-            print(stringTime)*/
         }
     }
     
@@ -155,14 +146,4 @@ class CRequestDetailsViewController: UIViewController {
         present(allertController, animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

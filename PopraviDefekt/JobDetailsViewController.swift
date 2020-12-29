@@ -174,4 +174,15 @@ UIImagePickerControllerDelegate {
             displayAlert(title: "Success", message: "The job is now finished.")
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "locationSegue" {
+            let dVC = segue.destination as! MapViewController
+            dVC.lat = lat
+            dVC.lon = lon
+            dVC.lok = adresa
+        }
+    }
+    
+    
 }

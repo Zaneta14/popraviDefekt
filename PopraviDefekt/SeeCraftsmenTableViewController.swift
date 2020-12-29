@@ -13,27 +13,25 @@ class SeeCraftsmenTableViewController: UITableViewController {
     
     var fNames = [String]()
     var lNames = [String]()
-    //var dates = [NSDate]()
-    //var imageFiles = [PFFileObject]()
     var opis = String()
     var lokacija = String()
     var lat = Double()
     var lon =  Double()
     var craftsmanIds = [String]()
     var i = Int()
+    var selectedCraftsmanId = String()
+    //var firstName = String()
+    //var lastName = String()
 
-    override func viewDidLoad() {
+    /*override func viewDidLoad() {
         super.viewDidLoad()
-        print(viewDidLoad)
-    }
+    }*/
     
     override func viewDidAppear(_ animated: Bool) {
-        //craftsmanIds.removeAll()
-        //tableView.reloadData()
+        tableView.reloadData()
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -54,6 +52,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
         craftsmanQuery?.whereKey("role", equalTo: "craftsman")
         craftsmanQuery?.whereKey("firstName", equalTo: firstName)
         craftsmanQuery?.whereKey("lastName", equalTo: lastName)
+        craftsmanQuery?.addDescendingOrder("lastName")
         craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
@@ -61,9 +60,9 @@ class SeeCraftsmenTableViewController: UITableViewController {
                 for object in craftsmen {
                     if let craftsman = object as? PFUser {
                         if let objectId = craftsman.objectId {
-                            self.craftsmanIds.append(objectId)
+                            //self.craftsmanIds.append(objectId)
                             print(objectId)
-                            print("CraftsmanIds = \(self.craftsmanIds.count)")
+                            //print("CraftsmanIds = \(self.craftsmanIds.count)")
                             let query = PFQuery(className: "Job")
                             query.whereKey("from", equalTo: PFUser.current()?.objectId)
                             query.whereKey("to", equalTo: objectId)
@@ -86,19 +85,24 @@ class SeeCraftsmenTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("clicked")
         i = indexPath.row
+        //fetchData(i: i)
         performSegue(withIdentifier: "craftsmanDetailsSegue", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare")
         if segue.identifier == "craftsmanDetailsSegue" {
             let destinationVC = segue.destination as! CraftsmanDetailsTableViewController
             destinationVC.lat = lat
             destinationVC.lon = lon
             destinationVC.lokacija = lokacija
             destinationVC.opis = opis
-            destinationVC.selCraftsmanId = craftsmanIds[i]
-            print(craftsmanIds[i])
+            destinationVC.firstName = fNames[i]
+            destinationVC.lastName = lNames[i]
+            //destinationVC.selCraftsmanId = selectedCraftsmanId//craftsmanIds[i]
+            //print(craftsmanIds[i])
             //print("Selected craftsmanId: \(self.selectedCraftsmanId)")
             print("dVC")
             /*destinationVC.dates = self.dates
@@ -109,8 +113,6 @@ class SeeCraftsmenTableViewController: UITableViewController {
     
     /*func fetchData(i: Int) {
         print("fetchData")
-        self.imageFiles.removeAll()
-        self.dates.removeAll()
         let firstName = fNames[i]
         let lastName = lNames[i]
         print(firstName)
@@ -129,30 +131,6 @@ class SeeCraftsmenTableViewController: UITableViewController {
                         if let objectId = craftsman.objectId {
                             print(objectId)
                             self.selectedCraftsmanId = objectId
-                            let query = PFQuery(className: "Job")
-                            query.whereKey("to", equalTo: objectId)
-                            query.whereKey("status", equalTo: "done")
-                            print("lala")
-                            query.findObjectsInBackground(block: { (jobs, error) in
-                                print("mhm")
-                                if error != nil {
-                                    print(error?.localizedDescription)
-                                    print("greska")
-                                } else if let jobs = jobs {
-                                    print("nema greska")
-                                    for job in jobs {
-                                        print("ima2")
-                                        if let datum = job["finishDate"] {
-                                            if let slika = job["imageFile"] {
-                                                self.dates.append(datum as! NSDate)
-                                                print("Vo funkcija: \(self.dates.count)")
-                                                print("Datum: \(datum)")
-                                                self.imageFiles.append(slika as! PFFileObject)
-                                            }
-                                        }
-                                    }
-                                }
-                            })
                         }
                     }
                 }

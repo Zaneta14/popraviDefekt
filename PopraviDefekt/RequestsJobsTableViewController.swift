@@ -25,6 +25,10 @@ class RequestsJobsTableViewController: UITableViewController {
     
     var propPrices = [String]()
     
+    var finishDates = [NSDate?]()
+    
+    var imageFiles = [PFFileObject?]()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -50,6 +54,8 @@ class RequestsJobsTableViewController: UITableViewController {
         descriptions.removeAll()
         propDates.removeAll()
         propPrices.removeAll()
+        finishDates.removeAll()
+        imageFiles.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("from", equalTo: PFUser.current()?.objectId)
         query.addDescendingOrder("date")
@@ -75,6 +81,16 @@ class RequestsJobsTableViewController: UITableViewController {
                                     else {
                                         self.propDates.append(NSDate()) //za da ne e prazno
                                         self.propPrices.append("")
+                                    }
+                                    if let finDate = object["finishDate"] {
+                                        if let imageFile = object["imageFile"] {
+                                            self.finishDates.append(finDate as! NSDate)
+                                            self.imageFiles.append(imageFile as! PFFileObject)
+                                        }
+                                    }
+                                    else {
+                                        self.finishDates.append(nil)
+                                        self.imageFiles.append(nil)
                                     }
                                 }
                             }
@@ -136,9 +152,16 @@ class RequestsJobsTableViewController: UITableViewController {
             destinationVC.descr = descriptions[indeks]
             destinationVC.dateReq = datumiB[indeks]
             destinationVC.statusS = statuses[indeks]
-            if propDates.count > 0 {
+            if statuses[indeks] == "pending" {
                 destinationVC.propDate = propDates[indeks]
                 destinationVC.propPrice = propPrices[indeks]
+            }
+            else if statuses[indeks] == "scheduled" {
+                destinationVC.propDate = propDates[indeks]
+            }
+            else if statuses[indeks] == "done" {
+                destinationVC.imageFile.append(imageFiles[indeks]!)
+                destinationVC.dateFinished = finishDates[indeks]!
             }
         }
     }
