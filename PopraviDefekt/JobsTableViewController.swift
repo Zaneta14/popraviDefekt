@@ -76,7 +76,6 @@ class JobsTableViewController: UITableViewController {
                 print(error?.localizedDescription)
             } else if let objects = objects {
                 for object in objects {
-                    print(objects.count)
                     if let status = object["status"] {
                         if let pDate = object["pDateTime"] {
                             if let adresa = object["location"] {
@@ -85,17 +84,14 @@ class JobsTableViewController: UITableViewController {
                                         if let slika = object["imageFile"] {
                                             self.images.append(slika as! PFFileObject)
                                         } else {
-                                            print("here")
                                             self.images.append(nil)
                                         }
                                         if let fDate = object["finishDate"] {
                                             self.finishDates.append(fDate as! NSDate)
                                          } else {
-                                            print("here2")
                                             self.finishDates.append(nil)
                                          }
                                         if let jobId = object.objectId {
-                                            print(jobId)
                                             if let userId = object["from"] {
                                                 let userQuery = PFUser.query()
                                                 userQuery?.whereKey("objectId", equalTo: userId)

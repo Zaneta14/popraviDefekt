@@ -75,7 +75,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     }
     
     @IBAction func makeARequest(_ sender: Any) {
-        
         let request = PFObject(className: "Job")
         request["from"] = PFUser.current()?.objectId
         request["to"] = selCraftsmanId
@@ -105,9 +104,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
             if error != nil {
                 print(error?.localizedDescription)
             } else if let craftsmen = objects {
-                print("ovde")
                 for object in craftsmen {
-                    print("ima")
                     if let craftsman = object as? PFUser {
                         if let objectId = craftsman.objectId {
                             let query = PFQuery(className: "Job")
@@ -121,8 +118,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                                         if let datum = job["finishDate"] {
                                             if let slika = job["imageFile"] {
                                                 self.dates.append(datum as! NSDate)
-                                                print("Vo funkcija: \(self.dates.count)")
-                                                print("Datum: \(datum)")
                                                 self.imageFiles.append(slika as! PFFileObject)
                                             }
                                         }

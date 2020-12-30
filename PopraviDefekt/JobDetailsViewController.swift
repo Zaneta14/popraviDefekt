@@ -50,8 +50,6 @@ UIImagePickerControllerDelegate {
     
     var jobId = String()
     
-    var pickerDateFin = NSDate()
-    
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var status: UILabel!
@@ -90,7 +88,6 @@ UIImagePickerControllerDelegate {
             save.isHidden = false
             datePicker.datePickerMode = .date
             datePicker.isHidden = false
-            pickerDateFin = datePicker.date as NSDate
             upload.isHidden = false
         }
         else {
@@ -159,7 +156,7 @@ UIImagePickerControllerDelegate {
                     print(error?.localizedDescription)
                 } else if let objects = success {
                     for object in objects {
-                        object["finishDate"] = self.pickerDateFin
+                        object["finishDate"] = self.datePicker.date
                         object["status"] = "done"
                         if let image = self.imageView.image {
                             if let imageData = image.jpeg(.medium) {

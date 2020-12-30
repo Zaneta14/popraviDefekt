@@ -39,14 +39,11 @@ class SeeCraftsmenTableViewController: UITableViewController {
         cell.textLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row]
         let defectLocation = CLLocation(latitude: lat, longitude: lon)
         let firstName = fNames[indexPath.row]
-        print(firstName)
         let lastName = lNames[indexPath.row]
-        print(lastName)
         let craftsmanQuery = PFUser.query()
         craftsmanQuery?.whereKey("role", equalTo: "craftsman")
         craftsmanQuery?.whereKey("firstName", equalTo: firstName)
         craftsmanQuery?.whereKey("lastName", equalTo: lastName)
-        craftsmanQuery?.addDescendingOrder("lastName")
         craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription)
@@ -84,7 +81,6 @@ class SeeCraftsmenTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("clicked")
         i = indexPath.row
         performSegue(withIdentifier: "craftsmanDetailsSegue", sender: nil)
     }
