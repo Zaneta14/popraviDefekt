@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Parse
 
-class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var manager = CLLocationManager()
     
@@ -29,20 +29,33 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     
     var lon = Double()
     
+    var types = [String]()
+    
+    var craft = String()
+    
     @IBOutlet weak var descriptionField: UITextField!
     
     @IBOutlet weak var map: MKMapView!
     
-    @IBOutlet weak var plumber: UISwitch!
     
-    @IBOutlet weak var shoeMaker: UISwitch!
-    
-    @IBOutlet weak var electrician: UISwitch!
-    
-    @IBOutlet weak var carpenter: UISwitch!
+    @IBOutlet weak var pickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        types.removeAll()
+        let query = PFQuery(className: "CraftsmanType")
+        query.findObjectsInBackground { (success, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let objects = success {
+                for object in objects {
+                    if let typeP = object["eng"] {
+                        self.types.append(typeP as! String)
+                    }
+                }
+            }
+        }
         
         locationChosen = false
         
@@ -54,6 +67,22 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return types.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return types[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        craft = types[row]
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -103,7 +132,7 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     }
 
     @IBAction func seeCraftsmen(_ sender: Any) {
-        if !locationChosen || descriptionField.text == "" || (!plumber.isOn && !shoeMaker.isOn && !electrician.isOn && !carpenter.isOn) {
+        if !locationChosen || descriptionField.text == "" /*|| (!plumber.isOn && !shoeMaker.isOn && !electrician.isOn && !carpenter.isOn) */{
             displayAlert(title: "Not enough information", message: "Please enter all information required")
         }
         else {
@@ -111,17 +140,7 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             lastNames.removeAll()
             desc = descriptionField.text!
             let query = PFUser.query()
-            var craft = String()
-            if plumber.isOn {
-                craft = "plumber"
-            } else if electrician.isOn {
-                craft = "electrician"
-            } else if carpenter.isOn {
-                craft = "carpenter"
-            } else if shoeMaker.isOn {
-                craft = "shoemaker"
-            }
-            query?.whereKey("craft", equalTo: craft)
+            query?.whereKey("crafts", contains: craft)
             query?.findObjectsInBackground(block: { (objects, error) in
                 if error != nil {
                     print(error?.localizedDescription)
@@ -157,47 +176,6 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     
     @IBAction func seeRequests(_ sender: Any) {
         self.performSegue(withIdentifier: "requestsSegue", sender: nil)
-    }
-    
-    @IBAction func craftsmenChoice(_ sender: UISwitch) {
-        if sender == plumber {
-            if plumber.isOn {
-                plumber.isOn = false
-            } else {
-                plumber.isOn = true
-                electrician.isOn = false
-                carpenter.isOn = false
-                shoeMaker.isOn = false
-            }
-        }
-        else if sender == carpenter {
-            if carpenter.isOn {
-                carpenter.isOn = false
-            } else {
-                carpenter.isOn = true
-                electrician.isOn = false
-                shoeMaker.isOn = false
-                plumber.isOn = false
-            }
-        } else if sender == electrician {
-            if electrician.isOn {
-                electrician.isOn = false
-            } else {
-                electrician.isOn = true
-                plumber.isOn = false
-                carpenter.isOn = false
-                shoeMaker.isOn = false
-            }
-        } else if sender == shoeMaker {
-            if shoeMaker.isOn {
-                shoeMaker.isOn = false
-            } else {
-                shoeMaker.isOn = true
-                plumber.isOn = false
-                carpenter.isOn = false
-                electrician.isOn = false
-            }
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

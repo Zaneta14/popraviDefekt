@@ -9,7 +9,13 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    var nmb = Int()
+    
+    var types = [String]()
+    
+    var selectedTypes = [String]()
     
     var signUpMode=true
     
@@ -31,90 +37,65 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var phoneNumberField: UITextField!
     
-    @IBOutlet weak var plumber: UISwitch!
-    
-    @IBOutlet weak var shoeMaker: UISwitch!
-    
-    @IBOutlet weak var electrician: UISwitch!
-    
-    @IBOutlet weak var carpenter: UISwitch!
+    @IBOutlet weak var craftsman: UILabel!
     
     @IBOutlet weak var customer: UILabel!
     
-    @IBOutlet weak var craftsman: UILabel!
-    
-    @IBOutlet weak var pLabel: UILabel!
-    
-    @IBOutlet weak var sLabel: UILabel!
-    
-    @IBOutlet weak var eLabel: UILabel!
-    
-    @IBOutlet weak var cLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    @IBAction func switchChanged(_ sender: UISwitch) {
-        if ccSwitch.isOn {
-            plumber.isHidden=false
-            shoeMaker.isHidden=false
-            carpenter.isHidden=false
-            electrician.isHidden=false
-            pLabel.isHidden=false
-            sLabel.isHidden=false
-            cLabel.isHidden=false
-            eLabel.isHidden=false
-        }
-        else {
-            plumber.isHidden=true
-            shoeMaker.isHidden=true
-            carpenter.isHidden=true
-            electrician.isHidden=true
-            pLabel.isHidden=true
-            sLabel.isHidden=true
-            cLabel.isHidden=true
-            eLabel.isHidden=true
+        print("viewDidLoad")
+        types.removeAll()
+        selectedTypes.removeAll()
+        let query = PFQuery(className: "CraftsmanType")
+        query.findObjectsInBackground { (success, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let objects = success {
+                self.nmb = objects.count
+                for object in objects {
+                    if let type = object["eng"] {
+                        self.types.append(type as! String)
+                    }
+                }
+                self.tableView.reloadData()
+            }
         }
     }
     
-    @IBAction func switchesChanged(_ sender: UISwitch) {
-        if sender == plumber {
-            if plumber.isOn {
-                plumber.isOn = false
-            } else {
-                plumber.isOn = true
-                electrician.isOn = false
-                carpenter.isOn = false
-                shoeMaker.isOn = false
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return nmb
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("cellForRowAt")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "craftsmenCell", for: indexPath)
+        cell.textLabel?.text = types[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let cell = tableView.cellForRow(at: indexPath)
+        var typeT = cell?.textLabel?.text
+        if cell?.accessoryType != .checkmark {
+            cell?.accessoryType = UITableViewCell.AccessoryType.checkmark
+            if !selectedTypes.contains(typeT!) {
+                selectedTypes.append(typeT!)
             }
-        }
-        else if sender == carpenter {
-            if carpenter.isOn {
-                carpenter.isOn = false
-            } else {
-                carpenter.isOn = true
-                electrician.isOn = false
-                shoeMaker.isOn = false
-                plumber.isOn = false
-            }
-        } else if sender == electrician {
-            if electrician.isOn {
-                electrician.isOn = false
-            } else {
-                electrician.isOn = true
-                plumber.isOn = false
-                carpenter.isOn = false
-                shoeMaker.isOn = false
-            }
-        } else if sender == shoeMaker {
-            if shoeMaker.isOn {
-                shoeMaker.isOn = false
-            } else {
-                shoeMaker.isOn = true
-                plumber.isOn = false
-                carpenter.isOn = false
-                electrician.isOn = false
+        }else {
+            cell?.accessoryType = .none
+            let range = 0..<selectedTypes.count
+            for i in range {
+                if selectedTypes[i] == typeT {
+                    selectedTypes.remove(at: i)
+                    break
+                }
             }
         }
     }
@@ -129,10 +110,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(allertController, animated: true, completion: nil)
     }
-
+    
+    
+    @IBAction func switchChanged(_ sender: Any) {
+        if ccSwitch.isOn {
+            tableView.isHidden = false
+        } else {
+            tableView.isHidden = true
+        }
+    }
+    
     @IBAction func topButtonPressed(_ sender: Any) {
         if signUpMode {
-            if emailField.text == "" || passwordField.text == "" || firstNameField.text == "" || lastNameField.text == "" || phoneNumberField.text == "" || (ccSwitch.isOn && !plumber.isOn && !carpenter.isOn && !electrician.isOn && !shoeMaker.isOn) {
+            if emailField.text == "" || passwordField.text == "" || firstNameField.text == "" || lastNameField.text == "" || phoneNumberField.text == "" || selectedTypes.count == 0 {
                 displayAlert(title: "Not enough information", message: "Please enter all information required")
             }
             else {
@@ -147,17 +137,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if ccSwitch.isOn {
                     //majstor
                     user["role"] = "craftsman"
-                    var craft = String()
-                    if plumber.isOn {
-                        craft = "plumber"
-                    } else if electrician.isOn {
-                        craft = "electrician"
-                    } else if carpenter.isOn {
-                        craft = "carpenter"
-                    } else if shoeMaker.isOn {
-                        craft = "shoemaker"
+                    print("HERE")
+                    var databaseTypes = [String]()
+                    let query = PFQuery(className: "CraftsmanType")
+                    
+                    query.findObjectsInBackground { (success, error) in
+                        if error != nil {
+                            print(error?.localizedDescription)
+                        } else if let objects = success {
+                            for object in objects {
+                                for selType in self.selectedTypes {
+                                    if object["eng"] as! String == selType {
+                                        if let objectId = object.objectId {
+                                            print(objectId)
+                                            databaseTypes.append(objectId)
+                                        }
+                                    }
+                                }
+                            }
+                            user["crafts"] = databaseTypes
+                        }
                     }
-                    user["craft"] = craft
                 }
                 else {
                     user["role"] = "customer"
@@ -218,20 +218,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             signUpMode = false
             topButton.setTitle("Log in", for: .normal)
             bottomButton.setTitle("Switch to sign up", for: .normal)
-            customer.isHidden=true
-            craftsman.isHidden=true
             ccSwitch.isHidden=true
             firstNameField.isHidden=true
             lastNameField.isHidden=true
             phoneNumberField.isHidden=true
-            plumber.isHidden=true
-            shoeMaker.isHidden=true
-            carpenter.isHidden=true
-            electrician.isHidden=true
-            pLabel.isHidden=true
-            sLabel.isHidden=true
-            cLabel.isHidden=true
-            eLabel.isHidden=true
+            customer.isHidden=true
+            craftsman.isHidden=true
+            tableView.isHidden = true
         }
         else {
             signUpMode = true
@@ -244,15 +237,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             lastNameField.isHidden=false
             phoneNumberField.isHidden=false
             if ccSwitch.isOn {
-                //majstor
-                plumber.isHidden=false
-                shoeMaker.isHidden=false
-                carpenter.isHidden=false
-                electrician.isHidden=false
-                pLabel.isHidden=false
-                sLabel.isHidden=false
-                cLabel.isHidden=false
-                eLabel.isHidden=false
+                tableView.isHidden = false
             }
         }
     }

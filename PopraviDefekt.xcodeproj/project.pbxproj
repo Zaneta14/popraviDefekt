@@ -20,6 +20,7 @@
 		1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */; };
 		1EC6C2CD259156F100256120 /* RequestsJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */; };
 		1EF7E63F259B7EF900DD9C89 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E63E259B7EF900DD9C89 /* MapViewController.swift */; };
+		1EFA649025AD100D00BCA041 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EFA648F25AD100D00BCA041 /* logo.png */; };
 		1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */; };
 		1EFA9D3E25868C0000AD3950 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */; };
 		1EFCBCEA25976AB800026A25 /* CRequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */; };
@@ -43,6 +44,7 @@
 		1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsJobsTableViewController.swift; sourceTree = "<group>"; };
 		1EF7E63E259B7EF900DD9C89 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1EFA648F25AD100D00BCA041 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../Downloads/logo.png; sourceTree = "<group>"; };
 		1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRequestDetailsViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
 				1E07C9632586402D00F31493 /* Info.plist */,
 				1EF7E63E259B7EF900DD9C89 /* MapViewController.swift */,
+				1EFA648F25AD100D00BCA041 /* logo.png */,
 			);
 			path = PopraviDefekt;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E07C9622586402D00F31493 /* LaunchScreen.storyboard in Resources */,
+				1EFA649025AD100D00BCA041 /* logo.png in Resources */,
 				1E07C95F2586402D00F31493 /* Assets.xcassets in Resources */,
 				1E07C95D2586402A00F31493 /* Main.storyboard in Resources */,
 			);
