@@ -21,7 +21,9 @@ class RequestDetailsViewController: UIViewController {
     
     var dateFinished = NSDate()
     
-    var imageFile = [PFFileObject]()
+    var beforeImg = [PFFileObject]()
+    
+    var afterImg = [PFFileObject]()
     
     var propDate = NSDate()
     
@@ -54,7 +56,11 @@ class RequestDetailsViewController: UIViewController {
     @IBOutlet weak var schDate: UILabel!
     
     @IBOutlet weak var imageV: UIImageView!
-
+    
+    @IBOutlet weak var after: UILabel!
+    
+    @IBOutlet weak var imageAfter: UIImageView!
+    
     @IBOutlet weak var rejectCancelO: UIButton!
     
     @IBOutlet weak var acceptO: UIButton!
@@ -75,6 +81,15 @@ class RequestDetailsViewController: UIViewController {
         let stringDate = formatter.string(from: dateReq as Date)
         requestDate.text = stringDate
         status.text = statusS
+        let slikaPred = beforeImg[0]
+        slikaPred.getDataInBackground { (data, error) in
+            if let imageData = data {
+                if let imageToDisplay = UIImage(data: imageData) {
+                    self.imageV.image = imageToDisplay
+                }
+            }
+        }
+        beforeImg.removeAll()
         let query = PFUser.query()
         query?.whereKey("objectId", equalTo: craftsmanId)
         query?.findObjectsInBackground(block: { (objects, error) in
@@ -107,7 +122,9 @@ class RequestDetailsViewController: UIViewController {
             pp.isHidden = true
             scheduledOn.isHidden = true
             schDate.isHidden = true
-            imageV.isHidden = true
+            imageV.isHidden = false
+            imageAfter.isHidden = true
+            after.isHidden = true
             acceptO.isHidden = true
             rejectCancelO.setTitle(" Cancel ", for: .normal)
             rejectCancelO.isHidden = false
@@ -125,7 +142,9 @@ class RequestDetailsViewController: UIViewController {
             acceptO.isHidden = false
             rejectCancelO.setTitle("Reject", for: .normal)
             rejectCancelO.isHidden = false
-            imageV.isHidden = true
+            imageV.isHidden = false
+            imageAfter.isHidden = true
+            after.isHidden = true
             scheduledOn.isHidden = true
             schDate.isHidden = true
         } else if statusS == "scheduled" {
@@ -140,7 +159,9 @@ class RequestDetailsViewController: UIViewController {
             scheduledOn.text = "Scheduled on:"
             scheduledOn.isHidden = false
             schDate.isHidden = false
-            imageV.isHidden = true
+            imageV.isHidden = false
+            imageAfter.isHidden = true
+            after.isHidden = true
             acceptO.isHidden = true
             rejectCancelO.isHidden = true
         } else if statusS == "done" {
@@ -148,15 +169,15 @@ class RequestDetailsViewController: UIViewController {
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let stringDate = dateFormatter.string(from: dateFinished as Date)
             schDate.text = stringDate
-            let slika = imageFile[0]
-            slika.getDataInBackground { (data, error) in
+            let slikaPotoa = afterImg[0]
+            slikaPotoa.getDataInBackground { (data, error) in
                 if let imageData = data {
                     if let imageToDisplay = UIImage(data: imageData) {
-                        self.imageV.image = imageToDisplay
+                        self.imageAfter.image = imageToDisplay
                     }
                 }
             }
-            imageFile.removeAll()
+            afterImg.removeAll()
             pDate.isHidden = true
             pPrice.isHidden = true
             pd.isHidden = true
@@ -165,6 +186,8 @@ class RequestDetailsViewController: UIViewController {
             scheduledOn.isHidden = false
             schDate.isHidden = false
             imageV.isHidden = false
+            imageAfter.isHidden = false
+            after.isHidden = false
             acceptO.isHidden = true
             rejectCancelO.isHidden = true
         }

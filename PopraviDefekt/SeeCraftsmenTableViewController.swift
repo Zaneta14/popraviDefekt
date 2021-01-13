@@ -20,6 +20,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
     var craftsmanIds = [String]()
     var i = Int()
     var selectedCraftsmanId = String()
+    var beforeImg = UIImage()
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -94,6 +95,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
             destinationVC.opis = opis
             destinationVC.firstName = fNames[i]
             destinationVC.lastName = lNames[i]
+            destinationVC.beforeImg = beforeImg
         }
     }
     

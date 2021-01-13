@@ -20,6 +20,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     var lon = Double()
     var firstName = String()
     var lastName = String()
+    var beforeImg = UIImage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,10 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         request["location"] = lokacija
         request["lat"] = lat
         request["lon"] = lon
+        if let imageData = beforeImg.jpeg(.medium) {
+            let imageFile = PFFileObject(name: "image.jpg", data: imageData)
+            request["beforeImg"] = imageFile
+        }
         request.saveInBackground { (success, error) in
             if success {
                 self.displayAlert(title: "Success!", message: "You have made a request.")

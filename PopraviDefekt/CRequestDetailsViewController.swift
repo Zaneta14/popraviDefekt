@@ -30,19 +30,23 @@ class CRequestDetailsViewController: UIViewController {
     
     var lon = Double()
     
+    var bfrPic = [PFFileObject]()
+    
     @IBOutlet weak var priceTextField: UITextField!
     
     @IBOutlet weak var datumM: UILabel!
     
-    @IBOutlet weak var opisS: UILabel!
+    @IBOutlet weak var adresaLok: UILabel!
+    
+    @IBOutlet weak var opisS: UITextView!
     
     @IBOutlet weak var imePrezime: UILabel!
     
     @IBOutlet weak var emailTelefon: UILabel!
     
-    @IBOutlet weak var map: MKMapView!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,14 +57,16 @@ class CRequestDetailsViewController: UIViewController {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let stringDate = dateFormatter.string(from: datum as Date)
         datumM.text = stringDate
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        self.map.setRegion(region, animated: true)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        annotation.title = lokacija
-        self.map.addAnnotation(annotation)
+        adresaLok.text = lokacija
+        opisS.text = "\"" + opis + "\""
+        let slikaPred = bfrPic[0]
+        slikaPred.getDataInBackground { (data, error) in
+            if let imageData = data {
+                if let imageToDisplay = UIImage(data: imageData) {
+                    self.imageView.image = imageToDisplay
+                }
+            }
+        }
     }
     
     @IBAction func makeAnOffer(_ sender: Any) {
@@ -144,6 +150,15 @@ class CRequestDetailsViewController: UIViewController {
         let allertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(allertController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapSegue" {
+            let dvc = segue.destination as! MapViewController
+            dvc.lat = lat
+            dvc.lon = lon
+            dvc.lok = lokacija
+        }
     }
     
 }

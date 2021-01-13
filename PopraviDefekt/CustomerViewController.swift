@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Parse
 
-class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var manager = CLLocationManager()
     
@@ -33,12 +33,15 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     
     var craft = String()
     
-    @IBOutlet weak var descriptionField: UITextField!
+    var beforeImage = UIImage()
     
     @IBOutlet weak var map: MKMapView!
     
+    @IBOutlet weak var descriptionField: UITextView!
     
     @IBOutlet weak var pickerView: UIPickerView!
+    
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,7 +136,7 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     }
 
     @IBAction func seeCraftsmen(_ sender: Any) {
-        if !locationChosen || descriptionField.text == "" {
+        if !locationChosen || descriptionField.text == "Enter a description for your defect." || descriptionField.text == "" || imageView.image == nil {
             displayAlert(title: "Not enough information", message: "Please enter all information required")
         }
         else {
@@ -186,6 +189,7 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             destinationVC.opis = desc
             destinationVC.lat = lat
             destinationVC.lon = lon
+            destinationVC.beforeImg = beforeImage
         }
     }
     
@@ -193,9 +197,35 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
         self.performSegue(withIdentifier: "requestsSegue", sender: nil)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.descriptionField.resignFirstResponder()
+    }
+    
+    @IBAction func photoLibPressed(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func cameraPressed(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Camera alert", message: "No camera is available", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil) }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageView.image = image
+            beforeImage = image
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     func displayAlert(title: String, message: String) {
