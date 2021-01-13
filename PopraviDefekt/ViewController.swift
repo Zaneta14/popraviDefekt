@@ -45,7 +45,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         types.removeAll()
         selectedTypes.removeAll()
         let query = PFQuery(className: "CraftsmanType")
@@ -73,7 +72,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt")
         let cell = tableView.dequeueReusableCell(withIdentifier: "craftsmenCell", for: indexPath)
         cell.textLabel?.text = types[indexPath.row]
         return cell

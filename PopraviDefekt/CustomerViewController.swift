@@ -42,7 +42,6 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         types.removeAll()
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in
@@ -54,6 +53,8 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
                         self.types.append(typeP as! String)
                     }
                 }
+                self.pickerView.reloadAllComponents()
+                self.pickerView.selectRow(1, inComponent: 0, animated: false)
             }
         }
         
@@ -132,33 +133,47 @@ class CustomerViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     }
 
     @IBAction func seeCraftsmen(_ sender: Any) {
-        if !locationChosen || descriptionField.text == "" /*|| (!plumber.isOn && !shoeMaker.isOn && !electrician.isOn && !carpenter.isOn) */{
+        if !locationChosen || descriptionField.text == "" {
             displayAlert(title: "Not enough information", message: "Please enter all information required")
         }
         else {
             firstNames.removeAll()
             lastNames.removeAll()
             desc = descriptionField.text!
-            let query = PFUser.query()
-            query?.whereKey("crafts", contains: craft)
-            query?.findObjectsInBackground(block: { (objects, error) in
+            var objId = String()
+            let queryQ = PFQuery(className: "CraftsmanType")
+            queryQ.whereKey("eng", equalTo: craft)
+            queryQ.findObjectsInBackground { (success, error) in
                 if error != nil {
                     print(error?.localizedDescription)
-                }
-                else if let craftsmen = objects {
-                    for object in craftsmen {
-                        if let craftsman = object as? PFUser {
-                            if let firstName = craftsman["firstName"] {
-                                if let lastName = craftsman["lastName"] {
-                                    self.firstNames.append(firstName as! String)
-                                    self.lastNames.append(lastName as! String)
+                } else if let objects = success {
+                    for object in objects {
+                        if let objectId = object.objectId {
+                            objId = objectId
+                            let query = PFUser.query()
+                            query?.whereKey("crafts", contains: objId)
+                            query?.findObjectsInBackground(block: { (objects, error) in
+                                if error != nil {
+                                    print(error?.localizedDescription)
                                 }
-                            }
+                                else if let craftsmen = objects {
+                                    for object in craftsmen {
+                                        if let craftsman = object as? PFUser {
+                                            if let firstName = craftsman["firstName"] {
+                                                if let lastName = craftsman["lastName"] {
+                                                    self.firstNames.append(firstName as! String)
+                                                    self.lastNames.append(lastName as! String)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                self.performSegue(withIdentifier: "seeCraftsmenSegue", sender: nil)
+                            })
                         }
                     }
                 }
-                self.performSegue(withIdentifier: "seeCraftsmenSegue", sender: nil)
-            })
+            }
         }
     }
     
