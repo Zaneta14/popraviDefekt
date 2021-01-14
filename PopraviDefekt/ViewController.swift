@@ -45,6 +45,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         types.removeAll()
         selectedTypes.removeAll()
         let query = PFQuery(className: "CraftsmanType")
@@ -120,7 +121,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     @IBAction func topButtonPressed(_ sender: Any) {
         if signUpMode {
-            if emailField.text == "" || passwordField.text == "" || firstNameField.text == "" || lastNameField.text == "" || phoneNumberField.text == "" || selectedTypes.count == 0 {
+            if emailField.text == "" || passwordField.text == "" || firstNameField.text == "" || lastNameField.text == "" || phoneNumberField.text == "" || (ccSwitch.isOn && selectedTypes.count == 0) {
                 displayAlert(title: "Not enough information", message: "Please enter all information required")
             }
             else {
@@ -147,7 +148,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
                                 for selType in self.selectedTypes {
                                     if object["eng"] as! String == selType {
                                         if let objectId = object.objectId {
-                                            print(objectId)
                                             databaseTypes.append(objectId)
                                         }
                                     }
@@ -171,6 +171,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
                             self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
                         }
                         else {
+                            let req = PFObject(className: "Comment")
+                            req["userId"] = PFUser.current()?.objectId
+                            req.saveInBackground()
                             self.performSegue(withIdentifier: "customerSegue", sender: self)
                         }
                     }

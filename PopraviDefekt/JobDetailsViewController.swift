@@ -52,6 +52,8 @@ UIImagePickerControllerDelegate {
     
     var jobId = String()
     
+    var userId = String()
+    
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var status: UILabel!
@@ -76,6 +78,8 @@ UIImagePickerControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var save: UIButton!
     
+    @IBOutlet weak var comment: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customer.text = firstName + " " + lastName
@@ -96,6 +100,7 @@ UIImagePickerControllerDelegate {
             datePicker.datePickerMode = .date
             datePicker.isHidden = false
             upload.isHidden = false
+            comment.isHidden = false
         }
         else {
             let format = DateFormatter()
@@ -103,6 +108,7 @@ UIImagePickerControllerDelegate {
             let strDate = format.string(from: dateFin as! Date)
             finishDate.text = strDate
             finishDate.isHidden = false
+            comment.isHidden = true
             camera.isHidden = true
             or.isHidden = true
             photoLibrary.isHidden = true
@@ -152,8 +158,8 @@ UIImagePickerControllerDelegate {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        if imageView.image == nil {
-            displayAlert(title: "Invalid", message: "Please select an image.")
+        if imageView.image == nil || comment.text == "" || comment.text == "Give a comment about the customer." {
+            displayAlert(title: "Invalid", message: "Not enough information.")
         }
         else {
             let query = PFQuery(className: "Job")
@@ -169,12 +175,36 @@ UIImagePickerControllerDelegate {
                             if let imageData = image.jpeg(.medium) {
                                 let imageFile = PFFileObject(name: "image.jpg", data: imageData)
                                 object["afterImg"] = imageFile
+                                print("savedImage")
                                 object.saveInBackground()
                             }
                         }
                     }
                 }
             }
+            var com = comment.text
+            let comQuery = PFQuery(className: "Comment")
+            comQuery.whereKey("userId", equalTo: userId)
+            comQuery.findObjectsInBackground(block: { (success, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                } else if let objects = success {
+                    for object in objects {
+                        if let comments = object["comments"] {
+                            print("ima komentar")
+                            var niza = comments as! [String]
+                            niza.append(com as! String)
+                            object["comments"] = niza
+                        } else {
+                            print("nema komentar")
+                            var array = [String]()
+                            array.append(com!)
+                            object["comments"] = array
+                        }
+                        object.saveInBackground()
+                    }
+                }
+            })
             displayAlert(title: "Success", message: "The job is now finished.")
         }
     }

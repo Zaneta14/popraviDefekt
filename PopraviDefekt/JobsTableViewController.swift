@@ -37,6 +37,8 @@ class JobsTableViewController: UITableViewController {
     
     var jobIds = [String]()
     
+    var userIds = [String]()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -68,6 +70,7 @@ class JobsTableViewController: UITableViewController {
         emailAs.removeAll()
         images.removeAll()
         jobIds.removeAll()
+        userIds.removeAll()
         beforeImages.removeAll()
         let array = ["done", "scheduled"]
         let predicate = NSPredicate(format: "status = %@ OR status = %@", argumentArray: array)
@@ -119,7 +122,8 @@ class JobsTableViewController: UITableViewController {
                                                                                     self.lons.append(lon as! Double)
                                                                                     self.adresi.append(adresa as! String)
                                                                                     self.beforeImages.append(bfrImage as! PFFileObject)
-                                                                                    self.jobIds.append(jobId as! String)
+                                                                                    self.jobIds.append(jobId)
+                                                                                    self.userIds.append(userId as! String)
                                                                                 }
                                                                             }
                                                                         }
@@ -173,6 +177,7 @@ class JobsTableViewController: UITableViewController {
                 dVC.statusS = statuses[index]
                 dVC.dateSch = dates[index]
                 dVC.jobId = jobIds[index]
+                dVC.userId = userIds[index]
                 dVC.beforeImage.append(beforeImages[index])
                 if statuses[index] == "done" {
                     dVC.dateFin = finishDates[index]!

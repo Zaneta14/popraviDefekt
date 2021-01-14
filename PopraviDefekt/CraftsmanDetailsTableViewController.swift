@@ -58,7 +58,6 @@ class CraftsmanDetailsTableViewController: UITableViewController {
             if let imageData = data {
                 if let imageToDisplay = UIImage(data: imageData) {
                     cell.imageI.image = imageToDisplay
-                    print("success")
                 }
             }
         }
@@ -121,7 +120,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                                 } else if let jobs = jobs {
                                     for job in jobs {
                                         if let datum = job["finishDate"] {
-                                            if let slika = job["imageFile"] {
+                                            if let slika = job["afterImg"] {
                                                 self.dates.append(datum as! NSDate)
                                                 self.imageFiles.append(slika as! PFFileObject)
                                             }

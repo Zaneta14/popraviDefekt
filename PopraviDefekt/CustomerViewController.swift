@@ -46,6 +46,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         types.removeAll()
+        
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in
             if error != nil {
