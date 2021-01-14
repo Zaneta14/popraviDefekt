@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class RequestDetailsViewController: UIViewController {
+class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     var craftsmanId = String()
     
@@ -35,7 +35,6 @@ class RequestDetailsViewController: UIViewController {
     
     @IBOutlet weak var type: UILabel!
     
-    @IBOutlet weak var desc: UILabel!
     
     @IBOutlet weak var flName: UILabel!
     
@@ -55,16 +54,15 @@ class RequestDetailsViewController: UIViewController {
     
     @IBOutlet weak var schDate: UILabel!
     
+    @IBOutlet weak var desc: UITextView!
+    
     @IBOutlet weak var imageV: UIImageView!
-    
-    @IBOutlet weak var after: UILabel!
-    
-    @IBOutlet weak var imageAfter: UIImageView!
     
     @IBOutlet weak var rejectCancelO: UIButton!
     
     @IBOutlet weak var acceptO: UIButton!
     
+    @IBOutlet weak var afterPhoto: UIButton!
     var datumiB = [NSDate]()
     
     var craftsmenIds = [String]()
@@ -75,7 +73,7 @@ class RequestDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        desc.text = descr
+        desc.text = "\"" + descr + "\""
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy HH:mm"
         let stringDate = formatter.string(from: dateReq as Date)
@@ -102,10 +100,25 @@ class RequestDetailsViewController: UIViewController {
                             if let lastName = craftsman["lastName"] {
                                 if let phoneNumber = craftsman["phoneNumber"] {
                                     if let mailAddr = craftsman.username {
-                                        if let craft = craftsman["craft"] {
-                                            self.flName.text = (firstName as! String) + " " + (lastName as! String)
-                                            self.type.text = (craft as! String)
-                                            self.email.text = mailAddr + " " + (phoneNumber as! String)
+                                        if let crafts = craftsman["crafts"] {
+                                            let query = PFQuery(className: "CraftsmanType")
+                                            query.findObjectsInBackground { (success, error) in
+                                                if error != nil {
+                                                    print(error?.localizedDescription)
+                                                } else if let objects = success {
+                                                    self.flName.text = (firstName as! String) + " " + (lastName as! String)
+                                                    self.email.text = mailAddr + " " + (phoneNumber as! String)
+                                                    var niza = [String]()
+                                                    for object in objects {
+                                                        for craft in crafts as! [String] {
+                                                            if object.objectId == craft {
+                                                                niza.append(object["eng"] as! String)
+                                                            }
+                                                        }
+                                                    }
+                                                    self.type.text = niza.joined(separator: ", ")
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -123,11 +136,10 @@ class RequestDetailsViewController: UIViewController {
             scheduledOn.isHidden = true
             schDate.isHidden = true
             imageV.isHidden = false
-            imageAfter.isHidden = true
-            after.isHidden = true
             acceptO.isHidden = true
             rejectCancelO.setTitle(" Cancel ", for: .normal)
             rejectCancelO.isHidden = false
+            afterPhoto.isHidden = true
         }
         else if statusS == "pending" {
             let dateFormatter = DateFormatter()
@@ -143,10 +155,9 @@ class RequestDetailsViewController: UIViewController {
             rejectCancelO.setTitle("Reject", for: .normal)
             rejectCancelO.isHidden = false
             imageV.isHidden = false
-            imageAfter.isHidden = true
-            after.isHidden = true
             scheduledOn.isHidden = true
             schDate.isHidden = true
+            afterPhoto.isHidden = true
         } else if statusS == "scheduled" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -160,24 +171,15 @@ class RequestDetailsViewController: UIViewController {
             scheduledOn.isHidden = false
             schDate.isHidden = false
             imageV.isHidden = false
-            imageAfter.isHidden = true
-            after.isHidden = true
             acceptO.isHidden = true
+            afterPhoto.isHidden = true
             rejectCancelO.isHidden = true
         } else if statusS == "done" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let stringDate = dateFormatter.string(from: dateFinished as Date)
             schDate.text = stringDate
-            let slikaPotoa = afterImg[0]
-            slikaPotoa.getDataInBackground { (data, error) in
-                if let imageData = data {
-                    if let imageToDisplay = UIImage(data: imageData) {
-                        self.imageAfter.image = imageToDisplay
-                    }
-                }
-            }
-            afterImg.removeAll()
+            afterPhoto.isHidden = false
             pDate.isHidden = true
             pPrice.isHidden = true
             pd.isHidden = true
@@ -186,8 +188,6 @@ class RequestDetailsViewController: UIViewController {
             scheduledOn.isHidden = false
             schDate.isHidden = false
             imageV.isHidden = false
-            imageAfter.isHidden = false
-            after.isHidden = false
             acceptO.isHidden = true
             rejectCancelO.isHidden = true
         }
@@ -241,4 +241,10 @@ class RequestDetailsViewController: UIViewController {
         present(allertController, animated: true, completion: nil)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "afterPhotoSegue" {
+            let dvc = segue.destination as! PopUpViewController
+            dvc.imageFile = afterImg
+        }
+    }
 }

@@ -40,6 +40,8 @@ UIImagePickerControllerDelegate {
     
     var dateFin = NSDate()
     
+    var beforeImage = [PFFileObject]()
+    
     var image = [PFFileObject]()
     
     var lat = Double()
@@ -161,7 +163,7 @@ UIImagePickerControllerDelegate {
                         if let image = self.imageView.image {
                             if let imageData = image.jpeg(.medium) {
                                 let imageFile = PFFileObject(name: "image.jpg", data: imageData)
-                                object["imageFile"] = imageFile
+                                object["afterImg"] = imageFile
                                 object.saveInBackground()
                             }
                         }
@@ -179,7 +181,10 @@ UIImagePickerControllerDelegate {
             dVC.lon = lon
             dVC.lok = adresa
         }
+        else if segue.identifier == "popupSegue" {
+            let dVC = segue.destination as! PopUpViewController
+            dVC.imageFile = beforeImage
+        }
     }
-    
     
 }

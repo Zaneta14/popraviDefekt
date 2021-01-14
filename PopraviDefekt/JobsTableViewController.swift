@@ -31,6 +31,8 @@ class JobsTableViewController: UITableViewController {
     
     var lons = [Double]()
     
+    var beforeImages = [PFFileObject]()
+    
     var images = [PFFileObject?]()
     
     var jobIds = [String]()
@@ -66,6 +68,7 @@ class JobsTableViewController: UITableViewController {
         emailAs.removeAll()
         images.removeAll()
         jobIds.removeAll()
+        beforeImages.removeAll()
         let array = ["done", "scheduled"]
         let predicate = NSPredicate(format: "status = %@ OR status = %@", argumentArray: array)
         let query = PFQuery(className: "Job", predicate: predicate)
@@ -81,50 +84,53 @@ class JobsTableViewController: UITableViewController {
                             if let adresa = object["location"] {
                                 if let lat = object["lat"] {
                                     if let lon = object["lon"] {
-                                        if let slika = object["imageFile"] {
-                                            self.images.append(slika as! PFFileObject)
-                                        } else {
-                                            self.images.append(nil)
-                                        }
-                                        if let fDate = object["finishDate"] {
-                                            self.finishDates.append(fDate as! NSDate)
-                                         } else {
-                                            self.finishDates.append(nil)
-                                         }
-                                        if let jobId = object.objectId {
-                                            if let userId = object["from"] {
-                                                let userQuery = PFUser.query()
-                                                userQuery?.whereKey("objectId", equalTo: userId)
-                                                userQuery?.findObjectsInBackground(block: { (success, error) in
-                                                    if error != nil {
-                                                        print(error?.localizedDescription)
-                                                    } else if let users = success {
-                                                        for user in users {
-                                                            if let user = user as? PFUser {
-                                                                if let fName = user["firstName"] {
-                                                                    if let lName = user["lastName"] {
-                                                                        if let emailA = user.username {
-                                                                            if let pNumber = user["phoneNumber"] {
-                                                                                self.dates.append(pDate as! NSDate)
-                                                                                self.statuses.append(status as! String)
-                                                                                self.firstNames.append(fName as! String)
-                                                                                self.lastNames.append(lName as! String)
-                                                                                self.pNumbers.append(pNumber as! String)
-                                                                                self.emailAs.append(emailA)
-                                                                                self.lats.append(lat as! Double)
-                                                                                self.lons.append(lon as! Double)
-                                                                                self.adresi.append(adresa as! String)
-                                                                                self.jobIds.append(jobId as! String)
+                                        if let bfrImage = object["beforeImg"] {
+                                            if let slika = object["afterImg"] {
+                                                self.images.append(slika as! PFFileObject)
+                                            } else {
+                                                self.images.append(nil)
+                                            }
+                                            if let fDate = object["finishDate"] {
+                                                self.finishDates.append(fDate as! NSDate)
+                                            } else {
+                                                self.finishDates.append(nil)
+                                            }
+                                            if let jobId = object.objectId {
+                                                if let userId = object["from"] {
+                                                    let userQuery = PFUser.query()
+                                                    userQuery?.whereKey("objectId", equalTo: userId)
+                                                    userQuery?.findObjectsInBackground(block: { (success, error) in
+                                                        if error != nil {
+                                                            print(error?.localizedDescription)
+                                                        } else if let users = success {
+                                                            for user in users {
+                                                                if let user = user as? PFUser {
+                                                                    if let fName = user["firstName"] {
+                                                                        if let lName = user["lastName"] {
+                                                                            if let emailA = user.username {
+                                                                                if let pNumber = user["phoneNumber"] {
+                                                                                    self.dates.append(pDate as! NSDate)
+                                                                                    self.statuses.append(status as! String)
+                                                                                    self.firstNames.append(fName as! String)
+                                                                                    self.lastNames.append(lName as! String)
+                                                                                    self.pNumbers.append(pNumber as! String)
+                                                                                    self.emailAs.append(emailA)
+                                                                                    self.lats.append(lat as! Double)
+                                                                                    self.lons.append(lon as! Double)
+                                                                                    self.adresi.append(adresa as! String)
+                                                                                    self.beforeImages.append(bfrImage as! PFFileObject)
+                                                                                    self.jobIds.append(jobId as! String)
+                                                                                }
                                                                             }
                                                                         }
                                                                     }
                                                                 }
                                                             }
                                                         }
-                                                    }
-                                                    self.refresher.endRefreshing()
-                                                    self.tableView.reloadData()
-                                                })
+                                                        self.refresher.endRefreshing()
+                                                        self.tableView.reloadData()
+                                                    })
+                                                }
                                             }
                                         }
                                     }
@@ -167,6 +173,7 @@ class JobsTableViewController: UITableViewController {
                 dVC.statusS = statuses[index]
                 dVC.dateSch = dates[index]
                 dVC.jobId = jobIds[index]
+                dVC.beforeImage.append(beforeImages[index])
                 if statuses[index] == "done" {
                     dVC.dateFin = finishDates[index]!
                     dVC.image.append(images[index]!)

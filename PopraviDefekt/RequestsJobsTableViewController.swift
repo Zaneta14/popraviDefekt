@@ -167,6 +167,7 @@ class RequestsJobsTableViewController: UITableViewController {
                 destinationVC.propDate = propDates[indeks]
             }
             else if statuses[indeks] == "done" {
+                destinationVC.afterImg.removeAll()
                 destinationVC.afterImg.append(afterImages[indeks]!)
                 destinationVC.dateFinished = finishDates[indeks]!
             }
