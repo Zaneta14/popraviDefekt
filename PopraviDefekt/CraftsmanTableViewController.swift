@@ -38,6 +38,8 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
     var currentLat = Double()
     
     var currentLon = Double()
+    
+    var komentari = [[String]]()
 
     var beforePic = [PFFileObject]()
     
@@ -77,6 +79,7 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         self.telefoni.removeAll()
         self.emailovi.removeAll()
         self.beforePic.removeAll()
+        self.komentari.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("to", equalTo: PFUser.current()?.objectId)
         query.whereKey("status", equalTo: "active")
@@ -115,6 +118,25 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
                                                                                 self.telefoni.append(pNumber as! String)
                                                                                 self.emailovi.append(emailAdd)
                                                                                 self.beforePic.append(beforeImg as! PFFileObject)
+                                                                                let comQuery = PFQuery(className: "Comment")
+                                                                                comQuery.whereKey("userId", equalTo: userId)
+                                                                                comQuery.findObjectsInBackground(block: { (success, error) in
+                                                                                    if error != nil {
+                                                                                        print(error?.localizedDescription)
+                                                                                    }
+                                                                                    else if let objects = success {
+                                                                                        for object in objects {
+                                                                                            if let comments = object["comments"] {
+                                                                                                self.komentari.append(comments as! [String])
+                                                                                            }
+                                                                                            else {
+                                                                                                self.komentari.append([])
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    self.refresher.endRefreshing()
+                                                                                    self.tableView.reloadData()
+                                                                                })
                                                                             }
                                                                         }
                                                                     }
@@ -155,7 +177,15 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let stringDate = dateFormatter.string(from: datumi[indexPath.row] as Date)
         cell.textLabel?.text = stringDate
-        cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row]
+        if komentari.count == fNames.count && komentari.count > 0 {
+            if komentari[indexPath.row].count > 0 {
+                cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | " + komentari[indexPath.row].joined(separator: ", ")
+            } else {
+                cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | No comments yet"
+            }
+        } else {
+            cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | No comments yet"
+        }
         return cell
     }
     
