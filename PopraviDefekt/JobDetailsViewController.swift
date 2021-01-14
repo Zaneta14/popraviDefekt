@@ -56,8 +56,12 @@ UIImagePickerControllerDelegate {
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var customer: UILabel!
-    @IBOutlet weak var contact: UILabel!
+    
     @IBOutlet weak var addess: UILabel!
+    
+    @IBOutlet weak var telBroj: UIButton!
+    
+    @IBOutlet weak var emailAdresa: UIButton!
     
     @IBOutlet weak var dateFinished: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -75,7 +79,8 @@ UIImagePickerControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         customer.text = firstName + " " + lastName
-        contact.text = emailA + " " + phoneN
+        emailAdresa.setTitle(emailA, for: .normal)
+        telBroj.setTitle(phoneN, for: .normal)
         let format = DateFormatter()
         format.dateFormat = "dd/MM/yyyy HH:mm"
         let strDate = format.string(from: dateSch as! Date)
@@ -171,6 +176,20 @@ UIImagePickerControllerDelegate {
                 }
             }
             displayAlert(title: "Success", message: "The job is now finished.")
+        }
+    }
+    
+    @IBAction func makeACall(_ sender: Any) {
+        var phone = telBroj.titleLabel?.text
+        if let url = URL(string: "tel://\(phone!)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func sendAnEmail(_ sender: Any) {
+        var email = emailAdresa.titleLabel?.text
+        if let url = URL(string: "mailto:\(email!)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     

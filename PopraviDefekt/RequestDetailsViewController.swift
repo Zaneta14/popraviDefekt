@@ -35,10 +35,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var type: UILabel!
     
-    
     @IBOutlet weak var flName: UILabel!
-    
-    @IBOutlet weak var email: UILabel!
     
     @IBOutlet weak var status: UILabel!
     
@@ -55,6 +52,10 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var schDate: UILabel!
     
     @IBOutlet weak var desc: UITextView!
+    
+    @IBOutlet weak var email: UIButton!
+    
+    @IBOutlet weak var phoneNumber: UIButton!
     
     @IBOutlet weak var imageV: UIImageView!
     
@@ -107,7 +108,8 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                                                     print(error?.localizedDescription)
                                                 } else if let objects = success {
                                                     self.flName.text = (firstName as! String) + " " + (lastName as! String)
-                                                    self.email.text = mailAddr + " " + (phoneNumber as! String)
+                                                    self.phoneNumber.setTitle(phoneNumber as! String, for: .normal)
+                                                    self.email.setTitle(mailAddr, for: .normal)
                                                     var niza = [String]()
                                                     for object in objects {
                                                         for craft in crafts as! [String] {
@@ -240,7 +242,21 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(allertController, animated: true, completion: nil)
     }
-
+    
+    @IBAction func makeACall(_ sender: Any) {
+        var phone = phoneNumber.titleLabel?.text
+        if let url = URL(string: "tel://\(phone!)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func sendAnEmail(_ sender: Any) {
+        var emailA = email.titleLabel?.text
+        if let url = URL(string: "mailto:\(emailA!)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "afterPhotoSegue" {
             let dvc = segue.destination as! PopUpViewController

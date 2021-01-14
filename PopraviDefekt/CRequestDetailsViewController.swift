@@ -42,7 +42,9 @@ class CRequestDetailsViewController: UIViewController {
     
     @IBOutlet weak var imePrezime: UILabel!
     
-    @IBOutlet weak var emailTelefon: UILabel!
+    @IBOutlet weak var phoneN: UIButton!
+    
+    @IBOutlet weak var emailA: UIButton!
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -51,7 +53,8 @@ class CRequestDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         opisS.text = opis
-        emailTelefon.text = emailadresa + " " + telefon
+        emailA.setTitle(emailadresa, for: .normal)
+        phoneN.setTitle(telefon, for: .normal)
         imePrezime.text = fName + " " + lName
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -150,6 +153,20 @@ class CRequestDetailsViewController: UIViewController {
         let allertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(allertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func makeACall(_ sender: Any) {
+        var phone = phoneN.titleLabel?.text
+        if let url = URL(string: "tel://\(phone!)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func sendAnEmail(_ sender: Any) {
+        var email = emailA.titleLabel?.text
+        if let url = URL(string: "mailto:\(email!)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
