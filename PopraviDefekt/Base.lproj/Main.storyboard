@@ -313,11 +313,18 @@
                         <viewLayoutGuide key="safeArea" id="3Do-XW-sDq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Customer" id="cjS-Xi-oqq">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" id="FhL-Nx-VTV">
-                            <connections>
-                                <action selector="logOut:" destination="gtQ-1U-cN2" id="4Jo-Qw-fYR"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Log out" id="FhL-Nx-VTV">
+                                <connections>
+                                    <action selector="logOut:" destination="gtQ-1U-cN2" id="4Jo-Qw-fYR"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Profile" id="PCs-H0-jpx">
+                                <connections>
+                                    <segue destination="yOK-gO-suV" kind="show" identifier="customerProfileSegue" id="3SQ-eD-vWC"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Requests" id="OQk-5w-u2b">
                             <connections>
                                 <action selector="seeRequests:" destination="gtQ-1U-cN2" id="OXY-AT-zhr"/>
@@ -1168,11 +1175,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Craftsman" id="SaL-OD-HP2">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" id="D3e-3T-1BT">
-                            <connections>
-                                <action selector="logOut:" destination="bgP-ui-dPe" id="5ek-1A-Tga"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Log out" id="D3e-3T-1BT">
+                                <connections>
+                                    <action selector="logOut:" destination="bgP-ui-dPe" id="5ek-1A-Tga"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Profile" id="w6v-dc-9fB">
+                                <connections>
+                                    <segue destination="yOK-gO-suV" kind="show" identifier="craftsmanProfileSegue" id="f5K-v7-McH"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Jobs" id="36R-Gs-bRO">
                             <connections>
                                 <segue destination="3xd-R5-F70" kind="show" identifier="jobsSegue" id="dkV-hY-2FX"/>
@@ -1186,6 +1200,116 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4th-c9-Ena" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="902" y="861"/>
+        </scene>
+        <!--My Profile-->
+        <scene sceneID="gKK-3g-j9C">
+            <objects>
+                <viewController title="My Profile" id="yOK-gO-suV" customClass="ProfileViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yAU-IV-Qq0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter new password here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yIs-GF-aDR">
+                                <rect key="frame" x="16" y="117" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="zaneta@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evB-iG-H37">
+                                <rect key="frame" x="109.5" y="80" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clG-If-xUx">
+                                <rect key="frame" x="16" y="155" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wZB-Ql-pQ6">
+                                <rect key="frame" x="16" y="193" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WgB-Ok-Nho">
+                                <rect key="frame" x="16" y="231" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8W-Da-wSr">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xwp-Ih-mmJ"/>
+                                    <barButtonItem title="Save changes" id="h9u-TV-fLB">
+                                        <connections>
+                                            <action selector="saveChanges:" destination="yOK-gO-suV" id="SB2-oJ-u2s"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="M1m-BC-4q8"/>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5SY-Md-NxM">
+                                <rect key="frame" x="0.0" y="277" width="375" height="344"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5SY-Md-NxM" secondAttribute="height" multiplier="375:344" id="8hd-pf-glB"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KYj-Ia-oTi">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYj-Ia-oTi" id="CNz-BE-gsG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="yOK-gO-suV" id="aEF-6f-rUy"/>
+                                    <outlet property="delegate" destination="yOK-gO-suV" id="nvP-cd-Rri"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="evB-iG-H37" firstAttribute="centerX" secondItem="yAU-IV-Qq0" secondAttribute="centerX" id="1yr-x1-SJF"/>
+                            <constraint firstItem="e8W-Da-wSr" firstAttribute="leading" secondItem="Qrr-PW-4Cd" secondAttribute="leading" id="25P-sL-iI3"/>
+                            <constraint firstItem="5SY-Md-NxM" firstAttribute="leading" secondItem="Qrr-PW-4Cd" secondAttribute="leading" id="6Mn-RX-Tjx"/>
+                            <constraint firstItem="clG-If-xUx" firstAttribute="top" secondItem="yIs-GF-aDR" secondAttribute="bottom" constant="8" id="8FM-Pg-Zim"/>
+                            <constraint firstItem="5SY-Md-NxM" firstAttribute="top" secondItem="WgB-Ok-Nho" secondAttribute="bottom" constant="16" id="8z5-yD-9jo"/>
+                            <constraint firstItem="wZB-Ql-pQ6" firstAttribute="leading" secondItem="Qrr-PW-4Cd" secondAttribute="leading" constant="16" id="DLf-g3-gfg"/>
+                            <constraint firstItem="yIs-GF-aDR" firstAttribute="leading" secondItem="Qrr-PW-4Cd" secondAttribute="leading" constant="16" id="GeA-ZK-4kx"/>
+                            <constraint firstItem="yIs-GF-aDR" firstAttribute="top" secondItem="evB-iG-H37" secondAttribute="bottom" constant="16" id="KLd-fV-ffH"/>
+                            <constraint firstItem="e8W-Da-wSr" firstAttribute="trailing" secondItem="Qrr-PW-4Cd" secondAttribute="trailing" id="NRn-q8-gT3"/>
+                            <constraint firstItem="WgB-Ok-Nho" firstAttribute="top" secondItem="wZB-Ql-pQ6" secondAttribute="bottom" constant="8" id="Nj3-G6-RMc"/>
+                            <constraint firstItem="Qrr-PW-4Cd" firstAttribute="trailing" secondItem="WgB-Ok-Nho" secondAttribute="trailing" constant="16" id="OEx-zr-FiS"/>
+                            <constraint firstItem="WgB-Ok-Nho" firstAttribute="leading" secondItem="Qrr-PW-4Cd" secondAttribute="leading" constant="16" id="VAZ-BH-TrW"/>
+                            <constraint firstItem="Qrr-PW-4Cd" firstAttribute="trailing" secondItem="yIs-GF-aDR" secondAttribute="trailing" constant="16" id="ZMe-Q4-JwQ"/>
+                            <constraint firstItem="Qrr-PW-4Cd" firstAttribute="trailing" secondItem="clG-If-xUx" secondAttribute="trailing" constant="16" id="ZyW-FR-YEX"/>
+                            <constraint firstItem="5SY-Md-NxM" firstAttribute="trailing" secondItem="Qrr-PW-4Cd" secondAttribute="trailing" id="c0p-VZ-uDv"/>
+                            <constraint firstItem="Qrr-PW-4Cd" firstAttribute="trailing" secondItem="wZB-Ql-pQ6" secondAttribute="trailing" constant="16" id="d1W-p3-3JT"/>
+                            <constraint firstItem="evB-iG-H37" firstAttribute="top" secondItem="Qrr-PW-4Cd" secondAttribute="top" constant="16" id="dwq-tZ-2TH"/>
+                            <constraint firstItem="e8W-Da-wSr" firstAttribute="bottom" secondItem="Qrr-PW-4Cd" secondAttribute="bottom" id="lMX-Hu-GFY"/>
+                            <constraint firstItem="wZB-Ql-pQ6" firstAttribute="top" secondItem="clG-If-xUx" secondAttribute="bottom" constant="8" id="rMM-7P-Iek"/>
+                            <constraint firstItem="clG-If-xUx" firstAttribute="leading" secondItem="Qrr-PW-4Cd" secondAttribute="leading" constant="16" id="xh1-0G-RIV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Qrr-PW-4Cd"/>
+                    </view>
+                    <connections>
+                        <outlet property="email" destination="evB-iG-H37" id="Zr1-Ik-wGr"/>
+                        <outlet property="firstName" destination="clG-If-xUx" id="ZlK-8d-FSA"/>
+                        <outlet property="lastName" destination="wZB-Ql-pQ6" id="htv-ul-lr7"/>
+                        <outlet property="password" destination="yIs-GF-aDR" id="ma2-Dd-ztt"/>
+                        <outlet property="phoneNumber" destination="WgB-Ok-Nho" id="unq-cZ-Yb2"/>
+                        <outlet property="tableView" destination="5SY-Md-NxM" id="jE6-mT-DRC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wfC-ez-72o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.80000000000001" y="1615.1424287856073"/>
         </scene>
         <!--Details-->
         <scene sceneID="gp5-2A-2rj">
@@ -1430,6 +1554,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="3SQ-eD-vWC"/>
         <segue reference="G5l-vv-7kg"/>
         <segue reference="ocs-um-x2J"/>
     </inferredMetricsTieBreakers>
