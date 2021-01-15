@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var nmb = Int()
     
+    @IBOutlet weak var ima: UILabel!
     @IBOutlet weak var firstName: UITextField!
     
     @IBOutlet weak var phoneNumber: UITextField!
@@ -52,7 +53,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         if let typeId = object.objectId {
                             self.typeIds.append(typeId)
                             if ((PFUser.current()?["crafts"] as? [String])?.contains(typeId))! {
-                                self.selectedTypes.append(type as! String) //iminja
+                                self.selectedTypes.append(type as! String)
                                 self.selectedTypeIds.append(typeId)
                             }
                         }
@@ -61,16 +62,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.tableView.reloadData()
             }
         }
-        
         firstName.text = PFUser.current()?["firstName"] as? String
         lastName.text = PFUser.current()?["lastName"] as? String
         email.text = PFUser.current()?.username
         phoneNumber.text = PFUser.current()?["phoneNumber"] as? String
         if PFUser.current()?["role"] as? String == "customer" {
             tableView.isHidden = true
+            ima.isHidden = true
         }
         else {
             tableView.isHidden = false
+            ima.isHidden = false
         }
     }
     
