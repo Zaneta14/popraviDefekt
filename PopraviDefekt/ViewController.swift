@@ -136,10 +136,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
                 if ccSwitch.isOn {
                     //majstor
                     user["role"] = "craftsman"
-                    print("HERE")
                     var databaseTypes = [String]()
                     let query = PFQuery(className: "CraftsmanType")
-                    
                     query.findObjectsInBackground { (success, error) in
                         if error != nil {
                             print(error?.localizedDescription)

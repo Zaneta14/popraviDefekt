@@ -43,6 +43,8 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
 
     var beforePic = [PFFileObject]()
     
+    var userIds = [String]()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -80,6 +82,7 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         self.emailovi.removeAll()
         self.beforePic.removeAll()
         self.komentari.removeAll()
+        self.userIds.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("to", equalTo: PFUser.current()?.objectId)
         query.whereKey("status", equalTo: "active")
@@ -96,52 +99,53 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
                                     if let lat = object["lat"] {
                                         if let lon = object["lon"] {
                                             if let beforeImg = object["beforeImg"] {
-                                                let userQuery = PFUser.query()
-                                                userQuery?.whereKey("objectId", equalTo: userId)
-                                                userQuery?.findObjectsInBackground(block: { (users, error) in
+                                                let comQuery = PFQuery(className: "Comment")
+                                                comQuery.whereKey("userId", equalTo: userId)
+                                                comQuery.findObjectsInBackground(block: { (success, error) in
                                                     if error != nil {
                                                         print(error?.localizedDescription)
-                                                    } else if let users = users {
-                                                        for user in users {
-                                                            if let user = user as? PFUser {
-                                                                if let fName = user["firstName"] {
-                                                                    if let lName = user["lastName"] {
-                                                                        if let pNumber = user["phoneNumber"] {
-                                                                            if let emailAdd = user.username {
-                                                                                self.datumi.append(datum as! NSDate)
-                                                                                self.opisi.append(opis as! String)
-                                                                                self.lokacii.append(lokacija as! String)
-                                                                                self.lats.append(lat as! Double)
-                                                                                self.lons.append(lon as! Double)
-                                                                                self.fNames.append(fName as! String)
-                                                                                self.lNames.append(lName as! String)
-                                                                                self.telefoni.append(pNumber as! String)
-                                                                                self.emailovi.append(emailAdd)
-                                                                                self.beforePic.append(beforeImg as! PFFileObject)
-                                                                                let comQuery = PFQuery(className: "Comment")
-                                                                                comQuery.whereKey("userId", equalTo: userId)
-                                                                                comQuery.findObjectsInBackground(block: { (success, error) in
-                                                                                    if error != nil {
-                                                                                        print(error?.localizedDescription)
-                                                                                    }
-                                                                                    else if let objects = success {
-                                                                                        for object in objects {
-                                                                                            if let comments = object["comments"] {
-                                                                                                self.komentari.append(comments as! [String])
-                                                                                            }
-                                                                                            else {
-                                                                                                self.komentari.append([])
-                                                                                            }
+                                                    }
+                                                    else if let objects = success {
+                                                        for object in objects {
+                                                            if let comments = object["comments"] {
+                                                                self.komentari.append(comments as! [String])
+                                                            }
+                                                            else {
+                                                                self.komentari.append([])
+                                                            }
+                                                            let userQuery = PFUser.query()
+                                                            userQuery?.whereKey("objectId", equalTo: userId)
+                                                            userQuery?.findObjectsInBackground(block: { (users, error) in
+                                                                if error != nil {
+                                                                    print(error?.localizedDescription)
+                                                                } else if let users = users {
+                                                                    for user in users {
+                                                                        if let user = user as? PFUser {
+                                                                            if let fName = user["firstName"] {
+                                                                                if let lName = user["lastName"] {
+                                                                                    if let pNumber = user["phoneNumber"] {
+                                                                                        if let emailAdd = user.username {
+                                                                                            self.datumi.append(datum as! NSDate)
+                                                                                            self.opisi.append(opis as! String)
+                                                                                            self.lokacii.append(lokacija as! String)
+                                                                                            self.lats.append(lat as! Double)
+                                                                                            self.lons.append(lon as! Double)
+                                                                                            self.fNames.append(fName as! String)
+                                                                                            self.lNames.append(lName as! String)
+                                                                                            self.telefoni.append(pNumber as! String)
+                                                                                            self.emailovi.append(emailAdd)
+                                                                                            self.beforePic.append(beforeImg as! PFFileObject)
+                                                                                            self.userIds.append(userId as! String)
                                                                                         }
                                                                                     }
-                                                                                    self.refresher.endRefreshing()
-                                                                                    self.tableView.reloadData()
-                                                                                })
+                                                                                }
                                                                             }
                                                                         }
                                                                     }
                                                                 }
-                                                            }
+                                                                self.refresher.endRefreshing()
+                                                                self.tableView.reloadData()
+                                                            })
                                                         }
                                                     }
                                                     self.refresher.endRefreshing()
@@ -175,8 +179,18 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "cCell", for: indexPath)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
+        print("cellforrowat:")
+        for userId in userIds {
+            print("userId:")
+            print(userId)
+        }
+        for koment in komentari {
+            print("koment")
+            print(koment)
+        }
         let stringDate = dateFormatter.string(from: datumi[indexPath.row] as Date)
         cell.textLabel?.text = stringDate
+        
         if komentari.count == fNames.count && komentari.count > 0 {
             if komentari[indexPath.row].count > 0 {
                 cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | " + komentari[indexPath.row].joined(separator: ", ")
