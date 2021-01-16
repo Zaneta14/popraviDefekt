@@ -140,6 +140,8 @@ class RequestsJobsTableViewController: UITableViewController {
                     cell.backgroundColor = UIColor.blue
                 } else if status == "done" {
                     cell.backgroundColor = UIColor.green
+                } else if status == "done (pending)" {
+                    cell.backgroundColor = UIColor.purple
                 }
             }
         })
@@ -166,7 +168,7 @@ class RequestsJobsTableViewController: UITableViewController {
             else if statuses[indeks] == "scheduled" {
                 destinationVC.propDate = propDates[indeks]
             }
-            else if statuses[indeks] == "done" {
+            else { //done ili done (pending)
                 destinationVC.afterImg.removeAll()
                 destinationVC.afterImg.append(afterImages[indeks]!)
                 destinationVC.dateFinished = finishDates[indeks]!

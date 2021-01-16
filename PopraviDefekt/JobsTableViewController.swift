@@ -72,8 +72,8 @@ class JobsTableViewController: UITableViewController {
         jobIds.removeAll()
         userIds.removeAll()
         beforeImages.removeAll()
-        let array = ["done", "scheduled"]
-        let predicate = NSPredicate(format: "status = %@ OR status = %@", argumentArray: array)
+        let array = ["done", "scheduled", "done (pending)"]
+        let predicate = NSPredicate(format: "status = %@ OR status = %@ OR status = %@", argumentArray: array)
         let query = PFQuery(className: "Job", predicate: predicate)
         query.whereKey("to", equalTo: PFUser.current()?.objectId)
         query.addDescendingOrder("pDateTime")
@@ -182,7 +182,7 @@ class JobsTableViewController: UITableViewController {
                 dVC.jobId = jobIds[index]
                 dVC.userId = userIds[index]
                 dVC.beforeImage.append(beforeImages[index])
-                if statuses[index] == "done" {
+                if statuses[index] == "done" || statuses[index] == "done (pending)" {
                     dVC.dateFin = finishDates[index]!
                     dVC.image.append(images[index]!)
                 }

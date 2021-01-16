@@ -103,6 +103,7 @@ UIImagePickerControllerDelegate {
             datePicker.isHidden = false
             upload.isHidden = false
             comment.isHidden = false
+            info.isHidden = true
         }
         else {
             let format = DateFormatter()

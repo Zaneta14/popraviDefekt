@@ -283,6 +283,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             })
+            displayAlert(title: "Success", message: "You have declared the craftsman's information invalid.")
         }
     }
     
