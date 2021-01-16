@@ -31,6 +31,8 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     var scheduledDate = NSDate()
     
+    var jobId = String()
+    
     @IBOutlet weak var requestDate: UILabel!
     
     @IBOutlet weak var type: UILabel!
@@ -64,6 +66,9 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var acceptO: UIButton!
     
     @IBOutlet weak var afterPhoto: UIButton!
+    
+    @IBOutlet weak var rate: UIBarButtonItem!
+    
     var datumiB = [NSDate]()
     
     var craftsmenIds = [String]()
@@ -142,6 +147,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             rejectCancelO.setTitle(" Cancel ", for: .normal)
             rejectCancelO.isHidden = false
             afterPhoto.isHidden = true
+            rate.isEnabled = false
         }
         else if statusS == "pending" {
             let dateFormatter = DateFormatter()
@@ -161,6 +167,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             scheduledOn.isHidden = true
             schDate.isHidden = true
             afterPhoto.isHidden = true
+            rate.isEnabled = false
         } else if statusS == "scheduled" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -177,6 +184,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             acceptO.isHidden = true
             afterPhoto.isHidden = true
             rejectCancelO.isHidden = true
+            rate.isEnabled = false
         } else if statusS == "done" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -193,6 +201,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             imageV.isHidden = false
             acceptO.isHidden = true
             rejectCancelO.isHidden = true
+            rate.isEnabled = true
         } else if statusS == "done (pending)" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -212,6 +221,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             rejectCancelO.setTitle(" No ", for: .normal)
             acceptO.isHidden = false
             rejectCancelO.isHidden = false
+            rate.isEnabled = false
         }
     }
     
@@ -301,8 +311,8 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func sendAnEmail(_ sender: Any) {
-        var emailA = email.titleLabel?.text
-        if let url = URL(string: "mailto:\(emailA!)") {
+        let emailA = email.titleLabel?.text
+        if let url = URL(string: "mailto:\(emailA!)") { 
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
@@ -311,6 +321,11 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         if segue.identifier == "afterPhotoSegue" {
             let dvc = segue.destination as! PopUpViewController
             dvc.imageFile = afterImg
+        }
+        else if segue.identifier == "rateSegue" {
+            let dvc = segue.destination as! RateJobViewController
+            dvc.jobId = jobId
+            dvc.craftsmanId = craftsmanId
         }
     }
 }

@@ -24,7 +24,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="majstor1@gmail.com" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npe-wJ-g45">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="milica@gmail.com" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npe-wJ-g45">
                                 <rect key="frame" x="17" y="72" width="341" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -33,7 +33,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Lg8-DH-5nA"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="majstor123" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Pm-pz-sJo">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="milica123" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Pm-pz-sJo">
                                 <rect key="frame" x="17" y="110" width="341" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1002,6 +1002,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ChC-EJ-aa1"/>
                     </view>
+                    <navigationItem key="navigationItem" id="79F-lQ-jym">
+                        <barButtonItem key="rightBarButtonItem" title="Rate the job" id="5Zq-RB-YSP">
+                            <connections>
+                                <segue destination="YPU-Cn-PBs" kind="show" identifier="rateSegue" id="V1r-U5-eac"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="acceptO" destination="QCl-dY-O6A" id="ylj-d6-4lq"/>
@@ -1015,6 +1022,7 @@
                         <outlet property="pd" destination="ZkV-tq-ckd" id="pmm-Rf-sMU"/>
                         <outlet property="phoneNumber" destination="iTp-fm-szZ" id="4Pd-xh-XGE"/>
                         <outlet property="pp" destination="fLs-79-ZF1" id="Lp5-iS-0eg"/>
+                        <outlet property="rate" destination="5Zq-RB-YSP" id="Gya-xq-AFd"/>
                         <outlet property="rejectCancelO" destination="WRp-ja-yNy" id="p6l-cZ-qV1"/>
                         <outlet property="requestDate" destination="wCu-eW-aUp" id="2N3-c9-Y60"/>
                         <outlet property="schDate" destination="g6L-cc-AiU" id="YLs-BY-9rj"/>
@@ -1026,6 +1034,117 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCy-yF-oZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2605.5999999999999" y="859.52023988005999"/>
+        </scene>
+        <!--Rate the job-->
+        <scene sceneID="z59-Xr-A8Z">
+            <objects>
+                <viewController title="Rate the job" id="YPU-Cn-PBs" customClass="RateJobViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BbF-on-55G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="ht5-6w-Vya">
+                                <rect key="frame" x="16" y="241" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepper:" destination="YPU-Cn-PBs" eventType="valueChanged" id="NG7-vI-dX5"/>
+                                </connections>
+                            </stepper>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Give a comment about the craftsman's work and rate it on a scale from 1 to 5." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-82-a6U">
+                                <rect key="frame" x="16" y="80" width="343" height="59"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ebt-82-a6U" secondAttribute="height" multiplier="343:59" id="9OB-72-bDW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your comment here... " translatesAutoresizingMaskIntoConstraints="NO" id="XaF-Z8-uV9">
+                                <rect key="frame" x="16" y="147" width="343" height="78"/>
+                                <color key="backgroundColor" red="0.86873922539498527" green="0.86873922539498527" blue="0.86873922539498527" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XaF-Z8-uV9" secondAttribute="height" multiplier="343:78" id="DqG-KS-NsU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7F-gq-1fF">
+                                <rect key="frame" x="126" y="245" width="8" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.03624573524" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a comment about the craftsman." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkU-L2-mNP">
+                                <rect key="frame" x="16" y="282" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your comment here... " translatesAutoresizingMaskIntoConstraints="NO" id="2Mm-T7-aUS">
+                                <rect key="frame" x="16" y="311" width="343" height="78"/>
+                                <color key="backgroundColor" red="0.86873922540000004" green="0.86873922540000004" blue="0.86873922540000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2Mm-T7-aUS" secondAttribute="height" multiplier="343:78" id="JwU-CC-Py5"/>
+                                    <constraint firstAttribute="width" secondItem="2Mm-T7-aUS" secondAttribute="height" multiplier="343:78" id="etJ-c6-Zna"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your infomation has been submitted." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5v-pu-hqp">
+                                <rect key="frame" x="47.5" y="397" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.03624573524" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36F-mW-fx6">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mgk-NM-HZ0"/>
+                                    <barButtonItem title="Submit" id="Cpw-SB-PQT">
+                                        <connections>
+                                            <action selector="submit:" destination="YPU-Cn-PBs" id="HAf-sR-7Hz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="tHh-71-uBf"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Tka-fQ-PqY" firstAttribute="trailing" secondItem="2Mm-T7-aUS" secondAttribute="trailing" constant="16" id="5wT-rd-Gi3"/>
+                            <constraint firstItem="2Mm-T7-aUS" firstAttribute="leading" secondItem="Tka-fQ-PqY" secondAttribute="leading" constant="16" id="6Ph-7a-3Bu"/>
+                            <constraint firstItem="Ebt-82-a6U" firstAttribute="top" secondItem="Tka-fQ-PqY" secondAttribute="top" constant="16" id="6fp-FC-9N6"/>
+                            <constraint firstItem="V5v-pu-hqp" firstAttribute="centerX" secondItem="BbF-on-55G" secondAttribute="centerX" id="Ax0-3B-MEE"/>
+                            <constraint firstItem="BkU-L2-mNP" firstAttribute="leading" secondItem="Tka-fQ-PqY" secondAttribute="leading" constant="16" id="K1n-Vs-4oc"/>
+                            <constraint firstItem="x7F-gq-1fF" firstAttribute="centerY" secondItem="ht5-6w-Vya" secondAttribute="centerY" id="K4f-rc-QD0"/>
+                            <constraint firstItem="V5v-pu-hqp" firstAttribute="top" secondItem="2Mm-T7-aUS" secondAttribute="bottom" constant="8" id="LvE-L0-E4Y"/>
+                            <constraint firstItem="Ebt-82-a6U" firstAttribute="leading" secondItem="Tka-fQ-PqY" secondAttribute="leading" constant="16" id="Obq-6a-XcO"/>
+                            <constraint firstItem="XaF-Z8-uV9" firstAttribute="leading" secondItem="Tka-fQ-PqY" secondAttribute="leading" constant="16" id="QeQ-lQ-6eD"/>
+                            <constraint firstItem="x7F-gq-1fF" firstAttribute="leading" secondItem="ht5-6w-Vya" secondAttribute="trailing" constant="16" id="RCh-4E-9jI"/>
+                            <constraint firstItem="Tka-fQ-PqY" firstAttribute="trailing" secondItem="BkU-L2-mNP" secondAttribute="trailing" constant="16" id="RPi-1I-jrN"/>
+                            <constraint firstItem="2Mm-T7-aUS" firstAttribute="width" secondItem="2Mm-T7-aUS" secondAttribute="height" multiplier="343:78" id="atz-n1-hP3"/>
+                            <constraint firstItem="2Mm-T7-aUS" firstAttribute="top" secondItem="BkU-L2-mNP" secondAttribute="bottom" constant="8" id="bA6-Cc-BxH"/>
+                            <constraint firstItem="BkU-L2-mNP" firstAttribute="top" secondItem="x7F-gq-1fF" secondAttribute="bottom" constant="16" id="d1v-dQ-qdl"/>
+                            <constraint firstItem="Tka-fQ-PqY" firstAttribute="trailing" secondItem="Ebt-82-a6U" secondAttribute="trailing" constant="16" id="dq7-dz-42T"/>
+                            <constraint firstItem="ht5-6w-Vya" firstAttribute="top" secondItem="XaF-Z8-uV9" secondAttribute="bottom" constant="16" id="iFT-YV-NGV"/>
+                            <constraint firstItem="XaF-Z8-uV9" firstAttribute="top" secondItem="Ebt-82-a6U" secondAttribute="bottom" constant="8" id="iH7-bO-HYE"/>
+                            <constraint firstItem="Tka-fQ-PqY" firstAttribute="trailing" secondItem="XaF-Z8-uV9" secondAttribute="trailing" constant="16" id="ryn-uV-t1z"/>
+                            <constraint firstItem="ht5-6w-Vya" firstAttribute="leading" secondItem="Tka-fQ-PqY" secondAttribute="leading" constant="16" id="xuo-oW-5uD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tka-fQ-PqY"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentCraftsman" destination="2Mm-T7-aUS" id="8Y7-2N-LhB"/>
+                        <outlet property="commentJob" destination="XaF-Z8-uV9" id="34v-82-Dby"/>
+                        <outlet property="info" destination="V5v-pu-hqp" id="2zN-D9-7lH"/>
+                        <outlet property="rating" destination="x7F-gq-1fF" id="83U-CN-NAX"/>
+                        <outlet property="stepperO" destination="ht5-6w-Vya" id="4oe-wt-H2a"/>
+                        <outlet property="submitButton" destination="Cpw-SB-PQT" id="n52-SW-Jga"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IeY-IF-AWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3420" y="861.3193403298352"/>
         </scene>
         <!--Craftsmen-->
         <scene sceneID="vMU-jS-jsH">

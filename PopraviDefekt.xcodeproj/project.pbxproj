@@ -24,6 +24,7 @@
 		1EFA649025AD100D00BCA041 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EFA648F25AD100D00BCA041 /* logo.png */; };
 		1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */; };
 		1EFA9D3E25868C0000AD3950 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */; };
+		1EFB8C3925B341E6003FB968 /* RateJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */; };
 		1EFCBCEA25976AB800026A25 /* CRequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */; };
 		1EFCBCEC2597F97700026A25 /* JobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFCBCEB2597F97700026A25 /* JobsTableViewController.swift */; };
 		1EFF4B8025AFA21100E9CCD1 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF4B7F25AFA21100E9CCD1 /* PopUpViewController.swift */; };
@@ -50,6 +51,7 @@
 		1EFA648F25AD100D00BCA041 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../Downloads/logo.png; sourceTree = "<group>"; };
 		1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateJobViewController.swift; sourceTree = "<group>"; };
 		1EFCBCE925976AB800026A25 /* CRequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRequestDetailsViewController.swift; sourceTree = "<group>"; };
 		1EFCBCEB2597F97700026A25 /* JobsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsTableViewController.swift; sourceTree = "<group>"; };
 		1EFF4B7F25AFA21100E9CCD1 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
@@ -93,8 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				1E07C9572586402A00F31493 /* AppDelegate.swift */,
-				1E07C9592586402A00F31493 /* ViewController.swift */,
 				1E07C95B2586402A00F31493 /* Main.storyboard */,
+				1E07C9592586402A00F31493 /* ViewController.swift */,
 				1E9709E425B116E80017E1CF /* ProfileViewController.swift */,
 				1E030892259913A000EB98F1 /* JobDetailsViewController.swift */,
 				1EFCBCEB2597F97700026A25 /* JobsTableViewController.swift */,
@@ -106,12 +108,13 @@
 				1EC6C2C8259114BC00256120 /* CraftsmanDetailsTableViewController.swift */,
 				1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */,
 				1EB39D5C2593D63D0001ED07 /* CraftsmanTableViewController.swift */,
-				1E07C95E2586402D00F31493 /* Assets.xcassets */,
-				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
-				1E07C9632586402D00F31493 /* Info.plist */,
 				1EF7E63E259B7EF900DD9C89 /* MapViewController.swift */,
-				1EFA648F25AD100D00BCA041 /* logo.png */,
 				1EFF4B7F25AFA21100E9CCD1 /* PopUpViewController.swift */,
+				1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */,
+				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
+				1EFA648F25AD100D00BCA041 /* logo.png */,
+				1E07C95E2586402D00F31493 /* Assets.xcassets */,
+				1E07C9632586402D00F31493 /* Info.plist */,
 			);
 			path = PopraviDefekt;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				1EFF4B8025AFA21100E9CCD1 /* PopUpViewController.swift in Sources */,
 				1E07C9582586402A00F31493 /* AppDelegate.swift in Sources */,
 				1EC6C2C52590E8DE00256120 /* SeeCraftsmenTableViewController.swift in Sources */,
+				1EFB8C3925B341E6003FB968 /* RateJobViewController.swift in Sources */,
 				1E9709E525B116E90017E1CF /* ProfileViewController.swift in Sources */,
 				1EFCBCEC2597F97700026A25 /* JobsTableViewController.swift in Sources */,
 				1E8D208F259261F4003F7E4C /* RequestDetailsViewController.swift in Sources */,

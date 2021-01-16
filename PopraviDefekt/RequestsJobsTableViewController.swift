@@ -31,6 +31,8 @@ class RequestsJobsTableViewController: UITableViewController {
     
     var afterImages = [PFFileObject?]()
     
+    var jobIds = [String]()
+    
     var refresher:UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -59,6 +61,7 @@ class RequestsJobsTableViewController: UITableViewController {
         finishDates.removeAll()
         beforeImages.removeAll()
         afterImages.removeAll()
+        jobIds.removeAll()
         let query = PFQuery(className: "Job")
         query.whereKey("from", equalTo: PFUser.current()?.objectId)
         query.addDescendingOrder("date")
@@ -72,30 +75,33 @@ class RequestsJobsTableViewController: UITableViewController {
                             if let status = object["status"] {
                                 if let desc = object["description"] {
                                     if let bfr = object["beforeImg"] {
-                                        self.datumiB.append(datumB as! NSDate)
-                                        self.craftsmenIds.append(craftsmanId as! String)
-                                        self.statuses.append(status as! String)
-                                        self.descriptions.append(desc as! String)
-                                        self.beforeImages.append(bfr as! PFFileObject)
-                                        if let pDateTime = object["pDateTime"] {
-                                            if let pPrice = object["pPrice"] {
-                                                self.propDates.append(pDateTime as! NSDate)
-                                                self.propPrices.append(pPrice as! String)
+                                        if let jobId = object.objectId {
+                                            self.datumiB.append(datumB as! NSDate)
+                                            self.craftsmenIds.append(craftsmanId as! String)
+                                            self.statuses.append(status as! String)
+                                            self.descriptions.append(desc as! String)
+                                            self.beforeImages.append(bfr as! PFFileObject)
+                                            self.jobIds.append(jobId as! String)
+                                            if let pDateTime = object["pDateTime"] {
+                                                if let pPrice = object["pPrice"] {
+                                                    self.propDates.append(pDateTime as! NSDate)
+                                                    self.propPrices.append(pPrice as! String)
+                                                }
                                             }
-                                        }
-                                        else {
-                                            self.propDates.append(NSDate()) //za da ne e prazno
-                                            self.propPrices.append("")
-                                        }
-                                        if let finDate = object["finishDate"] {
-                                            if let aftr = object["afterImg"] {
-                                                self.finishDates.append(finDate as! NSDate)
-                                                self.afterImages.append(aftr as! PFFileObject)
+                                            else {
+                                                self.propDates.append(NSDate()) //za da ne e prazno
+                                                self.propPrices.append("")
                                             }
-                                        }
-                                        else {
-                                            self.finishDates.append(nil)
-                                            self.afterImages.append(nil)
+                                            if let finDate = object["finishDate"] {
+                                                if let aftr = object["afterImg"] {
+                                                    self.finishDates.append(finDate as! NSDate)
+                                                    self.afterImages.append(aftr as! PFFileObject)
+                                                }
+                                            }
+                                            else {
+                                                self.finishDates.append(nil)
+                                                self.afterImages.append(nil)
+                                            }
                                         }
                                     }
                                 }
@@ -161,6 +167,7 @@ class RequestsJobsTableViewController: UITableViewController {
             destinationVC.dateReq = datumiB[indeks]
             destinationVC.statusS = statuses[indeks]
             destinationVC.beforeImg.append(beforeImages[indeks]!)
+            destinationVC.jobId = jobIds[indeks]
             if statuses[indeks] == "pending" {
                 destinationVC.propDate = propDates[indeks]
                 destinationVC.propPrice = propPrices[indeks]
@@ -168,7 +175,7 @@ class RequestsJobsTableViewController: UITableViewController {
             else if statuses[indeks] == "scheduled" {
                 destinationVC.propDate = propDates[indeks]
             }
-            else { //done ili done (pending)
+            else if statuses[indeks] == "done" || statuses[indeks] == "done (pending)" {
                 destinationVC.afterImg.removeAll()
                 destinationVC.afterImg.append(afterImages[indeks]!)
                 destinationVC.dateFinished = finishDates[indeks]!

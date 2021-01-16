@@ -166,6 +166,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
                         self.displayAlert(title: "Error signing up", message: errorString)
                     } else {
                         if PFUser.current()!["role"] as! String == "craftsman" {
+                            let req = PFObject(className: "CommentCraftsman")
+                            req["userId"] = PFUser.current()?.objectId
+                            req.saveInBackground()
                             self.performSegue(withIdentifier: "craftsmanSegue", sender: self)
                         }
                         else {

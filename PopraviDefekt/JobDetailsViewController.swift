@@ -189,7 +189,7 @@ UIImagePickerControllerDelegate {
                     }
                 }
             }
-            if comment.text != "" || comment.text != "Give a comment about the customer. (optional)" {
+            if comment.text != "" && comment.text != "Give a comment about the customer. (optional)" {
                 var com = comment.text
                 let comQuery = PFQuery(className: "Comment")
                 comQuery.whereKey("userId", equalTo: userId)
