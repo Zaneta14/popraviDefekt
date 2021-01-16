@@ -57,6 +57,7 @@ UIImagePickerControllerDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var status: UILabel!
+    
     @IBOutlet weak var customer: UILabel!
     
     @IBOutlet weak var addess: UILabel!
@@ -78,6 +79,7 @@ UIImagePickerControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var save: UIButton!
     
+    @IBOutlet weak var info: UILabel!
     @IBOutlet weak var comment: UITextView!
     
     override func viewDidLoad() {
@@ -115,6 +117,11 @@ UIImagePickerControllerDelegate {
             save.isHidden = true
             datePicker.isHidden = true
             upload.isHidden = true
+            if statusS == "done" {
+                info.isHidden = true
+            } else {
+                info.isHidden = false
+            }
             image[0].getDataInBackground { (data, error) in
                 if let imageData = data {
                     if let imageToDisplay = UIImage(data: imageData) {
@@ -158,8 +165,8 @@ UIImagePickerControllerDelegate {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        if imageView.image == nil || comment.text == "" || comment.text == "Give a comment about the customer." {
-            displayAlert(title: "Invalid", message: "Not enough information.")
+        if imageView.image == nil {
+            displayAlert(title: "Invalid", message: "Please choose an image.")
         }
         else {
             let query = PFQuery(className: "Job")
@@ -170,42 +177,43 @@ UIImagePickerControllerDelegate {
                 } else if let objects = success {
                     for object in objects {
                         object["finishDate"] = self.datePicker.date
-                        object["status"] = "done"
+                        object["status"] = "done (pending)"
                         if let image = self.imageView.image {
                             if let imageData = image.jpeg(.medium) {
                                 let imageFile = PFFileObject(name: "image.jpg", data: imageData)
                                 object["afterImg"] = imageFile
-                                print("savedImage")
                                 object.saveInBackground()
                             }
                         }
                     }
                 }
             }
-            var com = comment.text
-            let comQuery = PFQuery(className: "Comment")
-            comQuery.whereKey("userId", equalTo: userId)
-            comQuery.findObjectsInBackground(block: { (success, error) in
-                if error != nil {
-                    print(error?.localizedDescription)
-                } else if let objects = success {
-                    for object in objects {
-                        if let comments = object["comments"] {
-                            print("ima komentar")
-                            var niza = comments as! [String]
-                            niza.append(com as! String)
-                            object["comments"] = niza
-                        } else {
-                            print("nema komentar")
-                            var array = [String]()
-                            array.append(com!)
-                            object["comments"] = array
+            if comment.text != "" || comment.text != "Give a comment about the customer. (optional)" {
+                var com = comment.text
+                let comQuery = PFQuery(className: "Comment")
+                comQuery.whereKey("userId", equalTo: userId)
+                comQuery.findObjectsInBackground(block: { (success, error) in
+                    if error != nil {
+                        print(error?.localizedDescription)
+                    } else if let objects = success {
+                        for object in objects {
+                            if let comments = object["comments"] {
+                                print("ima komentar")
+                                var niza = comments as! [String]
+                                niza.append(com as! String)
+                                object["comments"] = niza
+                            } else {
+                                print("nema komentar")
+                                var array = [String]()
+                                array.append(com!)
+                                object["comments"] = array
+                            }
+                            object.saveInBackground()
                         }
-                        object.saveInBackground()
                     }
-                }
-            })
-            displayAlert(title: "Success", message: "The job is now finished.")
+                })
+            }
+            displayAlert(title: "Success", message: "Now the customer needs to confirm the information.")
         }
     }
     

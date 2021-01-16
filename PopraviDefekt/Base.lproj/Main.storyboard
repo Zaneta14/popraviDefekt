@@ -604,12 +604,18 @@
                                     <action selector="sendAnEmail:" destination="Zjm-ao-cn9" eventType="touchUpInside" id="0pD-2S-G3H"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Give a comment about the customer." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7hm-wk-LD2">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Give a comment about the customer. (optional)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7hm-wk-LD2">
                                 <rect key="frame" x="201" y="393" width="158" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The customer needs to confirm the information." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCW-Cf-Apn">
+                                <rect key="frame" x="5" y="634" width="365" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -623,6 +629,7 @@
                             <constraint firstItem="4Tl-l3-trs" firstAttribute="centerY" secondItem="0MR-RD-FMP" secondAttribute="centerY" id="6Ef-em-uoJ"/>
                             <constraint firstItem="8Bf-8T-ab6" firstAttribute="trailing" secondItem="J4V-OX-Wlg" secondAttribute="trailing" constant="16" id="6nq-FE-iAh"/>
                             <constraint firstItem="J4V-OX-Wlg" firstAttribute="top" secondItem="4Tl-l3-trs" secondAttribute="bottom" constant="8" id="781-rg-TZD"/>
+                            <constraint firstItem="XCW-Cf-Apn" firstAttribute="centerX" secondItem="ByF-Sx-VTr" secondAttribute="centerX" id="7zS-JM-5Ug"/>
                             <constraint firstItem="7hm-wk-LD2" firstAttribute="leading" secondItem="hjp-z5-GO5" secondAttribute="trailing" constant="8" symbolic="YES" id="8hm-FL-hQD"/>
                             <constraint firstItem="1sY-rT-VTb" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="9tE-AW-mEe"/>
                             <constraint firstItem="khm-4r-et5" firstAttribute="trailing" secondItem="8Bf-8T-ab6" secondAttribute="trailing" id="Dyr-VM-dZ5"/>
@@ -640,6 +647,7 @@
                             <constraint firstItem="0lY-ls-Qpz" firstAttribute="top" secondItem="BBr-18-ytN" secondAttribute="bottom" constant="1" id="TRA-SY-UE2"/>
                             <constraint firstItem="FC3-RZ-8c2" firstAttribute="centerY" secondItem="1sY-rT-VTb" secondAttribute="centerY" id="Uhh-l5-llA"/>
                             <constraint firstItem="FC3-RZ-8c2" firstAttribute="leading" secondItem="1sY-rT-VTb" secondAttribute="trailing" constant="10" id="UjM-jY-zY5"/>
+                            <constraint firstItem="XCW-Cf-Apn" firstAttribute="top" secondItem="J4V-OX-Wlg" secondAttribute="bottom" constant="8" id="YMH-9i-O69"/>
                             <constraint firstItem="hjp-z5-GO5" firstAttribute="leading" secondItem="0MR-RD-FMP" secondAttribute="trailing" constant="6" id="aSe-RX-wxa"/>
                             <constraint firstItem="yvB-zl-Zvd" firstAttribute="leading" secondItem="1sY-rT-VTb" secondAttribute="leading" id="b7Z-Hb-Ksy"/>
                             <constraint firstItem="khm-4r-et5" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" id="b8T-or-kVg"/>
@@ -677,6 +685,7 @@
                         <outlet property="emailAdresa" destination="daJ-Uk-PwL" id="t1S-Uw-CGJ"/>
                         <outlet property="finishDate" destination="KTp-SY-nUI" id="wZk-fX-LQG"/>
                         <outlet property="imageView" destination="J4V-OX-Wlg" id="l6H-1d-gAY"/>
+                        <outlet property="info" destination="XCW-Cf-Apn" id="1f2-0c-9XD"/>
                         <outlet property="or" destination="0MR-RD-FMP" id="sIs-No-gCW"/>
                         <outlet property="photoLibrary" destination="hjp-z5-GO5" id="ifL-QK-wMp"/>
                         <outlet property="save" destination="5A9-f7-PaQ" id="aYb-pB-wAx"/>
@@ -1564,6 +1573,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="3SQ-eD-vWC"/>
         <segue reference="G5l-vv-7kg"/>
-        <segue reference="ocs-um-x2J"/>
+        <segue reference="bAX-b7-3Gy"/>
     </inferredMetricsTieBreakers>
 </document>

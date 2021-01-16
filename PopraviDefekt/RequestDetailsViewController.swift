@@ -153,8 +153,9 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             pPrice.isHidden = false
             pd.isHidden = false
             pp.isHidden = false
+            acceptO.setTitle(" Accept ", for: .normal)
             acceptO.isHidden = false
-            rejectCancelO.setTitle("Reject", for: .normal)
+            rejectCancelO.setTitle(" Reject ", for: .normal)
             rejectCancelO.isHidden = false
             imageV.isHidden = false
             scheduledOn.isHidden = true
@@ -192,6 +193,25 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             imageV.isHidden = false
             acceptO.isHidden = true
             rejectCancelO.isHidden = true
+        } else if statusS == "done (pending)" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let stringDate = dateFormatter.string(from: dateFinished as Date)
+            schDate.text = stringDate
+            afterPhoto.isHidden = false
+            pDate.isHidden = true
+            pPrice.isHidden = true
+            pd.isHidden = true
+            pp.text = "Is the information below valid?"
+            pp.isHidden = false
+            scheduledOn.text = "Done on:"
+            scheduledOn.isHidden = false
+            schDate.isHidden = false
+            imageV.isHidden = false
+            acceptO.setTitle(" Yes ", for: .normal)
+            rejectCancelO.setTitle(" No ", for: .normal)
+            acceptO.isHidden = false
+            rejectCancelO.isHidden = false
         }
     }
     
@@ -202,17 +222,32 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         query.whereKey("to", equalTo: craftsmanId)
         query.whereKey("description", equalTo: descr)
         query.whereKey("date", equalTo: dateReq)
-        query.findObjectsInBackground(block:  { (objects, error) in
-            if error != nil {
-                print(error?.localizedDescription)
-            } else if let objects = objects {
-                for object in objects {
-                    object["status"] = "scheduled"
-                    object.saveInBackground()
+        if statusS == "pending" {
+            query.findObjectsInBackground(block:  { (objects, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                } else if let objects = objects {
+                    for object in objects {
+                        object["status"] = "scheduled"
+                        object.saveInBackground()
+                    }
                 }
-            }
-        })
-        displayAlert(title: "Success", message: "The job is now scheduled.")
+            })
+            displayAlert(title: "Success", message: "The job is now scheduled.")
+        }
+        else {
+            query.findObjectsInBackground(block:  { (objects, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                } else if let objects = objects {
+                    for object in objects {
+                        object["status"] = "done"
+                        object.saveInBackground()
+                    }
+                }
+            })
+            displayAlert(title: "Success", message: "The job is now finished.")
+        }
     }
     
     @IBAction func rejectCancel(_ sender: Any) {
@@ -221,19 +256,33 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         query.whereKey("to", equalTo: craftsmanId)
         query.whereKey("description", equalTo: descr)
         query.whereKey("date", equalTo: dateReq)
-        query.findObjectsInBackground(block:  { (objects, error) in
-            if error != nil {
-                print(error?.localizedDescription)
-            } else if let objects = objects {
-                for object in objects {
-                    object.deleteInBackground()
+        if statusS != "done (pending)" {
+            query.findObjectsInBackground(block:  { (objects, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                } else if let objects = objects {
+                    for object in objects {
+                        object.deleteInBackground()
+                    }
                 }
+            })
+            if statusS == "active" {
+                displayAlert(title: "Success", message: "The request has been canceled.")
+            } else if statusS == "pending" {
+                displayAlert(title: "Success", message: "The offer has been rejected.")
             }
-        })
-        if statusS == "active" {
-            displayAlert(title: "Success", message: "The request has been canceled.")
-        } else {
-            displayAlert(title: "Success", message: "The offer has been rejected.")
+        }
+        else {
+            query.findObjectsInBackground(block:  { (objects, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                } else if let objects = objects {
+                    for object in objects {
+                        object["status"] = "scheduled"
+                        object.saveInBackground()
+                    }
+                }
+            })
         }
     }
     

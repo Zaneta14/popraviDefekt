@@ -157,8 +157,11 @@ class JobsTableViewController: UITableViewController {
         if statuses[indexPath.row] == "scheduled" {
             cell.backgroundColor = .red
         }
-        else {
+        else if statuses[indexPath.row] == "done" {
             cell.backgroundColor = .green
+        }
+        else {
+            cell.backgroundColor = .purple
         }
         return cell
     }
