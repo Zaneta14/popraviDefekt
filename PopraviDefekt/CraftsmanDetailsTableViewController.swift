@@ -13,6 +13,8 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     
     var dates = [NSDate]()
     var imageFiles = [PFFileObject]()
+    var comments = [String?]()
+    var ratings = [Int]()
     var selCraftsmanId = String()
     var opis = String()
     var lokacija = String()
@@ -65,6 +67,12 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let stringDate = dateFormatter.string(from: dates[indexPath.row] as Date)
         cell.dateFinished.text = stringDate
+        if comments[indexPath.row] != nil {
+            cell.comment.text = "\"" + comments[indexPath.row]! + "\""
+        }
+        if ratings[indexPath.row] != 0 {
+            cell.rating.text = "\(ratings[indexPath.row])" + "/5"
+        }
         return cell
     }
 
@@ -100,6 +108,8 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     func fetchData() {
         self.imageFiles.removeAll()
         self.dates.removeAll()
+        self.ratings.removeAll()
+        self.comments.removeAll()
         let craftsmanQuery = PFUser.query()
         craftsmanQuery?.whereKey("role", equalTo: "craftsman")
         craftsmanQuery?.whereKey("firstName", equalTo: firstName)
@@ -123,6 +133,15 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                                             if let slika = job["afterImg"] {
                                                 self.dates.append(datum as! NSDate)
                                                 self.imageFiles.append(slika as! PFFileObject)
+                                                if let komentar = job["comment"] {
+                                                    if let rejting = job["rating"] {
+                                                        self.comments.append(komentar as! String)
+                                                        self.ratings.append(rejting as! Int)
+                                                    }
+                                                } else {
+                                                    self.comments.append(nil)
+                                                    self.ratings.append(0)
+                                                }
                                             }
                                         }
                                     }
