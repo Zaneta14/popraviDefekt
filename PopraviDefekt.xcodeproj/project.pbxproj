@@ -13,6 +13,7 @@
 		1E07C95D2586402A00F31493 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95B2586402A00F31493 /* Main.storyboard */; };
 		1E07C95F2586402D00F31493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95E2586402D00F31493 /* Assets.xcassets */; };
 		1E07C9622586402D00F31493 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C9602586402D00F31493 /* LaunchScreen.storyboard */; };
+		1E8915B425B4F04D003ECCB7 /* RateCraftsmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */; };
 		1E8D208F259261F4003F7E4C /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */; };
 		1E9709E525B116E90017E1CF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9709E425B116E80017E1CF /* ProfileViewController.swift */; };
 		1EB39D5D2593D63D0001ED07 /* CraftsmanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB39D5C2593D63D0001ED07 /* CraftsmanTableViewController.swift */; };
@@ -40,6 +41,7 @@
 		1E07C95E2586402D00F31493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E07C9612586402D00F31493 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E07C9632586402D00F31493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCraftsmanViewController.swift; sourceTree = "<group>"; };
 		1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
 		1E9709E425B116E80017E1CF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1EB39D5C2593D63D0001ED07 /* CraftsmanTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanTableViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				1EFA648F25AD100D00BCA041 /* logo.png */,
 				1E07C95E2586402D00F31493 /* Assets.xcassets */,
 				1E07C9632586402D00F31493 /* Info.plist */,
+				1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */,
 			);
 			path = PopraviDefekt;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				1EFB8C3925B341E6003FB968 /* RateJobViewController.swift in Sources */,
 				1E9709E525B116E90017E1CF /* ProfileViewController.swift in Sources */,
 				1EFCBCEC2597F97700026A25 /* JobsTableViewController.swift in Sources */,
+				1E8915B425B4F04D003ECCB7 /* RateCraftsmanViewController.swift in Sources */,
 				1E8D208F259261F4003F7E4C /* RequestDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

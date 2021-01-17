@@ -14,8 +14,7 @@ class RateJobViewController: UIViewController {
     var jobId = String()
     
     var craftsmanId = String()
-    
-    @IBOutlet weak var commentCraftsman: UITextView!
+
     @IBOutlet weak var info: UILabel!
     @IBOutlet weak var stepperO: UIStepper!
     @IBOutlet weak var rating: UILabel!
@@ -45,28 +44,6 @@ class RateJobViewController: UIViewController {
                 }
             }
         }
-        let q = PFQuery(className: "CommentCraftsman")
-        q.whereKey("userId", equalTo: craftsmanId)
-        q.whereKey("usersWhoCommented", contains: PFUser.current()?.objectId)
-        q.findObjectsInBackground { (success, error) in
-            if error != nil {
-                print(error?.localizedDescription)
-            } else if let objects = success {
-                if objects.count > 0 {
-                    for object in objects {
-                        let users = object["usersWhoCommented"] as! [String]
-                        let comments = object["comments"] as! [String]
-                        let range = 0..<users.count
-                        for i in range {
-                            if users[i] == PFUser.current()?.objectId {
-                                self.commentCraftsman.text = comments[i]
-                                self.commentCraftsman.isEditable = false
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     @IBAction func stepper(_ sender: UIStepper) {
@@ -75,10 +52,9 @@ class RateJobViewController: UIViewController {
     }
     
     @IBAction func submit(_ sender: Any) {
-        if commentJob.text != "" && commentJob.text != "Your comment here..." && commentCraftsman.text != "" && commentCraftsman.text != "Your comment here..." {
+        if commentJob.text != "" && commentJob.text != "Your comment here..." {
             let comJ = commentJob.text
             let ratingR = Int(stepperO.value)
-            let comC = commentCraftsman.text
             let query = PFQuery(className: "Job")
             query.whereKey("objectId", equalTo: jobId)
             query.findObjectsInBackground { (success, error) in
@@ -92,34 +68,6 @@ class RateJobViewController: UIViewController {
                     }
                 }
             }
-            let comQuery = PFQuery(className: "CommentCraftsman")
-            comQuery.whereKey("userId", equalTo: craftsmanId)
-            comQuery.findObjectsInBackground(block: { (success, error) in
-                if error != nil {
-                    print(error?.localizedDescription)
-                } else if let objects = success {
-                    for object in objects {
-                        var array = [String]()
-                        var usersArray = [String]()
-                        if let comments = object["comments"] {
-                            if let usersWhoCommented = object["usersWhoCommented"] {
-                                print("ima komentar")
-                                array = comments as! [String]
-                                usersArray = usersWhoCommented as! [String]
-                            }
-                        } else {
-                            print("nema komentar")
-                            //var array = [String]()
-                        }
-                        array.append(comC as! String)
-                        usersArray.append((PFUser.current()?.objectId)!)
-                        object["comments"] = array
-                        object["usersWhoCommented"] = usersArray
-                        object.saveInBackground()
-                    }
-                    self.displayAlert(title: "Thank you for your feedback.", message: "Your information has been submitted")
-                }
-            })
         } else {
             displayAlert(title: "Invalid", message: "Please fill out the required text fields.")
         }

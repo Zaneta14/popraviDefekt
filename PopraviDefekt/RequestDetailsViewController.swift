@@ -69,6 +69,8 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var rate: UIBarButtonItem!
     
+    @IBOutlet weak var rateC: UIBarButtonItem!
+    
     var datumiB = [NSDate]()
     
     var craftsmenIds = [String]()
@@ -148,6 +150,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             rejectCancelO.isHidden = false
             afterPhoto.isHidden = true
             rate.isEnabled = false
+            rateC.isEnabled = false
         }
         else if statusS == "pending" {
             let dateFormatter = DateFormatter()
@@ -168,6 +171,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             schDate.isHidden = true
             afterPhoto.isHidden = true
             rate.isEnabled = false
+            rateC.isEnabled = false
         } else if statusS == "scheduled" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -185,6 +189,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             afterPhoto.isHidden = true
             rejectCancelO.isHidden = true
             rate.isEnabled = false
+            rateC.isEnabled = false
         } else if statusS == "done" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -202,6 +207,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             acceptO.isHidden = true
             rejectCancelO.isHidden = true
             rate.isEnabled = true
+            rateC.isEnabled = true
         } else if statusS == "done (pending)" {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -222,6 +228,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             acceptO.isHidden = false
             rejectCancelO.isHidden = false
             rate.isEnabled = false
+            rateC.isEnabled = false
         }
     }
     
@@ -325,6 +332,10 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         else if segue.identifier == "rateSegue" {
             let dvc = segue.destination as! RateJobViewController
             dvc.jobId = jobId
+            dvc.craftsmanId = craftsmanId
+        }
+        else if segue.identifier == "rateCSegue" {
+            let dvc = segue.destination as! RateCraftsmanViewController
             dvc.craftsmanId = craftsmanId
         }
     }
