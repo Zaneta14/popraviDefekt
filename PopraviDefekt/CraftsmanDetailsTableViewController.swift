@@ -35,24 +35,46 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         craftsman.text = firstName + " " + lastName
-        fetchData()
-        let craftsmanQuery = PFUser.query()
-        craftsmanQuery?.whereKey("role", equalTo: "craftsman")
-        craftsmanQuery?.whereKey("firstName", equalTo: firstName)
-        craftsmanQuery?.whereKey("lastName", equalTo: lastName)
-        craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
+        let query = PFQuery(className: "CommentCraftsman")
+        query.whereKey("userId", equalTo: selCraftsmanId)
+        query.findObjectsInBackground { (success, error) in
             if error != nil {
                 print(error?.localizedDescription)
-            } else if let craftsmen = objects {
-                for object in craftsmen {
-                    if let craftsman = object as? PFUser {
-                        if let objectId = craftsman.objectId {
-                            self.selCraftsmanId = objectId
-                        }
+            } else if let objects = success {
+                for object in objects {
+                    if let comments = object["comments"] {
+                        self.commentsC.text = "\"" + (comments as! [String]).joined(separator: "\", \"") + "\""
+                    } else {
+                        self.commentsC.text = "No comments yet."
                     }
                 }
             }
-        })
+        }
+        var count = 0
+        var sum = 0
+        let q = PFQuery(className: "Job")
+        q.whereKey("to", equalTo: selCraftsmanId)
+        q.findObjectsInBackground { (success, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            } else if let objects = success {
+                for object in objects {
+                    if let rating = object["rating"] {
+                        count += 1
+                        sum += rating as! Int
+                    }
+                }
+                if count > 0 {
+                    let average = Double(sum) / Double(count)
+                    self.grade.text = String(average) + "/5"
+                }
+                else {
+                    self.grade.text = "No ratings yet."
+                    self.grade.textColor = .black
+                }
+            }
+        }
+        fetchData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,9 +100,13 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         cell.dateFinished.text = stringDate
         if comments[indexPath.row] != nil {
             cell.comment.text = "\"" + comments[indexPath.row]! + "\""
+        } else {
+            cell.comment.text = "No comment yet."
         }
         if ratings[indexPath.row] != 0 {
             cell.rating.text = "\(ratings[indexPath.row])" + "/5"
+        } else {
+            cell.rating.text = "No rating yet."
         }
         return cell
     }
@@ -119,48 +145,32 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         self.dates.removeAll()
         self.ratings.removeAll()
         self.comments.removeAll()
-        let craftsmanQuery = PFUser.query()
-        craftsmanQuery?.whereKey("role", equalTo: "craftsman")
-        craftsmanQuery?.whereKey("firstName", equalTo: firstName)
-        craftsmanQuery?.whereKey("lastName", equalTo: lastName)
-        craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
+        let query = PFQuery(className: "Job")
+        query.whereKey("to", equalTo: selCraftsmanId)
+        query.whereKey("status", equalTo: "done")
+        query.findObjectsInBackground(block: { (jobs, error) in
             if error != nil {
                 print(error?.localizedDescription)
-            } else if let craftsmen = objects {
-                for object in craftsmen {
-                    if let craftsman = object as? PFUser {
-                        if let objectId = craftsman.objectId {
-                            let query = PFQuery(className: "Job")
-                            query.whereKey("to", equalTo: objectId)
-                            query.whereKey("status", equalTo: "done")
-                            query.findObjectsInBackground(block: { (jobs, error) in
-                                if error != nil {
-                                    print(error?.localizedDescription)
-                                } else if let jobs = jobs {
-                                    for job in jobs {
-                                        if let datum = job["finishDate"] {
-                                            if let slika = job["afterImg"] {
-                                                self.dates.append(datum as! NSDate)
-                                                self.imageFiles.append(slika as! PFFileObject)
-                                                if let komentar = job["comment"] {
-                                                    if let rejting = job["rating"] {
-                                                        self.comments.append(komentar as! String)
-                                                        self.ratings.append(rejting as! Int)
-                                                    }
-                                                } else {
-                                                    self.comments.append(nil)
-                                                    self.ratings.append(0)
-                                                }
-                                            }
-                                        }
-                                    }
+            } else if let jobs = jobs {
+                for job in jobs {
+                    if let datum = job["finishDate"] {
+                        if let slika = job["afterImg"] {
+                            self.dates.append(datum as! NSDate)
+                            self.imageFiles.append(slika as! PFFileObject)
+                            if let komentar = job["comment"] {
+                                if let rejting = job["rating"] {
+                                    self.comments.append(komentar as! String)
+                                    self.ratings.append(rejting as! Int)
                                 }
-                                self.tableView.reloadData()
-                            })
+                            } else {
+                                self.comments.append(nil)
+                                self.ratings.append(0)
+                            }
                         }
                     }
                 }
             }
+            self.tableView.reloadData()
         })
     }
     

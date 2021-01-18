@@ -41,25 +41,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         typeIds.removeAll()
         selectedTypes.removeAll()
         selectedTypeIds.removeAll()
-        let query = PFQuery(className: "CraftsmanType")
-        query.findObjectsInBackground { (success, error) in
-            if error != nil {
-                print(error?.localizedDescription)
-            } else if let objects = success {
-                self.nmb = objects.count
-                for object in objects {
-                    if let type = object["eng"] {
-                        self.types.append(type as! String)
-                        if let typeId = object.objectId {
-                            self.typeIds.append(typeId)
-                            if ((PFUser.current()?["crafts"] as? [String])?.contains(typeId))! {
-                                self.selectedTypes.append(type as! String)
-                                self.selectedTypeIds.append(typeId)
+        if PFUser.current()?["role"] as? String == "craftsman" {
+            let query = PFQuery(className: "CraftsmanType")
+            query.findObjectsInBackground { (success, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                } else if let objects = success {
+                    self.nmb = objects.count
+                    for object in objects {
+                        if let type = object["eng"] {
+                            self.types.append(type as! String)
+                            if let typeId = object.objectId {
+                                self.typeIds.append(typeId)
+                                if ((PFUser.current()?["crafts"] as? [String])?.contains(typeId))! {
+                                    self.selectedTypes.append(type as! String)
+                                    self.selectedTypeIds.append(typeId)
+                                }
                             }
                         }
                     }
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
             }
         }
         firstName.text = PFUser.current()?["firstName"] as? String

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1283,14 +1283,6 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hAk-Rc-UOX">
-                                    <rect key="frame" x="115" y="-43" width="240" height="43"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="&quot;Hardworking&quot;, &quot;Experienced&quot;" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="26G-Zq-lhG">
                                     <rect key="frame" x="8" y="29" width="359" height="35"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1301,7 +1293,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.75/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQv-RK-56P">
-                                    <rect key="frame" x="166" y="63" width="52.5" height="21"/>
+                                    <rect key="frame" x="161.5" y="63" width="52.5" height="21"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <color key="textColor" red="1" green="0.03624573524" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -1320,8 +1312,8 @@
                                 <constraint firstItem="vmA-fv-leZ" firstAttribute="top" secondItem="FJ3-Rp-6Ua" secondAttribute="top" constant="8" id="RDl-An-dPX"/>
                                 <constraint firstItem="26G-Zq-lhG" firstAttribute="top" secondItem="vmA-fv-leZ" secondAttribute="bottom" id="a7E-kC-SUW"/>
                                 <constraint firstAttribute="trailing" secondItem="26G-Zq-lhG" secondAttribute="trailing" constant="8" id="c9S-CY-AEI"/>
+                                <constraint firstItem="dQv-RK-56P" firstAttribute="centerX" secondItem="FJ3-Rp-6Ua" secondAttribute="centerX" id="cFB-s1-3SO"/>
                                 <constraint firstItem="vmA-fv-leZ" firstAttribute="centerX" secondItem="FJ3-Rp-6Ua" secondAttribute="centerX" id="cMp-t7-iWR"/>
-                                <constraint firstItem="dQv-RK-56P" firstAttribute="leading" secondItem="FJ3-Rp-6Ua" secondAttribute="leading" constant="166" id="gaL-uA-uww"/>
                                 <constraint firstItem="26G-Zq-lhG" firstAttribute="leading" secondItem="FJ3-Rp-6Ua" secondAttribute="leading" constant="8" id="hll-m2-Aof"/>
                                 <constraint firstItem="Nmh-N9-Puf" firstAttribute="centerX" secondItem="FJ3-Rp-6Ua" secondAttribute="centerX" id="hu6-aY-N6v"/>
                                 <constraint firstItem="dQv-RK-56P" firstAttribute="top" secondItem="vmA-fv-leZ" secondAttribute="bottom" constant="34" id="p9L-th-pk7"/>

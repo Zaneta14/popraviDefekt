@@ -21,6 +21,8 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
     
     var lastNames = [String]()
     
+    var craftsmanIds = [String]()
+    
     var place = String()
     
     var desc = String()
@@ -143,6 +145,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
         else {
             firstNames.removeAll()
             lastNames.removeAll()
+            craftsmanIds.removeAll()
             desc = descriptionField.text!
             var objId = String()
             let queryQ = PFQuery(className: "CraftsmanType")
@@ -165,8 +168,11 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
                                         if let craftsman = object as? PFUser {
                                             if let firstName = craftsman["firstName"] {
                                                 if let lastName = craftsman["lastName"] {
-                                                    self.firstNames.append(firstName as! String)
-                                                    self.lastNames.append(lastName as! String)
+                                                    if let cId = craftsman.objectId {
+                                                        self.craftsmanIds.append(cId)
+                                                        self.firstNames.append(firstName as! String)
+                                                        self.lastNames.append(lastName as! String)
+                                                    }
                                                 }
                                             }
                                         }
@@ -186,6 +192,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
             let destinationVC = segue.destination as! SeeCraftsmenTableViewController
             destinationVC.fNames = firstNames
             destinationVC.lNames = lastNames
+            destinationVC.cIds = craftsmanIds
             destinationVC.lokacija = place
             destinationVC.opis = desc
             destinationVC.lat = lat
