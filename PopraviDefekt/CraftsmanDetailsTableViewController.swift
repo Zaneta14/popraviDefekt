@@ -23,9 +23,18 @@ class CraftsmanDetailsTableViewController: UITableViewController {
     var firstName = String()
     var lastName = String()
     var beforeImg = UIImage()
+    
+    @IBOutlet weak var craftsman: UILabel!
+    
+    @IBOutlet weak var commentsC: UITextView!
+    
+    @IBOutlet weak var grade: UILabel!
+    
+    @IBOutlet weak var percentage: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        craftsman.text = firstName + " " + lastName
         fetchData()
         let craftsmanQuery = PFUser.query()
         craftsmanQuery?.whereKey("role", equalTo: "craftsman")

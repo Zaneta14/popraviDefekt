@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1265,17 +1265,71 @@
             </objects>
             <point key="canvasLocation" x="2607" y="130"/>
         </scene>
-        <!--Craftsman Details Table View Controller-->
+        <!--Portfolio-->
         <scene sceneID="5Zw-zi-mB8">
             <objects>
-                <tableViewController id="NK7-E8-i6X" customClass="CraftsmanDetailsTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Portfolio" id="NK7-E8-i6X" customClass="CraftsmanDetailsTableViewController" customModule="PopraviDefekt" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="333" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="40B-gD-YlG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="FJ3-Rp-6Ua">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Craftsman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-fv-leZ">
+                                    <rect key="frame" x="143" y="8" width="89" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hAk-Rc-UOX">
+                                    <rect key="frame" x="115" y="-43" width="240" height="43"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="&quot;Hardworking&quot;, &quot;Experienced&quot;" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="26G-Zq-lhG">
+                                    <rect key="frame" x="8" y="29" width="359" height="35"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="26G-Zq-lhG" secondAttribute="height" multiplier="359:35" id="abt-Tj-cAf"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.75/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQv-RK-56P">
+                                    <rect key="frame" x="166" y="63" width="52.5" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <color key="textColor" red="1" green="0.03624573524" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90% approved information by customers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmh-N9-Puf">
+                                    <rect key="frame" x="40.5" y="84" width="294" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="26G-Zq-lhG" firstAttribute="top" secondItem="vmA-fv-leZ" secondAttribute="bottom" id="9Ee-mK-Fdb"/>
+                                <constraint firstItem="Nmh-N9-Puf" firstAttribute="top" secondItem="dQv-RK-56P" secondAttribute="bottom" id="LeU-Ir-uS4"/>
+                                <constraint firstItem="vmA-fv-leZ" firstAttribute="top" secondItem="FJ3-Rp-6Ua" secondAttribute="top" constant="8" id="RDl-An-dPX"/>
+                                <constraint firstItem="26G-Zq-lhG" firstAttribute="top" secondItem="vmA-fv-leZ" secondAttribute="bottom" id="a7E-kC-SUW"/>
+                                <constraint firstAttribute="trailing" secondItem="26G-Zq-lhG" secondAttribute="trailing" constant="8" id="c9S-CY-AEI"/>
+                                <constraint firstItem="vmA-fv-leZ" firstAttribute="centerX" secondItem="FJ3-Rp-6Ua" secondAttribute="centerX" id="cMp-t7-iWR"/>
+                                <constraint firstItem="dQv-RK-56P" firstAttribute="leading" secondItem="FJ3-Rp-6Ua" secondAttribute="leading" constant="166" id="gaL-uA-uww"/>
+                                <constraint firstItem="26G-Zq-lhG" firstAttribute="leading" secondItem="FJ3-Rp-6Ua" secondAttribute="leading" constant="8" id="hll-m2-Aof"/>
+                                <constraint firstItem="Nmh-N9-Puf" firstAttribute="centerX" secondItem="FJ3-Rp-6Ua" secondAttribute="centerX" id="hu6-aY-N6v"/>
+                                <constraint firstItem="dQv-RK-56P" firstAttribute="top" secondItem="vmA-fv-leZ" secondAttribute="bottom" constant="34" id="p9L-th-pk7"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="333" id="8cc-W2-tcr" customClass="CraftsmanDetailsTableViewCell" customModule="PopraviDefekt" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="333"/>
+                                <rect key="frame" x="0.0" y="141" width="375" height="333"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8cc-W2-tcr" id="Yqq-44-PGU">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="332.5"/>
@@ -1338,6 +1392,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="commentsC" destination="26G-Zq-lhG" id="ySF-mk-URB"/>
+                        <outlet property="craftsman" destination="vmA-fv-leZ" id="6hK-QZ-x8c"/>
+                        <outlet property="grade" destination="dQv-RK-56P" id="4la-Gc-Hmf"/>
+                        <outlet property="percentage" destination="Nmh-N9-Puf" id="jyR-NW-tT7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5C-Wy-GhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

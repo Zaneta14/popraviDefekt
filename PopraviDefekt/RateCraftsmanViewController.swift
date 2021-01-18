@@ -27,6 +27,17 @@ class RateCraftsmanViewController: UIViewController {
         super.viewDidLoad()
         info1.isHidden = true
         info2.isHidden = true
+        let query = PFUser.query()
+        query?.whereKey("objectId", equalTo: craftsmanId)
+        query?.findObjectsInBackground(block: { (success, error) in
+            if error != nil {
+                print("error")
+            } else if let objects = success {
+                for object in objects {
+                    self.craftsman.text = object["firstName"] as! String + " " + (object["lastName"] as! String)
+                }
+            }
+        })
         let q = PFQuery(className: "CommentCraftsman")
         q.whereKey("userId", equalTo: craftsmanId)
         q.whereKey("usersWhoCommented", contains: PFUser.current()?.objectId)
