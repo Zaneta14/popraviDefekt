@@ -47,12 +47,23 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
     
     var refresher:UIRefreshControl = UIRefreshControl()
 
-    override func viewDidLoad() {
+    /*override func viewDidLoad() {
         super.viewDidLoad()
         updateTable()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(CraftsmanTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+    }*/
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateTable()
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -200,6 +211,8 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         } else {
             cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | No comments yet"
         }
+        cell.layer.cornerRadius = 25
+        cell.layer.masksToBounds = true
         return cell
     }
     

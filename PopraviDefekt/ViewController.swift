@@ -43,6 +43,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var ima: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,8 +116,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     @IBAction func switchChanged(_ sender: Any) {
         if ccSwitch.isOn {
             tableView.isHidden = false
+            ima.isHidden = false
         } else {
             tableView.isHidden = true
+            ima.isHidden = true
         }
     }
     
@@ -227,6 +231,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
             customer.isHidden=true
             craftsman.isHidden=true
             tableView.isHidden = true
+            ima.isHidden = true
         }
         else {
             signUpMode = true
@@ -240,6 +245,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
             phoneNumberField.isHidden=false
             if ccSwitch.isOn {
                 tableView.isHidden = false
+                ima.isHidden = false
             }
         }
     }

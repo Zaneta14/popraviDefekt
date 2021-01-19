@@ -145,13 +145,28 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         } else {
             cell.rating.text = "No rating yet."
         }
+        cell.layer.cornerRadius = 20
+        cell.layer.masksToBounds = true
         return cell
     }
 
     func displayAlert(title: String, message: String) {
         let allertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alertOKaction) in
+            self.popThisView()
+        }))
         present(allertController, animated: true, completion: nil)
+    }
+    
+    func popThisView() {
+        if let navController = self.navigationController {
+            for controller in navController.viewControllers {
+                if controller is SeeCraftsmenTableViewController {
+                    navController.popToViewController(controller, animated:true)
+                    break
+                }
+            }
+        }
     }
     
     @IBAction func makeARequest(_ sender: Any) {

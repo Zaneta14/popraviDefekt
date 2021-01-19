@@ -72,6 +72,8 @@ class SeeCraftsmenTableViewController: UITableViewController {
                 }
             }
         })
+        cell.layer.cornerRadius = 25
+        cell.layer.masksToBounds = true
         return cell
     }
     

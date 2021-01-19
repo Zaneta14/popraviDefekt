@@ -35,12 +35,16 @@ class RequestsJobsTableViewController: UITableViewController {
     
     var refresher:UIRefreshControl = UIRefreshControl()
 
-    override func viewDidLoad() {
+    /*override func viewDidLoad() {
         super.viewDidLoad()
         updateTable()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(RequestsJobsTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
+    }*/
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateTable()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

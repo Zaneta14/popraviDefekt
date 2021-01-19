@@ -113,11 +113,11 @@
 				1EF7E63E259B7EF900DD9C89 /* MapViewController.swift */,
 				1EFF4B7F25AFA21100E9CCD1 /* PopUpViewController.swift */,
 				1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */,
+				1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */,
 				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
 				1EFA648F25AD100D00BCA041 /* logo.png */,
 				1E07C95E2586402D00F31493 /* Assets.xcassets */,
 				1E07C9632586402D00F31493 /* Info.plist */,
-				1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */,
 			);
 			path = PopraviDefekt;
 			sourceTree = "<group>";

@@ -41,12 +41,16 @@ class JobsTableViewController: UITableViewController {
     
     var refresher:UIRefreshControl = UIRefreshControl()
 
-    override func viewDidLoad() {
+    /*override func viewDidLoad() {
         super.viewDidLoad()
         updateTable()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(JobsTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
+    }*/
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateTable()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -156,13 +160,21 @@ class JobsTableViewController: UITableViewController {
         cell.detailTextLabel?.text = firstNames[indexPath.row] + " " + lastNames[indexPath.row]
         if statuses[indexPath.row] == "scheduled" {
             cell.backgroundColor = .red
+            cell.textLabel?.textColor = .white
+            cell.detailTextLabel?.textColor = .white
         }
         else if statuses[indexPath.row] == "done" {
             cell.backgroundColor = .green
+            cell.textLabel?.textColor = .black
+            cell.detailTextLabel?.textColor = .black
         }
         else {
             cell.backgroundColor = .purple
+            cell.textLabel?.textColor = .white
+            cell.detailTextLabel?.textColor = .white
         }
+        cell.layer.cornerRadius = 25
+        cell.layer.masksToBounds = true
         return cell
     }
 

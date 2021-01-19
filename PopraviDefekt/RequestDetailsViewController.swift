@@ -313,8 +313,21 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     func displayAlert(title: String, message: String) {
         let allertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        allertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alertOKaction) in
+            self.popThisView()
+        }))
         present(allertController, animated: true, completion: nil)
+    }
+    
+    func popThisView() {
+        if let navController = self.navigationController {
+            for controller in navController.viewControllers {
+                if controller is RequestsJobsTableViewController {
+                    navController.popToViewController(controller, animated:true)
+                    break
+                }
+            }
+        }
     }
     
     @IBAction func makeACall(_ sender: Any) {
