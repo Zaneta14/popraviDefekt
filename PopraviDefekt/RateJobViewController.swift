@@ -68,6 +68,7 @@ class RateJobViewController: UIViewController {
                     }
                 }
             }
+            displayAlert(title: "Thank you for your feedback", message: "Your information has been submitted")
         } else {
             displayAlert(title: "Invalid", message: "Please fill out the required text fields.")
         }

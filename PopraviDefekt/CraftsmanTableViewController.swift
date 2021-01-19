@@ -223,10 +223,5 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
             destVC.bfrPic.append(beforePic[indeks])
         }
     }
-
-    @IBAction func logOut(_ sender: Any) {
-        PFUser.logOut()
-        navigationController?.dismiss(animated: true, completion: nil)
-    }
     
 }

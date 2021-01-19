@@ -56,7 +56,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         q.whereKey("to", equalTo: selCraftsmanId)
         q.findObjectsInBackground { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = success {
                 for object in objects {
                     if let rating = object["rating"] {
@@ -71,6 +71,43 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                 else {
                     self.grade.text = "No ratings yet."
                     self.grade.textColor = .black
+                }
+            }
+        }
+        var x = 0
+        var y = 0
+        let array = ["done", "scheduled", "done (pending)"]
+        let predicate = NSPredicate(format: "status = %@ OR status = %@ OR status = %@", argumentArray: array)
+        let qu = PFQuery(className: "Job", predicate: predicate)
+        qu.whereKey("to", equalTo: selCraftsmanId)
+        qu.findObjectsInBackground { (success, error) in
+            if error != nil {
+                print(error!)
+            } else if let objects = success {
+                if objects.count > 0 {
+                    for object in objects {
+                        if object["status"] as! String == "done" {
+                            if let times = object["timesDeclaredInvalid"] {
+                                x += 1
+                                y += (1 + (times as! Int))
+                            } else {
+                                x += 1
+                                y += 1
+                            }
+                        }
+                        else {
+                            if let times = object["timesDeclaredInvalid"] {
+                                y += times as! Int
+                            }
+                        }
+                    }
+                    if y == 0 {
+                        self.percentage.text = "No data about approved information by customers."
+                    }
+                    let result = (Double(x) / Double(y))*100
+                    self.percentage.text = String(format: "%.2f", result) + "% approved information by customers"
+                } else {
+                    self.percentage.text = "No data about approved information by customers."
                 }
             }
         }

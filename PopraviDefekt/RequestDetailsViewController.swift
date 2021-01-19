@@ -296,6 +296,13 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                 } else if let objects = objects {
                     for object in objects {
                         object["status"] = "scheduled"
+                        if let times = object["timesDeclaredInvalid"] {
+                            var t = times as! Int
+                            t += 1
+                            object["timesDeclaredInvalid"] = t
+                        } else {
+                            object["timesDeclaredInvalid"] = 1
+                        }
                         object.saveInBackground()
                     }
                 }

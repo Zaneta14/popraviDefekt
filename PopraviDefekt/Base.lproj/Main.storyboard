@@ -313,19 +313,12 @@
                         <viewLayoutGuide key="safeArea" id="3Do-XW-sDq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Customer" id="cjS-Xi-oqq">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Log out" id="FhL-Nx-VTV">
-                                <connections>
-                                    <action selector="logOut:" destination="gtQ-1U-cN2" id="4Jo-Qw-fYR"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Profile" id="PCs-H0-jpx">
-                                <connections>
-                                    <segue destination="yOK-gO-suV" kind="show" identifier="customerProfileSegue" id="3SQ-eD-vWC"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Requests" id="OQk-5w-u2b">
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="PCs-H0-jpx">
+                            <connections>
+                                <segue destination="yOK-gO-suV" kind="show" identifier="customerProfileSegue" id="3SQ-eD-vWC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Requests/Jobs" id="OQk-5w-u2b">
                             <connections>
                                 <action selector="seeRequests:" destination="gtQ-1U-cN2" id="OXY-AT-zhr"/>
                             </connections>
@@ -1435,18 +1428,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Craftsman" id="SaL-OD-HP2">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Log out" id="D3e-3T-1BT">
-                                <connections>
-                                    <action selector="logOut:" destination="bgP-ui-dPe" id="5ek-1A-Tga"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Profile" id="w6v-dc-9fB">
-                                <connections>
-                                    <segue destination="yOK-gO-suV" kind="show" identifier="craftsmanProfileSegue" id="f5K-v7-McH"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="w6v-dc-9fB">
+                            <connections>
+                                <segue destination="yOK-gO-suV" kind="show" identifier="craftsmanProfileSegue" id="f5K-v7-McH"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Jobs" id="36R-Gs-bRO">
                             <connections>
                                 <segue destination="3xd-R5-F70" kind="show" identifier="jobsSegue" id="dkV-hY-2FX"/>
@@ -1565,6 +1551,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qrr-PW-4Cd"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GBw-9a-RXr">
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="zzB-cw-ek9">
+                            <connections>
+                                <action selector="logOut:" destination="yOK-gO-suV" id="DG7-V5-gto"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="email" destination="evB-iG-H37" id="Zr1-Ik-wGr"/>
                         <outlet property="firstName" destination="clG-If-xUx" id="ZlK-8d-FSA"/>
@@ -1822,7 +1815,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f5K-v7-McH"/>
+        <segue reference="3SQ-eD-vWC"/>
         <segue reference="G5l-vv-7kg"/>
         <segue reference="bAX-b7-3Gy"/>
     </inferredMetricsTieBreakers>
