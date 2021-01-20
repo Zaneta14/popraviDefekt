@@ -59,13 +59,15 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var phoneNumber: UIButton!
     
+    @IBOutlet weak var afterPLabel: UILabel!
+    
     @IBOutlet weak var imageV: UIImageView!
     
     @IBOutlet weak var rejectCancelO: UIButton!
     
     @IBOutlet weak var acceptO: UIButton!
     
-    @IBOutlet weak var afterPhoto: UIButton!
+    @IBOutlet weak var beforePhoto: UIButton!
     
     @IBOutlet weak var rate: UIBarButtonItem!
     
@@ -87,15 +89,6 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         let stringDate = formatter.string(from: dateReq as Date)
         requestDate.text = stringDate
         status.text = statusS
-        let slikaPred = beforeImg[0]
-        slikaPred.getDataInBackground { (data, error) in
-            if let imageData = data {
-                if let imageToDisplay = UIImage(data: imageData) {
-                    self.imageV.image = imageToDisplay
-                }
-            }
-        }
-        beforeImg.removeAll()
         let query = PFUser.query()
         query?.whereKey("objectId", equalTo: craftsmanId)
         query?.findObjectsInBackground(block: { (objects, error) in
@@ -144,11 +137,12 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             pp.isHidden = true
             scheduledOn.isHidden = true
             schDate.isHidden = true
-            imageV.isHidden = false
+            imageV.isHidden = true
             acceptO.isHidden = true
             rejectCancelO.setTitle(" Cancel ", for: .normal)
             rejectCancelO.isHidden = false
-            afterPhoto.isHidden = true
+            beforePhoto.isHidden = false
+            afterPLabel.isHidden = true
             rate.isEnabled = false
             rateC.isEnabled = false
         }
@@ -162,14 +156,15 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             pPrice.isHidden = false
             pd.isHidden = false
             pp.isHidden = false
-            acceptO.setTitle(" Accept ", for: .normal)
+            acceptO.setTitle(" Accept offer ", for: .normal)
             acceptO.isHidden = false
-            rejectCancelO.setTitle(" Reject ", for: .normal)
+            rejectCancelO.setTitle(" Reject offer ", for: .normal)
             rejectCancelO.isHidden = false
-            imageV.isHidden = false
+            imageV.isHidden = true
             scheduledOn.isHidden = true
             schDate.isHidden = true
-            afterPhoto.isHidden = true
+            beforePhoto.isHidden = false
+            afterPLabel.isHidden = true
             rate.isEnabled = false
             rateC.isEnabled = false
         } else if statusS == "scheduled" {
@@ -184,18 +179,29 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             scheduledOn.text = "Scheduled on:"
             scheduledOn.isHidden = false
             schDate.isHidden = false
-            imageV.isHidden = false
+            imageV.isHidden = true
             acceptO.isHidden = true
-            afterPhoto.isHidden = true
+            beforePhoto.isHidden = false
+            afterPLabel.isHidden = true
             rejectCancelO.isHidden = true
             rate.isEnabled = false
             rateC.isEnabled = false
         } else if statusS == "done" {
+            let slikaPosle = afterImg[0]
+            slikaPosle.getDataInBackground { (data, error) in
+                if let imageData = data {
+                    if let imageToDisplay = UIImage(data: imageData) {
+                        self.imageV.image = imageToDisplay
+                    }
+                }
+            }
+            afterImg.removeAll()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let stringDate = dateFormatter.string(from: dateFinished as Date)
             schDate.text = stringDate
-            afterPhoto.isHidden = false
+            beforePhoto.isHidden = false
+            afterPLabel.isHidden = false
             pDate.isHidden = true
             pPrice.isHidden = true
             pd.isHidden = true
@@ -209,11 +215,21 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             rate.isEnabled = true
             rateC.isEnabled = true
         } else if statusS == "done (pending)" {
+            let slikaPosle = afterImg[0]
+            slikaPosle.getDataInBackground { (data, error) in
+                if let imageData = data {
+                    if let imageToDisplay = UIImage(data: imageData) {
+                        self.imageV.image = imageToDisplay
+                    }
+                }
+            }
+            afterImg.removeAll()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let stringDate = dateFormatter.string(from: dateFinished as Date)
             schDate.text = stringDate
-            afterPhoto.isHidden = false
+            beforePhoto.isHidden = false
+            afterPLabel.isHidden = false
             pDate.isHidden = true
             pPrice.isHidden = true
             pd.isHidden = true
@@ -231,7 +247,6 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             rateC.isEnabled = false
         }
     }
-    
     
     @IBAction func accept(_ sender: Any) {
         let query = PFQuery(className: "Job")
@@ -331,7 +346,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func makeACall(_ sender: Any) {
-        var phone = phoneNumber.titleLabel?.text
+        let phone = phoneNumber.titleLabel?.text
         if let url = URL(string: "tel://\(phone!)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
@@ -345,9 +360,9 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "afterPhotoSegue" {
+        if segue.identifier == "beforePhotoSegue" {
             let dvc = segue.destination as! PopUpViewController
-            dvc.imageFile = afterImg
+            dvc.imageFile = beforeImg
         }
         else if segue.identifier == "rateSegue" {
             let dvc = segue.destination as! RateJobViewController

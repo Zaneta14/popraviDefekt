@@ -155,6 +155,8 @@ class RequestsJobsTableViewController: UITableViewController {
                 }
             }
         })
+        cell.layer.cornerRadius = 25
+        cell.layer.masksToBounds = true
         return cell
     }
     
@@ -170,6 +172,7 @@ class RequestsJobsTableViewController: UITableViewController {
             destinationVC.descr = descriptions[indeks]
             destinationVC.dateReq = datumiB[indeks]
             destinationVC.statusS = statuses[indeks]
+            destinationVC.beforeImg.removeAll()
             destinationVC.beforeImg.append(beforeImages[indeks]!)
             destinationVC.jobId = jobIds[indeks]
             if statuses[indeks] == "pending" {
