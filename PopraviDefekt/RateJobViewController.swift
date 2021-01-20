@@ -28,12 +28,12 @@ class RateJobViewController: UIViewController {
         query.whereKey("objectId", equalTo: jobId)
         query.findObjectsInBackground { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = success {
                 for object in objects {
                     if let commentJ = object["comment"] {
                         if let ratingR = object["rating"] {
-                            self.commentJob.text = commentJ as! String
+                            self.commentJob.text = commentJ as? String
                             self.commentJob.isEditable = false
                             self.rating.text = String(ratingR as! Int)
                             self.stepperO.isEnabled = false
@@ -59,7 +59,7 @@ class RateJobViewController: UIViewController {
             query.whereKey("objectId", equalTo: jobId)
             query.findObjectsInBackground { (success, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = success {
                     for object in objects {
                         object["comment"] = comJ

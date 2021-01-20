@@ -39,7 +39,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         query.whereKey("userId", equalTo: selCraftsmanId)
         query.findObjectsInBackground { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = success {
                 for object in objects {
                     if let comments = object["comments"] {
@@ -187,7 +187,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
             if success {
                 self.displayAlert(title: "Success!", message: "You have made a request.")
             } else {
-                self.displayAlert(title: "Failed", message: (error?.localizedDescription)!)
+                self.displayAlert(title: "Failed", message: (error! as! String))
             }
         }
     }
@@ -202,7 +202,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         query.whereKey("status", equalTo: "done")
         query.findObjectsInBackground(block: { (jobs, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let jobs = jobs {
                 for job in jobs {
                     if let datum = job["finishDate"] {
@@ -211,7 +211,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                             self.imageFiles.append(slika as! PFFileObject)
                             if let komentar = job["comment"] {
                                 if let rejting = job["rating"] {
-                                    self.comments.append(komentar as! String)
+                                    self.comments.append(komentar as? String)
                                     self.ratings.append(rejting as! Int)
                                 }
                             } else {

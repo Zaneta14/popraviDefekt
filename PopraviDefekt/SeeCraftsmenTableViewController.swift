@@ -43,7 +43,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
         craftsmanQuery?.whereKey("objectId", equalTo: cId)
         craftsmanQuery?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let craftsmen = objects {
                 for object in craftsmen {
                     if let craftsman = object as? PFUser {
@@ -59,7 +59,7 @@ class SeeCraftsmenTableViewController: UITableViewController {
                                 query.whereKey("status", equalTo: "active")
                                 query.findObjectsInBackground(block: { (objects, error) in
                                     if error != nil {
-                                        print(error?.localizedDescription)
+                                        print(error!)
                                     } else if let objects = objects {
                                         if objects.count > 0 {
                                             cell.accessoryType = UITableViewCell.AccessoryType.checkmark

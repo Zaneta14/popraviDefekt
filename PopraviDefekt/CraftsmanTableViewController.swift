@@ -47,9 +47,8 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
     
     var refresher:UIRefreshControl = UIRefreshControl()
 
-    /*override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        updateTable()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(CraftsmanTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
@@ -60,17 +59,10 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
-    }*/
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         updateTable()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -100,7 +92,7 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         query.addDescendingOrder("date")
         query.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = objects {
                 for object in objects {
                     if let userId = object["from"] {
@@ -114,7 +106,7 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
                                                 comQuery.whereKey("userId", equalTo: userId)
                                                 comQuery.findObjectsInBackground(block: { (success, error) in
                                                     if error != nil {
-                                                        print(error?.localizedDescription)
+                                                        print(error!)
                                                     }
                                                     else if let objects = success {
                                                         for object in objects {
@@ -128,7 +120,7 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
                                                             userQuery?.whereKey("objectId", equalTo: userId)
                                                             userQuery?.findObjectsInBackground(block: { (users, error) in
                                                                 if error != nil {
-                                                                    print(error?.localizedDescription)
+                                                                    print(error!)
                                                                 } else if let users = users {
                                                                     for user in users {
                                                                         if let user = user as? PFUser {
@@ -177,12 +169,10 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return fNames.count
     }
 

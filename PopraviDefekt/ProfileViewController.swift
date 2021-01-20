@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let query = PFQuery(className: "CraftsmanType")
             query.findObjectsInBackground { (success, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = success {
                     self.nmb = objects.count
                     for object in objects {

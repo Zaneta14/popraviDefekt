@@ -70,6 +70,7 @@ UIImagePickerControllerDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var upload: UILabel!
+    @IBOutlet weak var afterPhoto: UILabel!
     
     @IBOutlet weak var camera: UIButton!
     @IBOutlet weak var or: UILabel!
@@ -89,7 +90,7 @@ UIImagePickerControllerDelegate {
         telBroj.setTitle(phoneN, for: .normal)
         let format = DateFormatter()
         format.dateFormat = "dd/MM/yyyy HH:mm"
-        let strDate = format.string(from: dateSch as! Date)
+        let strDate = format.string(from: dateSch as Date)
         dateLabel.text = strDate
         status.text = statusS
         addess.text = adresa
@@ -101,6 +102,9 @@ UIImagePickerControllerDelegate {
             save.isHidden = false
             datePicker.datePickerMode = .date
             datePicker.isHidden = false
+            dateFinished.isHidden = false
+            upload.text = "Upload an image..."
+            afterPhoto.isHidden = true
             upload.isHidden = false
             comment.isHidden = false
             info.isHidden = true
@@ -108,16 +112,19 @@ UIImagePickerControllerDelegate {
         else {
             let format = DateFormatter()
             format.dateFormat = "dd/MM/yyyy"
-            let strDate = format.string(from: dateFin as! Date)
+            let strDate = format.string(from: dateFin as Date)
             finishDate.text = strDate
+            upload.text = "Done on:"
             finishDate.isHidden = false
+            dateFinished.isHidden = true
+            afterPhoto.isHidden = false
             comment.isHidden = true
             camera.isHidden = true
             or.isHidden = true
             photoLibrary.isHidden = true
             save.isHidden = true
             datePicker.isHidden = true
-            upload.isHidden = true
+            upload.isHidden = false
             if statusS == "done" {
                 info.isHidden = true
             } else {
@@ -187,7 +194,7 @@ UIImagePickerControllerDelegate {
             query.whereKey("objectId", equalTo: jobId)
             query.findObjectsInBackground { (success, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = success {
                     for object in objects {
                         object["finishDate"] = self.datePicker.date
@@ -203,21 +210,19 @@ UIImagePickerControllerDelegate {
                 }
             }
             if comment.text != "" && comment.text != "Give a comment about the customer. (optional)" {
-                var com = comment.text
+                let com = comment.text
                 let comQuery = PFQuery(className: "Comment")
                 comQuery.whereKey("userId", equalTo: userId)
                 comQuery.findObjectsInBackground(block: { (success, error) in
                     if error != nil {
-                        print(error?.localizedDescription)
+                        print(error!)
                     } else if let objects = success {
                         for object in objects {
                             if let comments = object["comments"] {
-                                print("ima komentar")
                                 var niza = comments as! [String]
-                                niza.append(com as! String)
+                                niza.append(com!)
                                 object["comments"] = niza
                             } else {
-                                print("nema komentar")
                                 var array = [String]()
                                 array.append(com!)
                                 object["comments"] = array
@@ -232,14 +237,14 @@ UIImagePickerControllerDelegate {
     }
     
     @IBAction func makeACall(_ sender: Any) {
-        var phone = telBroj.titleLabel?.text
+        let phone = telBroj.titleLabel?.text
         if let url = URL(string: "tel://\(phone!)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     @IBAction func sendAnEmail(_ sender: Any) {
-        var email = emailAdresa.titleLabel?.text
+        let email = emailAdresa.titleLabel?.text
         if let url = URL(string: "mailto:\(email!)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }

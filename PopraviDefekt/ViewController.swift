@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = success {
                 self.nmb = objects.count
                 for object in objects {
@@ -83,7 +83,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         let cell = tableView.cellForRow(at: indexPath)
-        var typeT = cell?.textLabel?.text
+        let typeT = cell?.textLabel?.text
         if cell?.accessoryType != .checkmark {
             cell?.accessoryType = UITableViewCell.AccessoryType.checkmark
             if !selectedTypes.contains(typeT!) {
@@ -144,7 +144,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
                     let query = PFQuery(className: "CraftsmanType")
                     query.findObjectsInBackground { (success, error) in
                         if error != nil {
-                            print(error?.localizedDescription)
+                            print(error!)
                         } else if let objects = success {
                             for object in objects {
                                 for selType in self.selectedTypes {

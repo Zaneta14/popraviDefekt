@@ -93,7 +93,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         query?.whereKey("objectId", equalTo: craftsmanId)
         query?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = objects {
                 for object in objects {
                     if let craftsman = object as? PFUser {
@@ -105,10 +105,10 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                                             let query = PFQuery(className: "CraftsmanType")
                                             query.findObjectsInBackground { (success, error) in
                                                 if error != nil {
-                                                    print(error?.localizedDescription)
+                                                    print(error!)
                                                 } else if let objects = success {
                                                     self.flName.text = (firstName as! String) + " " + (lastName as! String)
-                                                    self.phoneNumber.setTitle(phoneNumber as! String, for: .normal)
+                                                    self.phoneNumber.setTitle(phoneNumber as? String, for: .normal)
                                                     self.email.setTitle(mailAddr, for: .normal)
                                                     var niza = [String]()
                                                     for object in objects {
@@ -195,7 +195,6 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             }
-            afterImg.removeAll()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let stringDate = dateFormatter.string(from: dateFinished as Date)
@@ -223,7 +222,6 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             }
-            afterImg.removeAll()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let stringDate = dateFormatter.string(from: dateFinished as Date)
@@ -257,7 +255,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         if statusS == "pending" {
             query.findObjectsInBackground(block:  { (objects, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = objects {
                     for object in objects {
                         object["status"] = "scheduled"
@@ -270,7 +268,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         else {
             query.findObjectsInBackground(block:  { (objects, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = objects {
                     for object in objects {
                         object["status"] = "done"
@@ -291,7 +289,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         if statusS != "done (pending)" {
             query.findObjectsInBackground(block:  { (objects, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = objects {
                     for object in objects {
                         object.deleteInBackground()
@@ -307,7 +305,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         else {
             query.findObjectsInBackground(block:  { (objects, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = objects {
                     for object in objects {
                         object["status"] = "scheduled"

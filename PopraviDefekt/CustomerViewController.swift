@@ -52,7 +52,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = success {
                 for object in objects {
                     if let typeP = object["eng"] {
@@ -152,7 +152,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
             queryQ.whereKey("eng", equalTo: craft)
             queryQ.findObjectsInBackground { (success, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let objects = success {
                     for object in objects {
                         if let objectId = object.objectId {
@@ -161,7 +161,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
                             query?.whereKey("crafts", contains: objId)
                             query?.findObjectsInBackground(block: { (objects, error) in
                                 if error != nil {
-                                    print(error?.localizedDescription)
+                                    print(error!)
                                 }
                                 else if let craftsmen = objects {
                                     for object in craftsmen {

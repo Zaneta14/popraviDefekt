@@ -35,13 +35,12 @@ class RequestsJobsTableViewController: UITableViewController {
     
     var refresher:UIRefreshControl = UIRefreshControl()
 
-    /*override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        updateTable()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(RequestsJobsTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
-    }*/
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         updateTable()
@@ -71,7 +70,7 @@ class RequestsJobsTableViewController: UITableViewController {
         query.addDescendingOrder("date")
         query.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = objects {
                 for object in objects {
                     if let datumB = object["date"] {
@@ -84,8 +83,8 @@ class RequestsJobsTableViewController: UITableViewController {
                                             self.craftsmenIds.append(craftsmanId as! String)
                                             self.statuses.append(status as! String)
                                             self.descriptions.append(desc as! String)
-                                            self.beforeImages.append(bfr as! PFFileObject)
-                                            self.jobIds.append(jobId as! String)
+                                            self.beforeImages.append(bfr as? PFFileObject)
+                                            self.jobIds.append(jobId)
                                             if let pDateTime = object["pDateTime"] {
                                                 if let pPrice = object["pPrice"] {
                                                     self.propDates.append(pDateTime as! NSDate)
@@ -98,8 +97,8 @@ class RequestsJobsTableViewController: UITableViewController {
                                             }
                                             if let finDate = object["finishDate"] {
                                                 if let aftr = object["afterImg"] {
-                                                    self.finishDates.append(finDate as! NSDate)
-                                                    self.afterImages.append(aftr as! PFFileObject)
+                                                    self.finishDates.append(finDate as? NSDate)
+                                                    self.afterImages.append(aftr as? PFFileObject)
                                                 }
                                             }
                                             else {
@@ -126,7 +125,7 @@ class RequestsJobsTableViewController: UITableViewController {
         queryT?.whereKey("objectId", equalTo: craftsmanId)
         queryT?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = objects {
                 for object in objects {
                     if let craftsman = object as? PFUser {
@@ -144,18 +143,28 @@ class RequestsJobsTableViewController: UITableViewController {
                 let status = self.statuses[indexPath.row]
                 if status == "active" {
                     cell.backgroundColor = UIColor.yellow
+                    cell.textLabel?.textColor = .black
+                    cell.detailTextLabel?.textColor = .black
                 } else if status == "pending" {
                     cell.backgroundColor = UIColor.red
+                    cell.textLabel?.textColor = .black
+                    cell.detailTextLabel?.textColor = .black
                 } else if status == "scheduled" {
                     cell.backgroundColor = UIColor.blue
+                    cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = .white
                 } else if status == "done" {
                     cell.backgroundColor = UIColor.green
+                    cell.textLabel?.textColor = .black
+                    cell.detailTextLabel?.textColor = .black
                 } else if status == "done (pending)" {
                     cell.backgroundColor = UIColor.purple
+                    cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = .white
                 }
             }
         })
-        cell.layer.cornerRadius = 25
+        cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         return cell
     }

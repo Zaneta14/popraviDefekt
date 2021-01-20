@@ -40,14 +40,13 @@ class JobsTableViewController: UITableViewController {
     var userIds = [String]()
     
     var refresher:UIRefreshControl = UIRefreshControl()
-
-    /*override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-        updateTable()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(JobsTableViewController.updateTable), for: UIControl.Event.valueChanged)
+        refresher.addTarget(self, action: #selector(RequestsJobsTableViewController.updateTable), for: UIControl.Event.valueChanged)
         self.view.addSubview(refresher)
-    }*/
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         updateTable()
@@ -79,11 +78,11 @@ class JobsTableViewController: UITableViewController {
         let array = ["done", "scheduled", "done (pending)"]
         let predicate = NSPredicate(format: "status = %@ OR status = %@ OR status = %@", argumentArray: array)
         let query = PFQuery(className: "Job", predicate: predicate)
-        query.whereKey("to", equalTo: PFUser.current()?.objectId)
+        query.whereKey("to", equalTo: PFUser.current()?.objectId!)
         query.addDescendingOrder("pDateTime")
         query.findObjectsInBackground { (objects, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = objects {
                 for object in objects {
                     if let status = object["status"] {
@@ -93,12 +92,12 @@ class JobsTableViewController: UITableViewController {
                                     if let lon = object["lon"] {
                                         if let bfrImage = object["beforeImg"] {
                                             if let slika = object["afterImg"] {
-                                                self.images.append(slika as! PFFileObject)
+                                                self.images.append(slika as? PFFileObject)
                                             } else {
                                                 self.images.append(nil)
                                             }
                                             if let fDate = object["finishDate"] {
-                                                self.finishDates.append(fDate as! NSDate)
+                                                self.finishDates.append(fDate as? NSDate)
                                             } else {
                                                 self.finishDates.append(nil)
                                             }
@@ -108,7 +107,7 @@ class JobsTableViewController: UITableViewController {
                                                     userQuery?.whereKey("objectId", equalTo: userId)
                                                     userQuery?.findObjectsInBackground(block: { (success, error) in
                                                         if error != nil {
-                                                            print(error?.localizedDescription)
+                                                            print(error!)
                                                         } else if let users = success {
                                                             for user in users {
                                                                 if let user = user as? PFUser {
@@ -160,8 +159,8 @@ class JobsTableViewController: UITableViewController {
         cell.detailTextLabel?.text = firstNames[indexPath.row] + " " + lastNames[indexPath.row]
         if statuses[indexPath.row] == "scheduled" {
             cell.backgroundColor = .red
-            cell.textLabel?.textColor = .white
-            cell.detailTextLabel?.textColor = .white
+            cell.textLabel?.textColor = .black
+            cell.detailTextLabel?.textColor = .black
         }
         else if statuses[indexPath.row] == "done" {
             cell.backgroundColor = .green

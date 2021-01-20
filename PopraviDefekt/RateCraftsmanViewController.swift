@@ -43,7 +43,7 @@ class RateCraftsmanViewController: UIViewController {
         q.whereKey("usersWhoCommented", contains: PFUser.current()?.objectId)
         q.findObjectsInBackground { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = success {
                 if objects.count > 0 {
                     for object in objects {
@@ -69,7 +69,7 @@ class RateCraftsmanViewController: UIViewController {
         comQuery.whereKey("userId", equalTo: craftsmanId)
         comQuery.findObjectsInBackground(block: { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let objects = success {
                 for object in objects {
                     var array = [String]()
@@ -93,7 +93,7 @@ class RateCraftsmanViewController: UIViewController {
                         }
                     }
                     if x == 0 {
-                        array.append(comC as! String)
+                        array.append(comC!)
                         usersArray.append((PFUser.current()?.objectId)!)
                     }
                     object["comments"] = array

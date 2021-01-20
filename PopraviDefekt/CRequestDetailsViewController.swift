@@ -85,7 +85,7 @@ class CRequestDetailsViewController: UIViewController {
             userQuery?.whereKey("username", equalTo: emailadresa)
             userQuery?.findObjectsInBackground(block: { (success, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error!)
                 } else if let users = success {
                     for user in users {
                         if let userId = user.objectId {
@@ -97,7 +97,7 @@ class CRequestDetailsViewController: UIViewController {
                             query.whereKey("location", equalTo: self.lokacija)
                             query.findObjectsInBackground(block:  { (objects, error) in
                                 if error != nil {
-                                    print(error?.localizedDescription)
+                                    print(error!)
                                 } else if let objects = objects {
                                     for object in objects {
                                         object["status"] = "pending"
@@ -123,7 +123,7 @@ class CRequestDetailsViewController: UIViewController {
         userQuery?.whereKey("username", equalTo: emailadresa)
         userQuery?.findObjectsInBackground(block: { (success, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
             } else if let users = success {
                 for user in users {
                     if let userId = user.objectId {
@@ -135,7 +135,7 @@ class CRequestDetailsViewController: UIViewController {
                         query.whereKey("location", equalTo: self.lokacija)
                         query.findObjectsInBackground(block:  { (objects, error) in
                             if error != nil {
-                                print(error?.localizedDescription)
+                                print(error!)
                             } else if let objects = objects {
                                 for object in objects {
                                     object.deleteInBackground()
@@ -169,14 +169,14 @@ class CRequestDetailsViewController: UIViewController {
     }
     
     @IBAction func makeACall(_ sender: Any) {
-        var phone = phoneN.titleLabel?.text
+        let phone = phoneN.titleLabel?.text
         if let url = URL(string: "tel://\(phone!)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     @IBAction func sendAnEmail(_ sender: Any) {
-        var email = emailA.titleLabel?.text
+        let email = emailA.titleLabel?.text
         if let url = URL(string: "mailto:\(email!)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
