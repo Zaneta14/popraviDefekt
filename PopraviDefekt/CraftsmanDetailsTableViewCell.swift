@@ -13,7 +13,7 @@ class CraftsmanDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var imageI: UIImageView!
     @IBOutlet weak var dateFinished: UILabel!
     
-    @IBOutlet weak var comment: UILabel!
+    @IBOutlet weak var comment: UITextView!
     
     @IBOutlet weak var rating: UILabel!
     override func awakeFromNib() {

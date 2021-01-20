@@ -19,7 +19,6 @@ class PopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         imageFile[0].getDataInBackground { (data, error) in
             if let imageData = data {
                 if let imageToDisplay = UIImage(data: imageData) {
@@ -27,11 +26,9 @@ class PopUpViewController: UIViewController {
                 }
             }
         }
-        
         popUpView.layer.cornerRadius = 10
         popUpView.layer.masksToBounds = true
     }
-    
     
     @IBAction func closePopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)

@@ -48,6 +48,11 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         types.removeAll()
+        descriptionField.textColor = .darkGray
+        descriptionField.layer.borderColor = UIColor.lightGray.cgColor
+        descriptionField.layer.borderWidth = 1
+        descriptionField.layer.cornerRadius = 10
+        descriptionField.layer.masksToBounds = true
         
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in

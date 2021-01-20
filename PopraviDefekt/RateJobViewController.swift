@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class RateJobViewController: UIViewController {
+class RateJobViewController: UIViewController, UITextViewDelegate {
     
     var jobId = String()
     
@@ -21,8 +21,14 @@ class RateJobViewController: UIViewController {
     @IBOutlet weak var commentJob: UITextView!
     
     @IBOutlet weak var submitButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        commentJob.textColor = .darkGray
+        commentJob.layer.borderColor = UIColor.lightGray.cgColor
+        commentJob.layer.borderWidth = 1
+        commentJob.layer.cornerRadius = 10
+        commentJob.layer.masksToBounds = true
         info.isHidden = true
         let query = PFQuery(className: "Job")
         query.whereKey("objectId", equalTo: jobId)
@@ -72,6 +78,10 @@ class RateJobViewController: UIViewController {
         } else {
             displayAlert(title: "Invalid", message: "Please fill out the required text fields.")
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.commentJob.resignFirstResponder()
     }
     
     func displayAlert(title: String, message: String) {

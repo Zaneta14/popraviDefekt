@@ -24,7 +24,7 @@ extension UIImage {
 }
 
 class JobDetailsViewController: UIViewController, UINavigationControllerDelegate,
-UIImagePickerControllerDelegate {
+UIImagePickerControllerDelegate, UITextViewDelegate {
     
     var firstName = String()
     
@@ -85,6 +85,11 @@ UIImagePickerControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        comment.textColor = .darkGray
+        comment.layer.borderColor = UIColor.lightGray.cgColor
+        comment.layer.borderWidth = 1
+        comment.layer.cornerRadius = 10
+        comment.layer.masksToBounds = true
         customer.text = firstName + " " + lastName
         emailAdresa.setTitle(emailA, for: .normal)
         telBroj.setTitle(phoneN, for: .normal)
@@ -164,6 +169,10 @@ UIImagePickerControllerDelegate {
             imageView.image = image
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.comment.resignFirstResponder()
     }
     
     func displayAlert(title: String, message: String) {

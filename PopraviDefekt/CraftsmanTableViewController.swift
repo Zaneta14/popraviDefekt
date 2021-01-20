@@ -87,7 +87,7 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         self.komentari.removeAll()
         self.userIds.removeAll()
         let query = PFQuery(className: "Job")
-        query.whereKey("to", equalTo: PFUser.current()?.objectId)
+        query.whereKey("to", equalTo: PFUser.current()?.objectId!)
         query.whereKey("status", equalTo: "active")
         query.addDescendingOrder("date")
         query.findObjectsInBackground(block: { (objects, error) in
@@ -110,11 +110,9 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
                                                     }
                                                     else if let objects = success {
                                                         for object in objects {
+                                                            var komentar = [String]()
                                                             if let comments = object["comments"] {
-                                                                self.komentari.append(comments as! [String])
-                                                            }
-                                                            else {
-                                                                self.komentari.append([])
+                                                                komentar = comments as! [String]
                                                             }
                                                             let userQuery = PFUser.query()
                                                             userQuery?.whereKey("objectId", equalTo: userId)
@@ -138,6 +136,7 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
                                                                                             self.telefoni.append(pNumber as! String)
                                                                                             self.emailovi.append(emailAdd)
                                                                                             self.beforePic.append(beforeImg as! PFFileObject)
+                                                                                            self.komentari.append(komentar)
                                                                                             self.userIds.append(userId as! String)
                                                                                         }
                                                                                     }

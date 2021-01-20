@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class RateCraftsmanViewController: UIViewController {
+class RateCraftsmanViewController: UIViewController, UITextViewDelegate {
     
     var craftsmanId = String()
     
@@ -24,6 +24,11 @@ class RateCraftsmanViewController: UIViewController {
     @IBOutlet weak var submitO: UIBarButtonItem!
 
     override func viewDidLoad() {
+        comment.textColor = .darkGray
+        comment.layer.borderColor = UIColor.lightGray.cgColor
+        comment.layer.borderWidth = 1
+        comment.layer.cornerRadius = 10
+        comment.layer.masksToBounds = true
         super.viewDidLoad()
         info1.isHidden = true
         info2.isHidden = true
@@ -103,6 +108,10 @@ class RateCraftsmanViewController: UIViewController {
                 self.displayAlert(title: "Thank you for your feedback.", message: "Your information has been submitted")
             }
         })
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.comment.resignFirstResponder()
     }
     
     func displayAlert(title: String, message: String) {

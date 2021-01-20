@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Parse
 
-class CRequestDetailsViewController: UIViewController {
+class CRequestDetailsViewController: UIViewController, UITextFieldDelegate {
     
     var fName = String()
     
@@ -52,6 +52,8 @@ class CRequestDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        view.addGestureRecognizer(tapGesture)
         opisS.text = opis
         emailA.setTitle(emailadresa, for: .normal)
         phoneN.setTitle(telefon, for: .normal)
@@ -180,6 +182,15 @@ class CRequestDetailsViewController: UIViewController {
         if let url = URL(string: "mailto:\(email!)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+    
+    @objc func onTap() {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
