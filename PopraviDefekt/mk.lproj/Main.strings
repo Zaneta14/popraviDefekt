@@ -1,0 +1,396 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "05F-pa-bMl"; */
+"05F-pa-bMl.text" = "Наслов";
+
+/* Class = "UILabel"; text = "or"; ObjectID = "0MR-RD-FMP"; */
+"0MR-RD-FMP.text" = "или";
+
+/* Class = "UITextField"; placeholder = "Enter your password..."; ObjectID = "1Pm-pz-sJo"; */
+"1Pm-pz-sJo.placeholder" = "Внеси лозинка...";
+
+/* Class = "UITextField"; text = "zaneta123"; ObjectID = "1Pm-pz-sJo"; */
+"1Pm-pz-sJo.text" = "zaneta123";
+
+/* Class = "UIButton"; normalTitle = "Switch to log in"; ObjectID = "1e6-RR-CQy"; */
+"1e6-RR-CQy.normalTitle" = "Кликни за најава";
+
+/* Class = "UIBarButtonItem"; title = "Submit"; ObjectID = "1ix-bn-S23"; */
+"1ix-bn-S23.title" = "Внеси";
+
+/* Class = "UITextView"; text = "Defect description"; ObjectID = "1kd-Ax-EBe"; */
+"1kd-Ax-EBe.text" = "Опис на дефектот";
+
+/* Class = "UILabel"; text = "Status:"; ObjectID = "1sY-rT-VTb"; */
+"1sY-rT-VTb.text" = "Статус:";
+
+/* Class = "UITextView"; text = "\"Hardworking\", \"Experienced\""; ObjectID = "26G-Zq-lhG"; */
+"26G-Zq-lhG.text" = "";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "2SO-cx-K8v"; */
+"2SO-cx-K8v.text" = "Поднаслов";
+
+/* Class = "UIBarButtonItem"; title = "Jobs"; ObjectID = "36R-Gs-bRO"; */
+"36R-Gs-bRO.title" = "Jobs";
+
+/* Class = "UITextView"; text = "Your comment here... "; ObjectID = "3l5-GD-diV"; */
+"3l5-GD-diV.text" = "Your comment here... ";
+
+/* Class = "UITableViewController"; title = "Jobs"; ObjectID = "3xd-R5-F70"; */
+"3xd-R5-F70.title" = "Работи";
+
+/* Class = "UIBarButtonItem"; title = "See craftsman"; ObjectID = "4LB-I1-qTN"; */
+"4LB-I1-qTN.title" = "Види мајстори";
+
+/* Class = "UIButton"; normalTitle = "Camera"; ObjectID = "4Tl-l3-trs"; */
+"4Tl-l3-trs.normalTitle" = "Камера";
+
+/* Class = "UIViewController"; title = "Details"; ObjectID = "4oc-WE-XB2"; */
+"4oc-WE-XB2.title" = "Детали";
+
+/* Class = "UIButton"; normalTitle = " Save "; ObjectID = "5A9-f7-PaQ"; */
+"5A9-f7-PaQ.normalTitle" = " Зачувај ";
+
+/* Class = "UILabel"; text = "Press and hold on your location."; ObjectID = "5TS-mr-e8P"; */
+"5TS-mr-e8P.text" = "Кликни и задржи на твојата локација.";
+
+/* Class = "UIBarButtonItem"; title = "Rate job"; ObjectID = "5Zq-RB-YSP"; */
+"5Zq-RB-YSP.title" = "Оцени работа";
+
+/* Class = "UITextView"; text = "Give a comment about the customer. (optional)"; ObjectID = "7hm-wk-LD2"; */
+"7hm-wk-LD2.text" = "Дај коментар за муштеријата. (опционо)";
+
+/* Class = "UILabel"; text = "\"After\" photo:"; ObjectID = "81M-Sd-Ml2"; */
+"81M-Sd-Ml2.text" = "Слика \"потоа\":";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "8HF-va-BZ7"; */
+"8HF-va-BZ7.normalTitle" = "Затвори";
+
+/* Class = "UILabel"; text = "Craftsman:"; ObjectID = "8fZ-Bt-c7W"; */
+"8fZ-Bt-c7W.text" = "Мајстор:";
+
+/* Class = "UILabel"; text = "Made on:"; ObjectID = "8jp-DK-iwc"; */
+"8jp-DK-iwc.text" = "Направено на:";
+
+/* Class = "UILabel"; text = "Price:"; ObjectID = "8xe-7y-LES"; */
+"8xe-7y-LES.text" = "Цена:";
+
+/* Class = "UILabel"; text = "pdate"; ObjectID = "9Qi-So-TmN"; */
+"9Qi-So-TmN.text" = "pdate";
+
+/* Class = "UILabel"; text = "adresa"; ObjectID = "9sZ-vS-u6E"; */
+"9sZ-vS-u6E.text" = "adresa";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "A1X-f9-dlN"; */
+"A1X-f9-dlN.text" = "Наслов";
+
+/* Class = "UITextView"; text = "\"Description\""; ObjectID = "Ag7-43-eaz"; */
+"Ag7-43-eaz.text" = "\"Опис\"";
+
+/* Class = "UIButton"; normalTitle = " See location "; ObjectID = "BBr-18-ytN"; */
+"BBr-18-ytN.normalTitle" = " Види локација ";
+
+/* Class = "UILabel"; text = "You have already given a comment"; ObjectID = "CTC-k6-BO0"; */
+"CTC-k6-BO0.text" = "Веќе имате дадено коментар";
+
+/* Class = "UILabel"; text = "\"After\" photo:"; ObjectID = "CUV-Oc-t1v"; */
+"CUV-Oc-t1v.text" = "Слика \"потоа\":";
+
+/* Class = "UILabel"; text = "Scheduled on:"; ObjectID = "Ch9-0v-L9Z"; */
+"Ch9-0v-L9Z.text" = "Закажано на:";
+
+/* Class = "UIBarButtonItem"; title = "Submit"; ObjectID = "Cpw-SB-PQT"; */
+"Cpw-SB-PQT.title" = "Внеси";
+
+/* Class = "UIBarButtonItem"; title = "Rate craftsman"; ObjectID = "ES5-ad-4gb"; */
+"ES5-ad-4gb.title" = "Оцени мајстор";
+
+/* Class = "UITextView"; text = "Give a comment about the craftsman's work and rate it on a scale from 1 to 5."; ObjectID = "Ebt-82-a6U"; */
+"Ebt-82-a6U.text" = "Дај коментар за работата на мајсторот и оцени ја на скала од 1 до 5.";
+
+/* Class = "UILabel"; text = "Make an offer..."; ObjectID = "F7q-ve-8Sf"; */
+"F7q-ve-8Sf.text" = "Направи понуда...";
+
+/* Class = "UIBarButtonItem"; title = "Reject request"; ObjectID = "F8G-bF-y0g"; */
+"F8G-bF-y0g.title" = "Одбиј го барањето";
+
+/* Class = "UILabel"; text = "status"; ObjectID = "FC3-RZ-8c2"; */
+"FC3-RZ-8c2.text" = "статус";
+
+/* Class = "UIButton"; normalTitle = " Reject offer "; ObjectID = "FJl-hz-GbZ"; */
+"FJl-hz-GbZ.normalTitle" = " Одбиј ја понудата ";
+
+/* Class = "UIBarButtonItem"; title = "Make a request"; ObjectID = "Fpp-W0-J8d"; */
+"Fpp-W0-J8d.title" = "Направи понуда";
+
+/* Class = "UILabel"; text = "imePrezime"; ObjectID = "Fue-8h-arq"; */
+"Fue-8h-arq.text" = "";
+
+/* Class = "UILabel"; text = "Status:"; ObjectID = "GRY-h8-fiY"; */
+"GRY-h8-fiY.text" = "Статус:";
+
+/* Class = "UILabel"; text = "I'm a..."; ObjectID = "GaG-6G-z4W"; */
+"GaG-6G-z4W.text" = "Јас сум...";
+
+/* Class = "UIButton"; normalTitle = "zaneta@gmail.com"; ObjectID = "H81-PG-Qw8"; */
+"H81-PG-Qw8.normalTitle" = "";
+
+/* Class = "UILabel"; text = "or"; ObjectID = "HtY-Gf-zQf"; */
+"HtY-Gf-zQf.text" = "или";
+
+/* Class = "UITextView"; text = "Defect description"; ObjectID = "I8o-xD-N86"; */
+"I8o-xD-N86.text" = "Опис на дефектот";
+
+/* Class = "UILabel"; text = "pprice"; ObjectID = "IHQ-u1-0Oz"; */
+"IHQ-u1-0Oz.text" = "";
+
+/* Class = "UIButton"; normalTitle = " See defect photo "; ObjectID = "ILJ-nh-CyY"; */
+"ILJ-nh-CyY.normalTitle" = " Слика од дефектот ";
+
+/* Class = "UILabel"; text = "Contact:"; ObjectID = "KAV-lB-nyE"; */
+"KAV-lB-nyE.text" = "Контакт:";
+
+/* Class = "UILabel"; text = "finishDate"; ObjectID = "KTp-SY-nUI"; */
+"KTp-SY-nUI.text" = "";
+
+/* Class = "UILabel"; text = "Craftsman"; ObjectID = "LAo-mh-EBY"; */
+"LAo-mh-EBY.text" = "Мајстор";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "LOi-rc-KR2"; */
+"LOi-rc-KR2.normalTitle" = "Регистрирај се";
+
+/* Class = "UILabel"; text = "Customer"; ObjectID = "LZF-c6-7R6"; */
+"LZF-c6-7R6.text" = "Мајстор";
+
+/* Class = "UILabel"; text = "Address:"; ObjectID = "N5p-Of-OYy"; */
+"N5p-Of-OYy.text" = "Адреса:";
+
+/* Class = "UITableViewController"; title = "Portfolio"; ObjectID = "NK7-E8-i6X"; */
+"NK7-E8-i6X.title" = "Портфолио";
+
+/* Class = "UILabel"; text = "90% approved information by customers"; ObjectID = "Nmh-N9-Puf"; */
+"Nmh-N9-Puf.text" = "";
+
+/* Class = "UILabel"; text = "I'm a..."; ObjectID = "O1p-Uu-tIm"; */
+"O1p-Uu-tIm.text" = "Јас сум...";
+
+/* Class = "UIBarButtonItem"; title = "Requests/Jobs"; ObjectID = "OQk-5w-u2b"; */
+"OQk-5w-u2b.title" = "Барања/Работи";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Ovo-4d-WPS"; */
+"Ovo-4d-WPS.text" = "Поднаслов";
+
+/* Class = "UIBarButtonItem"; title = "Profile"; ObjectID = "PCs-H0-jpx"; */
+"PCs-H0-jpx.title" = "Профил";
+
+/* Class = "UILabel"; text = "status"; ObjectID = "PIZ-gr-F3o"; */
+"PIZ-gr-F3o.text" = "";
+
+/* Class = "UINavigationItem"; title = "Craftsman"; ObjectID = "SaL-OD-HP2"; */
+"SaL-OD-HP2.title" = "Мајстор";
+
+/* Class = "UITextField"; placeholder = "Propose a price..."; ObjectID = "Sey-wc-eZk"; */
+"Sey-wc-eZk.placeholder" = "Предложи цена...";
+
+/* Class = "UILabel"; text = "date"; ObjectID = "Urd-YV-pXW"; */
+"Urd-YV-pXW.text" = "";
+
+/* Class = "UILabel"; text = "Your infomation has been submitted."; ObjectID = "V5v-pu-hqp"; */
+"V5v-pu-hqp.text" = "Вашите информации се внесени.";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "VTp-MF-Xcr"; */
+"VTp-MF-Xcr.text" = "Поднаслов";
+
+/* Class = "UILabel"; text = "Address:"; ObjectID = "Vx9-U4-sFj"; */
+"Vx9-U4-sFj.text" = "Адреса:";
+
+/* Class = "UILabel"; text = "FirstNameLastName"; ObjectID = "WAA-0O-eQd"; */
+"WAA-0O-eQd.text" = "";
+
+/* Class = "UILabel"; text = "Give a comment about the craftsman."; ObjectID = "WRN-6v-2Qd"; */
+"WRN-6v-2Qd.text" = "Дај коментар за мајсторот.";
+
+/* Class = "UILabel"; text = "The customer needs to confirm the information."; ObjectID = "XCW-Cf-Apn"; */
+"XCW-Cf-Apn.text" = "Муштеријата треба да ги потврди податоците.";
+
+/* Class = "UITextView"; text = "Your comment here... "; ObjectID = "XaF-Z8-uV9"; */
+"XaF-Z8-uV9.text" = "Вашиот коментар овде... ";
+
+/* Class = "UITextField"; placeholder = "Enter your phone number..."; ObjectID = "Y61-7f-4M6"; */
+"Y61-7f-4M6.placeholder" = "Внеси телефонски број...";
+
+/* Class = "UIViewController"; title = "Rate the job"; ObjectID = "YPU-Cn-PBs"; */
+"YPU-Cn-PBs.title" = "Оцени ја работата";
+
+/* Class = "UILabel"; text = "Craftsman type:"; ObjectID = "YcA-Xv-Fu0"; */
+"YcA-Xv-Fu0.text" = "Тип на мајстор:";
+
+/* Class = "UILabel"; text = "Upload an image of your defect."; ObjectID = "Z2i-Q4-k5b"; */
+"Z2i-Q4-k5b.text" = "Прикачи слика од дефектот.";
+
+/* Class = "UIButton"; normalTitle = "071380555"; ObjectID = "Z8b-F5-pGd"; */
+"Z8b-F5-pGd.normalTitle" = "071380555";
+
+/* Class = "UIViewController"; title = "Job"; ObjectID = "Zjm-ao-cn9"; */
+"Zjm-ao-cn9.title" = "Работа";
+
+/* Class = "UIButton"; normalTitle = " Accept offer "; ObjectID = "b2a-m7-EEx"; */
+"b2a-m7-EEx.normalTitle" = " Прифати понуда ";
+
+/* Class = "UIBarButtonItem"; title = "Make an offer"; ObjectID = "c81-RD-Sjr"; */
+"c81-RD-Sjr.title" = "Направи понуда";
+
+/* Class = "UILabel"; text = "Proposed price:"; ObjectID = "c9j-0h-5sm"; */
+"c9j-0h-5sm.text" = "Предложена цена:";
+
+/* Class = "UINavigationItem"; title = "Customer"; ObjectID = "cjS-Xi-oqq"; */
+"cjS-Xi-oqq.title" = "Мајстор";
+
+/* Class = "UIViewController"; title = "Rate the craftsman"; ObjectID = "dOR-o1-K3d"; */
+"dOR-o1-K3d.title" = "Оцени го мајсторот";
+
+/* Class = "UILabel"; text = "4.75/5"; ObjectID = "dQv-RK-56P"; */
+"dQv-RK-56P.text" = "4.75/5";
+
+/* Class = "UIButton"; normalTitle = "zaneta@gmail.com"; ObjectID = "daJ-Uk-PwL"; */
+"daJ-Uk-PwL.normalTitle" = "zaneta@gmail.com";
+
+/* Class = "UILabel"; text = "fNamelName"; ObjectID = "dyU-PF-WfI"; */
+"dyU-PF-WfI.text" = "";
+
+/* Class = "UIButton"; normalTitle = "zaneta@gmail.com"; ObjectID = "e6Q-nB-aPL"; */
+"e6Q-nB-aPL.normalTitle" = "zaneta@gmail.com";
+
+/* Class = "UILabel"; text = "zaneta@gmail.com"; ObjectID = "evB-iG-H37"; */
+"evB-iG-H37.text" = "zaneta@gmail.com";
+
+/* Class = "UILabel"; text = "or"; ObjectID = "fCV-5w-DZU"; */
+"fCV-5w-DZU.text" = "или";
+
+/* Class = "UILabel"; text = "Made on:"; ObjectID = "fgn-Eg-kSZ"; */
+"fgn-Eg-kSZ.text" = "Направено на:";
+
+/* Class = "UILabel"; text = "Craftsman"; ObjectID = "fl5-z5-Rry"; */
+"fl5-z5-Rry.text" = "Мајстор";
+
+/* Class = "UILabel"; text = "Contact:"; ObjectID = "fqc-t7-sYk"; */
+"fqc-t7-sYk.text" = "Контакт:";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "giI-G4-dVM"; */
+"giI-G4-dVM.text" = "Наслов";
+
+/* Class = "UIButton"; normalTitle = "071380555"; ObjectID = "gvY-FV-xAb"; */
+"gvY-FV-xAb.normalTitle" = "071380555";
+
+/* Class = "UIButton"; normalTitle = " See defect photo "; ObjectID = "h1q-Rb-isM"; */
+"h1q-Rb-isM.normalTitle" = " Слика од дефектот ";
+
+/* Class = "UILabel"; text = "about the craftsman. You can change it."; ObjectID = "h7J-B6-eX6"; */
+"h7J-B6-eX6.text" = "за мајсторот. Можете да го промените";
+
+/* Class = "UIBarButtonItem"; title = "Save changes"; ObjectID = "h9u-TV-fLB"; */
+"h9u-TV-fLB.title" = "Зачувај промени";
+
+/* Class = "UIButton"; normalTitle = "Photo library"; ObjectID = "hFr-UV-fSV"; */
+"hFr-UV-fSV.normalTitle" = "Библиотека";
+
+/* Class = "UIButton"; normalTitle = "Photo library"; ObjectID = "hjp-z5-GO5"; */
+"hjp-z5-GO5.normalTitle" = "Библиотека";
+
+/* Class = "UILabel"; text = "0/5"; ObjectID = "i5N-HH-9dv"; */
+"i5N-HH-9dv.text" = "0/5";
+
+/* Class = "UILabel"; text = "Customer:"; ObjectID = "iOc-SZ-IWO"; */
+"iOc-SZ-IWO.text" = "Муштерија:";
+
+/* Class = "UIButton"; normalTitle = "071380555"; ObjectID = "iTp-fm-szZ"; */
+"iTp-fm-szZ.normalTitle" = "071380555";
+
+/* Class = "UILabel"; text = "Contact:"; ObjectID = "iW6-MS-J02"; */
+"iW6-MS-J02.text" = "Контакт:";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "j1T-Gp-M6k"; */
+"j1T-Gp-M6k.text" = "Наслов";
+
+/* Class = "UILabel"; text = "Scheduled on:"; ObjectID = "kQB-Tv-IcE"; */
+"kQB-Tv-IcE.text" = "Закажано на:";
+
+/* Class = "UILabel"; text = "I'm looking for a..."; ObjectID = "l40-9m-sW6"; */
+"l40-9m-sW6.text" = "Барам...";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "lNK-4v-g3t"; */
+"lNK-4v-g3t.text" = "Датум";
+
+/* Class = "UILabel"; text = "Proposed date:"; ObjectID = "lxP-wG-yMc"; */
+"lxP-wG-yMc.text" = "Предложен датум:";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "mbQ-gG-35i"; */
+"mbQ-gG-35i.text" = "Тип";
+
+/* Class = "UINavigationItem"; title = "Craftsmen"; ObjectID = "nVO-2V-gBa"; */
+"nVO-2V-gBa.title" = "Мајстори";
+
+/* Class = "UITextField"; placeholder = "Enter your email address..."; ObjectID = "npe-wJ-g45"; */
+"npe-wJ-g45.placeholder" = "Внеси email адреса...";
+
+/* Class = "UITextField"; text = "zaneta@gmail.com"; ObjectID = "npe-wJ-g45"; */
+"npe-wJ-g45.text" = "zaneta@gmail.com";
+
+/* Class = "UIButton"; normalTitle = " See location "; ObjectID = "pHJ-75-2zC"; */
+"pHJ-75-2zC.normalTitle" = " Види локација ";
+
+/* Class = "UITextField"; placeholder = "Enter your last name..."; ObjectID = "tK3-Oh-djc"; */
+"tK3-Oh-djc.placeholder" = "Внеси презиме...";
+
+/* Class = "UILabel"; text = "Upload an image..."; ObjectID = "tRg-Ov-Hn4"; */
+"tRg-Ov-Hn4.text" = "Прикачи слика...";
+
+/* Class = "UILabel"; text = "Finished on:"; ObjectID = "tYz-tt-Nqo"; */
+"tYz-tt-Nqo.text" = "Завршено на:";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "u9J-s7-SkV"; */
+"u9J-s7-SkV.text" = "Детал";
+
+/* Class = "UIViewController"; title = "Map"; ObjectID = "uYR-rL-d00"; */
+"uYR-rL-d00.title" = "Мапа";
+
+/* Class = "UITableViewController"; title = "Requests/Jobs"; ObjectID = "vJ3-Eh-iOZ"; */
+"vJ3-Eh-iOZ.title" = "Барања/Работи";
+
+/* Class = "UIButton"; normalTitle = "Camera"; ObjectID = "vMu-2D-x48"; */
+"vMu-2D-x48.normalTitle" = "Камера";
+
+/* Class = "UILabel"; text = "adresa"; ObjectID = "viz-Sa-CFo"; */
+"viz-Sa-CFo.text" = "adresa";
+
+/* Class = "UILabel"; text = "Craftsman"; ObjectID = "vmA-fv-leZ"; */
+"vmA-fv-leZ.text" = "Мајстор";
+
+/* Class = "UIBarButtonItem"; title = "Profile"; ObjectID = "w6v-dc-9fB"; */
+"w6v-dc-9fB.title" = "Профил";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "wCu-eW-aUp"; */
+"wCu-eW-aUp.text" = "Датум";
+
+/* Class = "UILabel"; text = "schDate"; ObjectID = "wPE-mA-zc5"; */
+"wPE-mA-zc5.text" = "schDate";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "x7F-gq-1fF"; */
+"x7F-gq-1fF.text" = "1";
+
+/* Class = "UILabel"; text = "datum"; ObjectID = "xUG-DN-eWK"; */
+"xUG-DN-eWK.text" = "datum";
+
+/* Class = "UITextField"; placeholder = "Enter new password here..."; ObjectID = "yIs-GF-aDR"; */
+"yIs-GF-aDR.placeholder" = "Внеси нова лозинка...";
+
+/* Class = "UIViewController"; title = "My Profile"; ObjectID = "yOK-gO-suV"; */
+"yOK-gO-suV.title" = "Мој профил";
+
+/* Class = "UITextField"; placeholder = "Enter your first name..."; ObjectID = "ycr-fL-JG4"; */
+"ycr-fL-JG4.placeholder" = "Внеси име...";
+
+/* Class = "UILabel"; text = "Customer:"; ObjectID = "yvB-zl-Zvd"; */
+"yvB-zl-Zvd.text" = "Муштерија:";
+
+/* Class = "UIBarButtonItem"; title = "Log out"; ObjectID = "zzB-cw-ek9"; */
+"zzB-cw-ek9.title" = "Одјави се";
