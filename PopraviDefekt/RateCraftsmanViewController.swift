@@ -81,7 +81,6 @@ class RateCraftsmanViewController: UIViewController, UITextViewDelegate {
                     var usersArray = [String]()
                     if let comments = object["comments"] {
                         if let usersWhoCommented = object["usersWhoCommented"] {
-                            print("ima komentar")
                             array = comments as! [String]
                             usersArray = usersWhoCommented as! [String]
                         }

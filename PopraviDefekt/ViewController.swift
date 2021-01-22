@@ -47,10 +47,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
-        view.addGestureRecognizer(tapGesture)
         types.removeAll()
         selectedTypes.removeAll()
+        
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in
             if error != nil {
@@ -65,10 +64,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
                 self.tableView.reloadData()
             }
         }
-    }
-    
-    @objc func onTap() {
-        self.view.endEditing(true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

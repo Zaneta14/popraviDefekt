@@ -53,7 +53,6 @@ class RateJobViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBAction func stepper(_ sender: UIStepper) {
-        print(sender.value)
         rating.text = String(Int(sender.value))
     }
     

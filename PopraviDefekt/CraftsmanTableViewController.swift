@@ -179,14 +179,8 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "cCell", for: indexPath)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        print("cellforrowat:")
         for userId in userIds {
-            print("userId:")
             print(userId)
-        }
-        for koment in komentari {
-            print("koment")
-            print(koment)
         }
         let stringDate = dateFormatter.string(from: datumi[indexPath.row] as Date)
         cell.textLabel?.text = stringDate

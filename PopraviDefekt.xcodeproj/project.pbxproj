@@ -13,6 +13,7 @@
 		1E07C95D2586402A00F31493 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95B2586402A00F31493 /* Main.storyboard */; };
 		1E07C95F2586402D00F31493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C95E2586402D00F31493 /* Assets.xcassets */; };
 		1E07C9622586402D00F31493 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07C9602586402D00F31493 /* LaunchScreen.storyboard */; };
+		1E2CEBE825BB59A10050307D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E2CEBE725BB59A10050307D /* logo.png */; };
 		1E8915B425B4F04D003ECCB7 /* RateCraftsmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */; };
 		1E8D208F259261F4003F7E4C /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */; };
 		1E9709E525B116E90017E1CF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9709E425B116E80017E1CF /* ProfileViewController.swift */; };
@@ -22,7 +23,6 @@
 		1EC6C2CB2591171400256120 /* CraftsmanDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */; };
 		1EC6C2CD259156F100256120 /* RequestsJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */; };
 		1EF7E63F259B7EF900DD9C89 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E63E259B7EF900DD9C89 /* MapViewController.swift */; };
-		1EFA649025AD100D00BCA041 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EFA648F25AD100D00BCA041 /* logo.png */; };
 		1EFA9D3C258682CA00AD3950 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */; };
 		1EFA9D3E25868C0000AD3950 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */; };
 		1EFB8C3925B341E6003FB968 /* RateJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */; };
@@ -41,6 +41,7 @@
 		1E07C95E2586402D00F31493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E07C9612586402D00F31493 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E07C9632586402D00F31493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E2CEBE725BB59A10050307D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../Downloads/logo.png; sourceTree = "<group>"; };
 		1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCraftsmanViewController.swift; sourceTree = "<group>"; };
 		1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
 		1E9709E425B116E80017E1CF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		1EC6C2CA2591171400256120 /* CraftsmanDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftsmanDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		1EC6C2CC259156F100256120 /* RequestsJobsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsJobsTableViewController.swift; sourceTree = "<group>"; };
 		1EF7E63E259B7EF900DD9C89 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		1EFA648F25AD100D00BCA041 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../Downloads/logo.png; sourceTree = "<group>"; };
 		1EFA9D3B258682CA00AD3950 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		1EFA9D3D25868C0000AD3950 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateJobViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */,
 				1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */,
 				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
-				1EFA648F25AD100D00BCA041 /* logo.png */,
+				1E2CEBE725BB59A10050307D /* logo.png */,
 				1E07C95E2586402D00F31493 /* Assets.xcassets */,
 				1E07C9632586402D00F31493 /* Info.plist */,
 			);
@@ -201,7 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E07C9622586402D00F31493 /* LaunchScreen.storyboard in Resources */,
-				1EFA649025AD100D00BCA041 /* logo.png in Resources */,
+				1E2CEBE825BB59A10050307D /* logo.png in Resources */,
 				1E07C95F2586402D00F31493 /* Assets.xcassets in Resources */,
 				1E07C95D2586402A00F31493 /* Main.storyboard in Resources */,
 			);
