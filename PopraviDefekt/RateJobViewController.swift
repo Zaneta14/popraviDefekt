@@ -24,6 +24,7 @@ class RateJobViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        commentJob.text = NSLocalizedString("YourComment", comment: "")
         commentJob.textColor = .darkGray
         commentJob.layer.borderColor = UIColor.lightGray.cgColor
         commentJob.layer.borderWidth = 1
@@ -73,9 +74,9 @@ class RateJobViewController: UIViewController, UITextViewDelegate {
                     }
                 }
             }
-            displayAlert(title: "Thank you for your feedback", message: "Your information has been submitted")
+            displayAlert(title: NSLocalizedString("Feedback", comment: ""), message: NSLocalizedString("Submitted", comment: ""))
         } else {
-            displayAlert(title: "Invalid", message: "Please fill out the required text fields.")
+            displayAlert(title: NSLocalizedString("Invalid", comment: ""), message: NSLocalizedString("PleaseFillOut", comment: ""))
         }
     }
     

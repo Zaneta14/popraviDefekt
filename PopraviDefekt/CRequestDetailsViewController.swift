@@ -76,7 +76,7 @@ class CRequestDetailsViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func makeAnOffer(_ sender: Any) {
         if priceTextField.text == "" {
-            displayAlert(title: "Invalid", message: "Please enter a price.")
+            displayAlert(title: NSLocalizedString("Invalid", comment: ""), message: NSLocalizedString("Please enter a price.", comment: ""))
         } else {
             let schDateAndTime = datePicker.date
             let price = priceTextField.text
@@ -113,7 +113,7 @@ class CRequestDetailsViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             })
-            displayAlert(title: "Success!", message: "You have made an offer.")
+            displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("OfferMade", comment: ""))
         }
     }
     
@@ -148,7 +148,7 @@ class CRequestDetailsViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         })
-        displayAlert(title: "Success", message: "You have rejected the request.")
+        displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("RequestRejected", comment: ""))
     }
     
     func displayAlert(title: String, message: String) {

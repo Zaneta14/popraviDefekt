@@ -5,3 +5,54 @@
   Created by Zaneta on 1/22/21.
   Copyright © 2021 Zaneta. All rights reserved.
 */
+
+"Log in" = "Најави се";
+"Switch to sign up" = "Кликни за регистрација";
+"Sign up" = "Регистрирај се";
+"Switch to log in" = "Кликни за најава";
+"Defect repair" = "Поправи дефект";
+"Enter desc" = "Внеси опис за дефектот.";
+"cancelS" = " Откажи ";
+"AcceptO" = " Прифати понуда ";
+"RejectO" = " Одбиј понуда ";
+"ScheduledOn" = "Закажано за:";
+"DoneOn" = "Завршено на:";
+"ValidInfo" = "Дали информациите подолу се валидни?";
+"Yes" = " Да ";
+"No" = " Не ";
+"Success" = "Успешно";
+"RequestCancelled" = "Барањето е откажано.";
+"OfferRejected" = "Понудата е одбиена.";
+"CraftsmanInfoInvalid" = "Ги прогласивте информациите на мајсторот за невалидни.";
+"NotEnough" = "Недоволно информации";
+"PleaseEnter" = "Внесете ги сите потребни информации.";
+"EmailPass" = "Внесете и email и лозинка";
+"Camera alert" = "Известување за камерата";
+"No camera is available" = "Нема достапна камера.";
+"Sch" = "Работата е сега закажана.";
+"Fin" = "Работата е сега завршена.";
+"No comments yet." = "Се уште нема коментари.";
+"No ratings yet." = "Се уште нема оценки.";
+"NoPercentage" = "Нема податоци за потврдени информации од муштерии.";
+"%d km away" = "%d km оддалечен";
+"%d% approved info" = "%d% потврдени информации од муштерии";
+"NoComments" = "Се уште нема коментар.";
+"NoRatings" = "Се уште нема оценка.";
+"You have made a request." = "Направивте барање.";
+"Failed" = "Неуспешно";
+"YourComment" = "Вашиот коментар овде...";
+"Feedback" = "Ви благодариме";
+"Submitted" = "Вашите информации се внесени.";
+"Invalid" = "Невалидно";
+"PleaseFillOut" = "Пополни ги потребните текст полиња.";
+"No type selected" = "Нема избрано тип";
+"craftsman type" = "Избери барем еден тип на мајстор.";
+"Updated" = "Вашиот профил е ажуриран.";
+"No changes made" = "Нема промени";
+"You haven't made any changes." = "Немате направено промени.";
+"Please enter a price." = "Внесете цена.";
+"OfferMade" = "Испративте понуда.";
+"RequestRejected" = "Го одбивте барањето.";
+"Upload an image" = "Прикачи слика...";
+"ChooseImage" = "Избери слика.";
+"CustomerConfirmation" = "Сега муштеријата треба да ги потврди податоците.";

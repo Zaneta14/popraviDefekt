@@ -136,7 +136,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func saveChanges(_ sender: Any) {
         if PFUser.current()?["role"] as! String == "craftsman" && selectedTypes.count == 0 {
-            displayAlert(title: "No type selected", message: "Please select at least one craftsman type.")
+            displayAlert(title: NSLocalizedString("No type selected", comment: ""), message: NSLocalizedString("craftsman type", comment: ""))
         }
         else if password.text != "" || firstName.text != PFUser.current()?["firstName"] as? String || lastName.text != PFUser.current()?["lastName"] as? String || phoneNumber.text != PFUser.current()?["phoneNumber"] as? String || (PFUser.current()?["role"] as? String == "craftsman" && selectedTypeIds.sorted() != (PFUser.current()?["crafts"] as! [String]).sorted()) {
             if firstName.text != PFUser.current()?["firstName"] as? String {
@@ -155,9 +155,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 PFUser.current()?["crafts"] = selectedTypeIds
             }
             PFUser.current()?.saveInBackground()
-            displayAlert(title: "Success", message: "Your profile is now updated.")
+            displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Updated", comment: ""))
         } else {
-            displayAlert(title: "No changes made", message: "You haven't made any changes.")
+            displayAlert(title: NSLocalizedString("No changes made", comment: ""), message: NSLocalizedString("You haven't made any changes.", comment: ""))
         }
     }
     

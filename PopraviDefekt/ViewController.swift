@@ -45,10 +45,21 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     @IBOutlet weak var ima: UILabel!
     
+    @IBOutlet weak var dr: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         types.removeAll()
         selectedTypes.removeAll()
+        dr.text = NSLocalizedString("Defect repair", comment: "")
+        if Bundle.main.preferredLocalizations.first == "eng" {
+            print("ENGLISH")
+        } else {
+            print("else  MACEDONIAN")
+        }
+        if Bundle.main.preferredLocalizations.first == "mk" {
+            print("MKD")
+        }
         
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in
@@ -112,7 +123,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         present(allertController, animated: true, completion: nil)
     }
     
-    
     @IBAction func switchChanged(_ sender: Any) {
         if ccSwitch.isOn {
             tableView.isHidden = false
@@ -126,7 +136,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     @IBAction func topButtonPressed(_ sender: Any) {
         if signUpMode {
             if emailField.text == "" || passwordField.text == "" || firstNameField.text == "" || lastNameField.text == "" || phoneNumberField.text == "" || (ccSwitch.isOn && selectedTypes.count == 0) {
-                displayAlert(title: "Not enough information", message: "Please enter all information required")
+                displayAlert(title: NSLocalizedString("NotEnough", comment: ""), message: NSLocalizedString("PleaseEnter", comment: ""))
             }
             else {
                 launchActivityIndicator()
@@ -187,7 +197,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         }
         else {
             if emailField.text == "" || passwordField.text == "" {
-                displayAlert(title: "Not enough information", message: "Please enter both email and password")
+                displayAlert(title: NSLocalizedString("NotEnough", comment: ""), message: NSLocalizedString("EmailPass", comment: ""))
             }
             else {
                 launchActivityIndicator()
@@ -222,8 +232,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     @IBAction func bottomButtonPressed(_ sender: Any) {
         if signUpMode {
             signUpMode = false
-            topButton.setTitle("Log in", for: .normal)
-            bottomButton.setTitle("Switch to sign up", for: .normal)
+            let login = NSLocalizedString("Log in", comment: "")
+            topButton.setTitle(login, for: .normal)
+            let stsu = NSLocalizedString("Switch to sign up", comment: "")
+            bottomButton.setTitle(stsu, for: .normal)
             ccSwitch.isHidden=true
             firstNameField.isHidden=true
             lastNameField.isHidden=true
@@ -235,8 +247,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         }
         else {
             signUpMode = true
-            topButton.setTitle("Sign up", for: .normal)
-            bottomButton.setTitle("Switch to log in", for: .normal)
+            let signup = NSLocalizedString("Sign up", comment: "")
+            topButton.setTitle(signup, for: .normal)
+            let stli = NSLocalizedString("Switch to log in", comment: "")
+            bottomButton.setTitle(stli, for: .normal)
             customer.isHidden=false
             craftsman.isHidden=false
             ccSwitch.isHidden=false

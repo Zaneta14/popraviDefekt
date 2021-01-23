@@ -24,6 +24,7 @@ class RateCraftsmanViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var submitO: UIBarButtonItem!
 
     override func viewDidLoad() {
+        comment.text = NSLocalizedString("YourComment", comment: "")
         comment.textColor = .darkGray
         comment.layer.borderColor = UIColor.lightGray.cgColor
         comment.layer.borderWidth = 1
@@ -104,7 +105,7 @@ class RateCraftsmanViewController: UIViewController, UITextViewDelegate {
                     object["usersWhoCommented"] = usersArray
                     object.saveInBackground()
                 }
-                self.displayAlert(title: "Thank you for your feedback.", message: "Your information has been submitted")
+                self.displayAlert(title: NSLocalizedString("Feedback", comment: ""), message: NSLocalizedString("Submitted", comment: ""))
             }
         })
     }

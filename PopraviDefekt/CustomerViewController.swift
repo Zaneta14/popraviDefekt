@@ -48,6 +48,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         types.removeAll()
+        descriptionField.text = NSLocalizedString("Enter desc", comment: "")
         descriptionField.textColor = .darkGray
         descriptionField.layer.borderColor = UIColor.lightGray.cgColor
         descriptionField.layer.borderWidth = 1
@@ -145,7 +146,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
 
     @IBAction func seeCraftsmen(_ sender: Any) {
         if !locationChosen || descriptionField.text == "Enter a description for your defect." || descriptionField.text == "" || imageView.image == nil {
-            displayAlert(title: "Not enough information", message: "Please enter all information required")
+            displayAlert(title: NSLocalizedString("NotEnough", comment: ""), message: NSLocalizedString("PleaseEnter", comment: ""))
         }
         else {
             firstNames.removeAll()
@@ -227,7 +228,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
             imagePicker.sourceType = .camera
             present(imagePicker, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Camera alert", message: "No camera is available", preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Camera alert", comment: ""), message: NSLocalizedString("No camera is available", comment: ""), preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil) }

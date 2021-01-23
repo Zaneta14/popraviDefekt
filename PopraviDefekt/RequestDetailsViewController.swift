@@ -139,7 +139,8 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             schDate.isHidden = true
             imageV.isHidden = true
             acceptO.isHidden = true
-            rejectCancelO.setTitle(" Cancel ", for: .normal)
+            let cancelS = NSLocalizedString("cancelS", comment: "")
+            rejectCancelO.setTitle(cancelS, for: .normal)
             rejectCancelO.isHidden = false
             beforePhoto.isHidden = false
             afterPLabel.isHidden = true
@@ -156,9 +157,11 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             pPrice.isHidden = false
             pd.isHidden = false
             pp.isHidden = false
-            acceptO.setTitle(" Accept offer ", for: .normal)
+            let ao = NSLocalizedString("AcceptO", comment: "")
+            acceptO.setTitle(ao, for: .normal)
             acceptO.isHidden = false
-            rejectCancelO.setTitle(" Reject offer ", for: .normal)
+            let ro = NSLocalizedString("RejectO", comment: "")
+            rejectCancelO.setTitle(ro, for: .normal)
             rejectCancelO.isHidden = false
             imageV.isHidden = true
             scheduledOn.isHidden = true
@@ -176,7 +179,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             pPrice.isHidden = true
             pd.isHidden = true
             pp.isHidden = true
-            scheduledOn.text = "Scheduled on:"
+            scheduledOn.text = NSLocalizedString("ScheduledOn", comment: "")
             scheduledOn.isHidden = false
             schDate.isHidden = false
             imageV.isHidden = true
@@ -205,7 +208,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             pPrice.isHidden = true
             pd.isHidden = true
             pp.isHidden = true
-            scheduledOn.text = "Done on:"
+            scheduledOn.text = NSLocalizedString("DoneOn", comment: "")
             scheduledOn.isHidden = false
             schDate.isHidden = false
             imageV.isHidden = false
@@ -231,14 +234,16 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
             pDate.isHidden = true
             pPrice.isHidden = true
             pd.isHidden = true
-            pp.text = "Is the information below valid?"
+            pp.text = NSLocalizedString("ValidInfo", comment: "")
             pp.isHidden = false
-            scheduledOn.text = "Done on:"
+            scheduledOn.text = NSLocalizedString("DoneOn", comment: "")
             scheduledOn.isHidden = false
             schDate.isHidden = false
             imageV.isHidden = false
-            acceptO.setTitle(" Yes ", for: .normal)
-            rejectCancelO.setTitle(" No ", for: .normal)
+            let y = NSLocalizedString("Yes", comment: "")
+            let n = NSLocalizedString("No", comment: "")
+            acceptO.setTitle(y, for: .normal)
+            rejectCancelO.setTitle(n, for: .normal)
             acceptO.isHidden = false
             rejectCancelO.isHidden = false
             rate.isEnabled = false
@@ -263,7 +268,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             })
-            displayAlert(title: "Success", message: "The job is now scheduled.")
+            displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Sch", comment: ""))
         }
         else {
             query.findObjectsInBackground(block:  { (objects, error) in
@@ -276,7 +281,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             })
-            displayAlert(title: "Success", message: "The job is now finished.")
+            displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Fin", comment: ""))
         }
     }
     
@@ -296,10 +301,11 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             })
+            let suc = NSLocalizedString("Success", comment: "")
             if statusS == "active" {
-                displayAlert(title: "Success", message: "The request has been canceled.")
+                displayAlert(title: suc, message: NSLocalizedString("RequestCancelled", comment: ""))
             } else if statusS == "pending" {
-                displayAlert(title: "Success", message: "The offer has been rejected.")
+                displayAlert(title: suc, message: NSLocalizedString("OfferRejected", comment: ""))
             }
         }
         else {
@@ -320,7 +326,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             })
-            displayAlert(title: "Success", message: "You have declared the craftsman's information invalid.")
+            displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("CraftsmanInfoInvalid", comment: ""))
         }
     }
     

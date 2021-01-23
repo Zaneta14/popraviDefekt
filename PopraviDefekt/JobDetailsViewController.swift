@@ -108,7 +108,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
             datePicker.datePickerMode = .date
             datePicker.isHidden = false
             dateFinished.isHidden = false
-            upload.text = "Upload an image..."
+            upload.text = NSLocalizedString("Upload an image", comment: "")
             afterPhoto.isHidden = true
             upload.isHidden = false
             comment.isHidden = false
@@ -119,7 +119,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
             format.dateFormat = "dd/MM/yyyy"
             let strDate = format.string(from: dateFin as Date)
             finishDate.text = strDate
-            upload.text = "Done on:"
+            upload.text = NSLocalizedString("DoneOn", comment: "")
             finishDate.isHidden = false
             dateFinished.isHidden = true
             afterPhoto.isHidden = false
@@ -151,7 +151,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
             imagePicker.sourceType = .camera
             present(imagePicker, animated: true, completion: nil)
         }else{
-            let alert = UIAlertController(title: "Camera alert", message: "No camera is available", preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Camera alert", comment: ""), message: NSLocalizedString("No camera is available", comment: ""), preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil) }
@@ -196,7 +196,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
     
     @IBAction func savePressed(_ sender: Any) {
         if imageView.image == nil {
-            displayAlert(title: "Invalid", message: "Please choose an image.")
+            displayAlert(title: NSLocalizedString("Invalid", comment: ""), message: NSLocalizedString("ChooseImage", comment: ""))
         }
         else {
             let query = PFQuery(className: "Job")
@@ -241,7 +241,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
                     }
                 })
             }
-            displayAlert(title: "Success", message: "Now the customer needs to confirm the information.")
+            displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("CustomerConfirmation", comment: ""))
         }
     }
     

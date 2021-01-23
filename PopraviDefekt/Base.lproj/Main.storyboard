@@ -195,6 +195,7 @@
                         <outlet property="ccSwitch" destination="Lfj-Hn-pFv" id="sJD-vP-z7X"/>
                         <outlet property="craftsman" destination="LAo-mh-EBY" id="Vhy-da-BSS"/>
                         <outlet property="customer" destination="LZF-c6-7R6" id="Qic-kS-m0F"/>
+                        <outlet property="dr" destination="Nvv-ju-x1q" id="7f7-f4-gXe"/>
                         <outlet property="emailField" destination="npe-wJ-g45" id="T8y-tM-Nc3"/>
                         <outlet property="firstNameField" destination="ycr-fL-JG4" id="i3h-TS-vzG"/>
                         <outlet property="ima" destination="O1p-Uu-tIm" id="8Ya-GO-Cxw"/>
@@ -1892,8 +1893,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f5K-v7-McH"/>
-        <segue reference="5jd-6H-ffi"/>
+        <segue reference="3SQ-eD-vWC"/>
+        <segue reference="G5l-vv-7kg"/>
         <segue reference="ocs-um-x2J"/>
     </inferredMetricsTieBreakers>
 </document>

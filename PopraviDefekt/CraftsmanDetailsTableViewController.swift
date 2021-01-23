@@ -45,7 +45,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                     if let comments = object["comments"] {
                         self.commentsC.text = "\"" + (comments as! [String]).joined(separator: "\", \"") + "\""
                     } else {
-                        self.commentsC.text = "No comments yet."
+                        self.commentsC.text = NSLocalizedString("No comments yet.", comment: "")
                     }
                 }
             }
@@ -69,7 +69,7 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                     self.grade.text = String(average) + "/5"
                 }
                 else {
-                    self.grade.text = "No ratings yet."
+                    self.grade.text = NSLocalizedString("No ratings yet.", comment: "")
                     self.grade.textColor = .black
                 }
             }
@@ -102,12 +102,14 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                         }
                     }
                     if y == 0 {
-                        self.percentage.text = "No data about approved information by customers."
+                        self.percentage.text = NSLocalizedString("NoPercentage", comment: "")
                     }
                     let result = (Double(x) / Double(y))*100
-                    self.percentage.text = String(format: "%.2f", result) + "% approved information by customers"
+                    let resultS = String(format: "%.2f", result)
+                    let s = NSLocalizedString("%d% approved info", comment: "")
+                    self.percentage.text = String.localizedStringWithFormat(s, resultS)
                 } else {
-                    self.percentage.text = "No data about approved information by customers."
+                    self.percentage.text = NSLocalizedString("NoPercentage", comment: "")
                 }
             }
         }
@@ -138,12 +140,12 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         if comments[indexPath.row] != nil {
             cell.comment.text = "\"" + comments[indexPath.row]! + "\""
         } else {
-            cell.comment.text = "No comment yet."
+            cell.comment.text = NSLocalizedString("NoComments", comment: "")
         }
         if ratings[indexPath.row] != 0 {
             cell.rating.text = "\(ratings[indexPath.row])" + "/5"
         } else {
-            cell.rating.text = "No rating yet."
+            cell.rating.text = NSLocalizedString("NoRatings", comment: "")
         }
         cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
@@ -185,9 +187,9 @@ class CraftsmanDetailsTableViewController: UITableViewController {
         }
         request.saveInBackground { (success, error) in
             if success {
-                self.displayAlert(title: "Success!", message: "You have made a request.")
+                self.displayAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("You have made a request.", comment: ""))
             } else {
-                self.displayAlert(title: "Failed", message: (error! as! String))
+                self.displayAlert(title: NSLocalizedString("Failed", comment: ""), message: (error! as! String))
             }
         }
     }

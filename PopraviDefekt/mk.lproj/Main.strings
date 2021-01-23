@@ -30,7 +30,7 @@
 "2SO-cx-K8v.text" = "Поднаслов";
 
 /* Class = "UIBarButtonItem"; title = "Jobs"; ObjectID = "36R-Gs-bRO"; */
-"36R-Gs-bRO.title" = "Jobs";
+"36R-Gs-bRO.title" = "Работи";
 
 /* Class = "UITextView"; text = "Your comment here... "; ObjectID = "3l5-GD-diV"; */
 "3l5-GD-diV.text" = "Your comment here... ";
@@ -120,7 +120,7 @@
 "FJl-hz-GbZ.normalTitle" = " Одбиј ја понудата ";
 
 /* Class = "UIBarButtonItem"; title = "Make a request"; ObjectID = "Fpp-W0-J8d"; */
-"Fpp-W0-J8d.title" = "Направи понуда";
+"Fpp-W0-J8d.title" = "Испрати понуда";
 
 /* Class = "UILabel"; text = "imePrezime"; ObjectID = "Fue-8h-arq"; */
 "Fue-8h-arq.text" = "";
@@ -159,7 +159,7 @@
 "LOi-rc-KR2.normalTitle" = "Регистрирај се";
 
 /* Class = "UILabel"; text = "Customer"; ObjectID = "LZF-c6-7R6"; */
-"LZF-c6-7R6.text" = "Мајстор";
+"LZF-c6-7R6.text" = "Муштерија";
 
 /* Class = "UILabel"; text = "Address:"; ObjectID = "N5p-Of-OYy"; */
 "N5p-Of-OYy.text" = "Адреса:";
@@ -237,7 +237,7 @@
 "b2a-m7-EEx.normalTitle" = " Прифати понуда ";
 
 /* Class = "UIBarButtonItem"; title = "Make an offer"; ObjectID = "c81-RD-Sjr"; */
-"c81-RD-Sjr.title" = "Направи понуда";
+"c81-RD-Sjr.title" = "Испрати понуда";
 
 /* Class = "UILabel"; text = "Proposed price:"; ObjectID = "c9j-0h-5sm"; */
 "c9j-0h-5sm.text" = "Предложена цена:";
@@ -285,7 +285,7 @@
 "h1q-Rb-isM.normalTitle" = " Слика од дефектот ";
 
 /* Class = "UILabel"; text = "about the craftsman. You can change it."; ObjectID = "h7J-B6-eX6"; */
-"h7J-B6-eX6.text" = "за мајсторот. Можете да го промените";
+"h7J-B6-eX6.text" = "за мајсторот. Можете да го промените.";
 
 /* Class = "UIBarButtonItem"; title = "Save changes"; ObjectID = "h9u-TV-fLB"; */
 "h9u-TV-fLB.title" = "Зачувај промени";

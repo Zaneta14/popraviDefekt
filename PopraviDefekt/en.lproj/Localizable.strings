@@ -5,3 +5,55 @@
   Created by Zaneta on 1/22/21.
   Copyright © 2021 Zaneta. All rights reserved.
 */
+
+"Log in" = "Log in";
+"Switch to sign up" = "Switch to sign up";
+"Sign up" = "Sign up";
+"Switch to log in" = "Switch to log in";
+"Defect repair" = "Defect Repair";
+"Enter desc" = "Enter a description for your defect.";
+"cancelS" = " Cancel ";
+"AcceptO" = " Accept offer ";
+"RejectO" = " Reject offer ";
+"ScheduledOn" = "Scheduled on:";
+"DoneOn" = "Done on:";
+"ValidInfo" = "Is the information below valid?";
+"Yes" = " Yes ";
+"No" = " No ";
+"Success" = "Success";
+"RequestCancelled" = "The request has been canceled.";
+"OfferRejected" = "The offer has been rejected.";
+"CraftsmanInfoInvalid" = "You have declared the craftsman's information invalid.";
+"NotEnough" = "Not enough information";
+"PleaseEnter" = "Please enter all information required.";
+"EmailPass" = "Please enter both email and password.";
+"Camera alert" = "Camera alert";
+"No camera is available" = "No camera is available.";
+"Sch" = "The job is now scheduled.";
+"Fin" = "The job is now finished.";
+"No comments yet." = "No comments yet.";
+"No ratings yet." = "No ratings yet.";
+"NoPercentage" = "No data about approved information by customers.";
+"%d km away" = "%d km away";
+"%d% approved info" = "%d% approved information by customers";
+"NoComments" = "No comment yet.";
+"NoRatings" = "No rating yet.";
+"You have made a request." = "You have made a request.";
+"Failed" = "Failed";
+"YourComment" = "Your comment here...";
+"Feedback" = "Thank you for your feedback";
+"Submitted" = "Your information has been submitted";
+"Invalid" = "Invalid";
+"PleaseFillOut" = "Please fill out the required text fields.";
+"No type selected" = "No type selected";
+"craftsman type" = "Please select at least one craftsman type.";
+"Updated" = "Your profile is now updated.";
+"No changes made" = "No changes made";
+"You haven't made any changes." = "You haven't made any changes.";
+"Please enter a price." = "Please enter a price.";
+"OfferMade" = "You have made an offer.";
+"RequestRejected" = "You have rejected the request.";
+"Upload an image" = "Upload an image...";
+"ChooseImage" = "Please choose an image.";
+"CustomerConfirmation" = "The customer now needs to confirm the information.";
+
