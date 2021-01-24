@@ -60,7 +60,7 @@ class RateJobViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func submit(_ sender: Any) {
-        if commentJob.text != "" && commentJob.text != "Your comment here..." {
+        if commentJob.text != "" && commentJob.text != "Your comment here..." && commentJob.text != "Вашиот коментар овде..." {
             let comJ = commentJob.text
             let ratingR = Int(stepperO.value)
             let query = PFQuery(className: "Job")

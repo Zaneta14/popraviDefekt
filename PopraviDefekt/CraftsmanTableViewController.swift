@@ -189,10 +189,10 @@ class CraftsmanTableViewController: UITableViewController, CLLocationManagerDele
             if komentari[indexPath.row].count > 0 {
                 cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | " + komentari[indexPath.row].joined(separator: ", ")
             } else {
-                cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | No comments yet"
+                cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + NSLocalizedString("nocomm", comment: "")
             }
         } else {
-            cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + " | No comments yet"
+            cell.detailTextLabel?.text = fNames[indexPath.row] + " " + lNames[indexPath.row] + NSLocalizedString("nocomm", comment: "")
         }
         cell.layer.cornerRadius = 25
         cell.layer.masksToBounds = true

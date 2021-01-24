@@ -52,9 +52,9 @@ class SeeCraftsmenTableViewController: UITableViewController {
                                 let craftsmanLocation = CLLocation(latitude: currLat as! Double, longitude: currLon as! Double)
                                 let distance = craftsmanLocation.distance(from: defectLocation) / 1000
                                 let roundedDistance = round(distance * 100) / 100
-                                print(roundedDistance)
-                                let distanceStr = NSLocalizedString("%ld km away", comment: "")
-                                cell.detailTextLabel?.text = String.localizedStringWithFormat(distanceStr, roundedDistance)
+                                let s = String(roundedDistance)
+                                let distanceStr = NSLocalizedString("km away", comment: "")
+                                cell.detailTextLabel?.text = String.localizedStringWithFormat(distanceStr, s)
                                 let query = PFQuery(className: "Job")
                                 query.whereKey("from", equalTo: PFUser.current()?.objectId!)
                                 query.whereKey("to", equalTo: cId)

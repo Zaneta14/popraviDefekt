@@ -105,9 +105,9 @@ class CraftsmanDetailsTableViewController: UITableViewController {
                         self.percentage.text = NSLocalizedString("NoPercentage", comment: "")
                     }
                     let result = (Double(x) / Double(y))*100
-                    let resultS = String(format: "%.2f", result)
+                    let resultS = String(format: "%.2f", result) + "%"
                     print(resultS)
-                    let s = NSLocalizedString("%d approved info", value: "%d", comment: "")
+                    let s = NSLocalizedString("approved info", comment: "")
                     self.percentage.text = String.localizedStringWithFormat(s, resultS)
                 } else {
                     self.percentage.text = NSLocalizedString("NoPercentage", comment: "")

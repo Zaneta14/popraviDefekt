@@ -70,44 +70,49 @@ class RateCraftsmanViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func submit(_ sender: Any) {
-        let comC = comment.text
-        let comQuery = PFQuery(className: "CommentCraftsman")
-        comQuery.whereKey("userId", equalTo: craftsmanId)
-        comQuery.findObjectsInBackground(block: { (success, error) in
-            if error != nil {
-                print(error!)
-            } else if let objects = success {
-                for object in objects {
-                    var array = [String]()
-                    var usersArray = [String]()
-                    if let comments = object["comments"] {
-                        if let usersWhoCommented = object["usersWhoCommented"] {
-                            array = comments as! [String]
-                            usersArray = usersWhoCommented as! [String]
-                        }
-                    }
-                    var x = 0
-                    if usersArray.count > 0 {
-                        let range = 0..<usersArray.count
-                        for i in range {
-                            if usersArray[i] == PFUser.current()?.objectId {
-                                array[i] = comC!
-                                x = 1
-                                break
+        if comment.text != "" && comment.text != "Your comment here..." && comment.text != "Вашиот коментар овде..." {
+            let comC = comment.text
+            let comQuery = PFQuery(className: "CommentCraftsman")
+            comQuery.whereKey("userId", equalTo: craftsmanId)
+            comQuery.findObjectsInBackground(block: { (success, error) in
+                if error != nil {
+                    print(error!)
+                } else if let objects = success {
+                    for object in objects {
+                        var array = [String]()
+                        var usersArray = [String]()
+                        if let comments = object["comments"] {
+                            if let usersWhoCommented = object["usersWhoCommented"] {
+                                array = comments as! [String]
+                                usersArray = usersWhoCommented as! [String]
                             }
                         }
+                        var x = 0
+                        if usersArray.count > 0 {
+                            let range = 0..<usersArray.count
+                            for i in range {
+                                if usersArray[i] == PFUser.current()?.objectId {
+                                    array[i] = comC!
+                                    x = 1
+                                    break
+                                }
+                            }
+                        }
+                        if x == 0 {
+                            array.append(comC!)
+                            usersArray.append((PFUser.current()?.objectId)!)
+                        }
+                        object["comments"] = array
+                        object["usersWhoCommented"] = usersArray
+                        object.saveInBackground()
                     }
-                    if x == 0 {
-                        array.append(comC!)
-                        usersArray.append((PFUser.current()?.objectId)!)
-                    }
-                    object["comments"] = array
-                    object["usersWhoCommented"] = usersArray
-                    object.saveInBackground()
+                    self.displayAlert(title: NSLocalizedString("Feedback", comment: ""), message: NSLocalizedString("Submitted", comment: ""))
                 }
-                self.displayAlert(title: NSLocalizedString("Feedback", comment: ""), message: NSLocalizedString("Submitted", comment: ""))
-            }
-        })
+            })
+        }
+        else {
+            displayAlert(title: NSLocalizedString("Invalid", comment: ""), message: NSLocalizedString("PleaseFillOut", comment: ""))
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

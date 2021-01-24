@@ -91,7 +91,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return types[row]
+        return NSLocalizedString(types[row], comment: "")
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -145,7 +145,7 @@ class CustomerViewController: UIViewController, UITextViewDelegate, MKMapViewDel
     }
 
     @IBAction func seeCraftsmen(_ sender: Any) {
-        if !locationChosen || descriptionField.text == "Enter a description for your defect." || descriptionField.text == "" || imageView.image == nil {
+        if !locationChosen || descriptionField.text == "Enter a description for your defect." || descriptionField.text == "Внеси опис за дефектот." || descriptionField.text == "" || imageView.image == nil {
             displayAlert(title: NSLocalizedString("NotEnough", comment: ""), message: NSLocalizedString("PleaseEnter", comment: ""))
         }
         else {

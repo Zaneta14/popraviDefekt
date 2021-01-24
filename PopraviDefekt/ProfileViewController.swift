@@ -98,7 +98,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "typesCell", for: indexPath)
-        cell.textLabel?.text = types[indexPath.row]
+        cell.textLabel?.text = NSLocalizedString(types[indexPath.row], comment: "")
         if ((PFUser.current()?["crafts"] as? [String])?.contains(typeIds[indexPath.row]))! {
             cell.accessoryType = .checkmark
         }

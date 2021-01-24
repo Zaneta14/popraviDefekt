@@ -88,7 +88,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
         formatter.dateFormat = "dd/MM/yyyy HH:mm"
         let stringDate = formatter.string(from: dateReq as Date)
         requestDate.text = stringDate
-        status.text = statusS
+        status.text = NSLocalizedString(statusS, comment: "")
         let query = PFUser.query()
         query?.whereKey("objectId", equalTo: craftsmanId)
         query?.findObjectsInBackground(block: { (objects, error) in
@@ -114,7 +114,7 @@ class RequestDetailsViewController: UIViewController, UIScrollViewDelegate {
                                                     for object in objects {
                                                         for craft in crafts as! [String] {
                                                             if object.objectId == craft {
-                                                                niza.append(object["eng"] as! String)
+                                                                niza.append(NSLocalizedString(object["eng"] as! String, comment: ""))
                                                             }
                                                         }
                                                     }

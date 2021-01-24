@@ -98,7 +98,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
         format.dateFormat = "dd/MM/yyyy HH:mm"
         let strDate = format.string(from: dateSch as Date)
         dateLabel.text = strDate
-        status.text = statusS
+        status.text = NSLocalizedString(statusS, comment: "")
         addess.text = adresa
         if statusS == "scheduled" {
             finishDate.isHidden = true
@@ -219,7 +219,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
                     }
                 }
             }
-            if comment.text != "" && comment.text != "Give a comment about the customer. (optional)" {
+            if comment.text != "" && comment.text != "Give a comment about the customer. (optional)" && comment.text != "Дај коментар за муштеријата. (опционо)" {
                 let com = comment.text
                 let comQuery = PFQuery(className: "Comment")
                 comQuery.whereKey("userId", equalTo: userId)

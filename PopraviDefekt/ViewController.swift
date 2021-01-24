@@ -52,15 +52,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         types.removeAll()
         selectedTypes.removeAll()
         dr.text = NSLocalizedString("Defect repair", comment: "")
-        if Bundle.main.preferredLocalizations.first == "eng" {
-            print("ENGLISH")
-        } else {
-            print("else  MACEDONIAN")
-        }
-        if Bundle.main.preferredLocalizations.first == "mk" {
-            print("MKD")
-        }
-        
         let query = PFQuery(className: "CraftsmanType")
         query.findObjectsInBackground { (success, error) in
             if error != nil {
@@ -87,7 +78,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "craftsmenCell", for: indexPath)
-        cell.textLabel?.text = types[indexPath.row]
+        cell.textLabel?.text = NSLocalizedString(types[indexPath.row], comment: "")
         return cell
     }
     
