@@ -34,8 +34,8 @@
 "No comments yet." = "No comments yet.";
 "No ratings yet." = "No ratings yet.";
 "NoPercentage" = "No data about approved information by customers.";
-"%d km away" = "%d km away";
-"%d% approved info" = "%d% approved information by customers";
+"%ld km away" = "%ld km away";
+"%d approved info" = "%d approved information by customers";
 "NoComments" = "No comment yet.";
 "NoRatings" = "No rating yet.";
 "You have made a request." = "You have made a request.";
@@ -56,4 +56,6 @@
 "Upload an image" = "Upload an image...";
 "ChooseImage" = "Please choose an image.";
 "CustomerConfirmation" = "The customer now needs to confirm the information.";
-
+"CustomerComment" = "Give a comment about the customer. (optional)";
+"Comment about job" = "Give a comment about the craftsman's work and rate it on a scale from 1 to 5.";
+"%@ da" = "%@ da";

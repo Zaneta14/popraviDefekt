@@ -20,10 +20,12 @@ class RateJobViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var commentJob: UITextView!
     
+    @IBOutlet weak var desc: UITextView!
     @IBOutlet weak var submitButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        desc.text = NSLocalizedString("Comment about job", comment: "")
         commentJob.text = NSLocalizedString("YourComment", comment: "")
         commentJob.textColor = .darkGray
         commentJob.layer.borderColor = UIColor.lightGray.cgColor

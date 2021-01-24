@@ -85,6 +85,7 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        comment.text = NSLocalizedString("CustomerComment", comment: "")
         comment.textColor = .darkGray
         comment.layer.borderColor = UIColor.lightGray.cgColor
         comment.layer.borderWidth = 1
