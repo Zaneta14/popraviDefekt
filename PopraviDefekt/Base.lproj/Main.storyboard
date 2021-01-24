@@ -659,6 +659,20 @@
                                 <color key="textColor" red="0.99926120039999999" green="0.18226054310000001" blue="0.55994087459999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLq-Qg-fdF">
+                                <rect key="frame" x="328" y="160" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="o2O-ac-YtK"/>
+                                    <constraint firstAttribute="width" secondItem="mLq-Qg-fdF" secondAttribute="height" multiplier="1:1" id="tie-jw-QwW"/>
+                                    <constraint firstAttribute="width" constant="35" id="uK7-aW-hhY"/>
+                                </constraints>
+                                <state key="normal" image="whatsapp.png"/>
+                                <connections>
+                                    <action selector="openWhatsapp:" destination="Zjm-ao-cn9" eventType="touchUpInside" id="7Pw-nn-ZcS"/>
+                                    <action selector="openWhatsapp:" destination="reW-CD-742" eventType="touchUpInside" id="W2x-gp-GwK"/>
+                                    <action selector="openWhatsapp:" destination="4oc-WE-XB2" eventType="touchUpInside" id="dMf-Bi-AMf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97609859700000001" blue="0.94877415899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -675,12 +689,14 @@
                             <constraint firstItem="XCW-Cf-Apn" firstAttribute="centerX" secondItem="ByF-Sx-VTr" secondAttribute="centerX" id="7zS-JM-5Ug"/>
                             <constraint firstItem="7hm-wk-LD2" firstAttribute="leading" secondItem="hjp-z5-GO5" secondAttribute="trailing" constant="8" symbolic="YES" id="8hm-FL-hQD"/>
                             <constraint firstItem="1sY-rT-VTb" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="9tE-AW-mEe"/>
+                            <constraint firstItem="mLq-Qg-fdF" firstAttribute="width" secondItem="mLq-Qg-fdF" secondAttribute="height" multiplier="1:1" id="BSp-j4-Ctt"/>
                             <constraint firstItem="khm-4r-et5" firstAttribute="trailing" secondItem="8Bf-8T-ab6" secondAttribute="trailing" id="Dyr-VM-dZ5"/>
                             <constraint firstItem="8Bf-8T-ab6" firstAttribute="trailing" secondItem="h1q-Rb-isM" secondAttribute="trailing" constant="30" id="FeT-kY-pfv"/>
                             <constraint firstItem="1sY-rT-VTb" firstAttribute="top" secondItem="kQB-Tv-IcE" secondAttribute="bottom" constant="8" id="Hgp-Tm-c0D"/>
                             <constraint firstItem="5A9-f7-PaQ" firstAttribute="top" secondItem="J4V-OX-Wlg" secondAttribute="bottom" constant="8" id="HuH-GC-riZ"/>
                             <constraint firstItem="J4V-OX-Wlg" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="IVF-YK-hbX"/>
                             <constraint firstItem="81M-Sd-Ml2" firstAttribute="top" secondItem="tRg-Ov-Hn4" secondAttribute="bottom" constant="8" id="IW5-78-I0e"/>
+                            <constraint firstItem="8Bf-8T-ab6" firstAttribute="trailing" secondItem="mLq-Qg-fdF" secondAttribute="trailing" constant="12" id="J64-gl-pbJ"/>
                             <constraint firstItem="0MR-RD-FMP" firstAttribute="top" secondItem="tRg-Ov-Hn4" secondAttribute="bottom" constant="8" id="KW7-uh-v9z"/>
                             <constraint firstItem="kQB-Tv-IcE" firstAttribute="top" secondItem="8Bf-8T-ab6" secondAttribute="top" constant="16" id="LKg-0L-qM9"/>
                             <constraint firstItem="Z8b-F5-pGd" firstAttribute="leading" secondItem="KAV-lB-nyE" secondAttribute="trailing" constant="10" id="NFi-ox-3cB"/>
@@ -692,6 +708,7 @@
                             <constraint firstItem="FC3-RZ-8c2" firstAttribute="leading" secondItem="1sY-rT-VTb" secondAttribute="trailing" constant="10" id="UjM-jY-zY5"/>
                             <constraint firstItem="0MR-RD-FMP" firstAttribute="baseline" secondItem="hjp-z5-GO5" secondAttribute="baseline" id="X5T-ZV-4wC"/>
                             <constraint firstItem="XCW-Cf-Apn" firstAttribute="top" secondItem="J4V-OX-Wlg" secondAttribute="bottom" constant="8" id="YMH-9i-O69"/>
+                            <constraint firstItem="mLq-Qg-fdF" firstAttribute="width" secondItem="mLq-Qg-fdF" secondAttribute="height" multiplier="1:1" id="YS1-20-jJe"/>
                             <constraint firstItem="5A9-f7-PaQ" firstAttribute="bottom" secondItem="8Bf-8T-ab6" secondAttribute="bottom" id="aEc-Td-uE3"/>
                             <constraint firstItem="hjp-z5-GO5" firstAttribute="leading" secondItem="0MR-RD-FMP" secondAttribute="trailing" constant="6" id="aSe-RX-wxa"/>
                             <constraint firstItem="0MR-RD-FMP" firstAttribute="baseline" secondItem="4Tl-l3-trs" secondAttribute="firstBaseline" id="agx-Wq-Mhw"/>
@@ -703,6 +720,7 @@
                             <constraint firstItem="kQB-Tv-IcE" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="e0A-0b-olZ"/>
                             <constraint firstItem="0MR-RD-FMP" firstAttribute="baseline" secondItem="hjp-z5-GO5" secondAttribute="firstBaseline" id="h1I-jy-XDa"/>
                             <constraint firstItem="4Tl-l3-trs" firstAttribute="baseline" secondItem="0MR-RD-FMP" secondAttribute="baseline" id="hZD-kq-3wf"/>
+                            <constraint firstItem="mLq-Qg-fdF" firstAttribute="centerY" secondItem="daJ-Uk-PwL" secondAttribute="centerY" id="lSu-fw-ccU"/>
                             <constraint firstItem="hjp-z5-GO5" firstAttribute="centerY" secondItem="0MR-RD-FMP" secondAttribute="centerY" id="m5A-PH-Ddk"/>
                             <constraint firstItem="KAV-lB-nyE" firstAttribute="leading" secondItem="8Bf-8T-ab6" secondAttribute="leading" constant="16" id="mnW-MJ-FaZ"/>
                             <constraint firstItem="h1q-Rb-isM" firstAttribute="centerY" secondItem="BBr-18-ytN" secondAttribute="centerY" id="mpM-fF-YfR"/>
@@ -999,6 +1017,18 @@
                                     <constraint firstAttribute="width" secondItem="5WC-up-dYp" secondAttribute="height" multiplier="343:191" id="JTH-bb-h9E"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGD-T5-Agn">
+                                <rect key="frame" x="332" y="193" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CGD-T5-Agn" secondAttribute="height" multiplier="1:1" id="7Hy-6n-mUl"/>
+                                    <constraint firstAttribute="width" constant="35" id="uyP-Tq-hrS"/>
+                                    <constraint firstAttribute="height" constant="35" id="zaX-wg-YK9"/>
+                                </constraints>
+                                <state key="normal" image="whatsapp.png"/>
+                                <connections>
+                                    <action selector="openWhatsapp:" destination="reW-CD-742" eventType="touchUpInside" id="xFf-mQ-Lbm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97609859704971313" blue="0.94877415895462036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1025,6 +1055,7 @@
                             <constraint firstItem="FJl-hz-GbZ" firstAttribute="centerY" secondItem="b2a-m7-EEx" secondAttribute="centerY" id="Nhz-R4-pYv"/>
                             <constraint firstItem="c9j-0h-5sm" firstAttribute="leading" secondItem="ChC-EJ-aa1" secondAttribute="leading" constant="16" id="P8a-J9-wvK"/>
                             <constraint firstItem="ILJ-nh-CyY" firstAttribute="centerX" secondItem="x6Q-Tk-eTW" secondAttribute="centerX" id="QIN-o4-1KE"/>
+                            <constraint firstItem="CGD-T5-Agn" firstAttribute="centerY" secondItem="H81-PG-Qw8" secondAttribute="centerY" id="Rls-Wg-yx0"/>
                             <constraint firstItem="WAA-0O-eQd" firstAttribute="leading" secondItem="8fZ-Bt-c7W" secondAttribute="trailing" constant="10" id="T8g-XD-wn2"/>
                             <constraint firstItem="9Qi-So-TmN" firstAttribute="leading" secondItem="lxP-wG-yMc" secondAttribute="trailing" constant="10" id="X5V-O0-vzh"/>
                             <constraint firstItem="YcA-Xv-Fu0" firstAttribute="leading" secondItem="ChC-EJ-aa1" secondAttribute="leading" constant="16" id="XGj-XT-WxD"/>
@@ -1049,6 +1080,7 @@
                             <constraint firstItem="b2a-m7-EEx" firstAttribute="leading" secondItem="x6Q-Tk-eTW" secondAttribute="leading" constant="16" id="sQz-cZ-rxB"/>
                             <constraint firstItem="IHQ-u1-0Oz" firstAttribute="leading" secondItem="c9j-0h-5sm" secondAttribute="trailing" constant="10" id="tLo-BL-QHU"/>
                             <constraint firstItem="YcA-Xv-Fu0" firstAttribute="top" secondItem="8jp-DK-iwc" secondAttribute="bottom" constant="8" id="wZC-Ne-aka"/>
+                            <constraint firstItem="ChC-EJ-aa1" firstAttribute="trailing" secondItem="CGD-T5-Agn" secondAttribute="trailing" constant="8" id="wbE-nr-e7A"/>
                             <constraint firstItem="WAA-0O-eQd" firstAttribute="centerY" secondItem="8fZ-Bt-c7W" secondAttribute="centerY" id="wgu-Nx-UA2"/>
                             <constraint firstItem="mbQ-gG-35i" firstAttribute="leading" secondItem="YcA-Xv-Fu0" secondAttribute="trailing" constant="10" id="zDC-kx-Fk2"/>
                         </constraints>
@@ -1803,9 +1835,23 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9E6-XS-CNM">
+                                <rect key="frame" x="328" y="155" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="GZC-6l-zLh"/>
+                                    <constraint firstAttribute="width" secondItem="9E6-XS-CNM" secondAttribute="height" multiplier="1:1" id="pTp-A4-DvL"/>
+                                    <constraint firstAttribute="height" constant="35" id="wvR-aX-4T4"/>
+                                </constraints>
+                                <state key="normal" image="whatsapp.png"/>
+                                <connections>
+                                    <action selector="openWhatsapp:" destination="reW-CD-742" eventType="touchUpInside" id="FMY-Ct-wA4"/>
+                                    <action selector="openWhatsapp:" destination="4oc-WE-XB2" eventType="touchUpInside" id="zkt-WJ-xRJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97609859700000001" blue="0.94877415899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9E6-XS-CNM" firstAttribute="width" secondItem="9E6-XS-CNM" secondAttribute="height" multiplier="1:1" id="08H-y4-nUK"/>
                             <constraint firstItem="gvY-FV-xAb" firstAttribute="leading" secondItem="fqc-t7-sYk" secondAttribute="trailing" constant="10" id="0sX-ff-zDh"/>
                             <constraint firstItem="PXG-TA-nU1" firstAttribute="leading" secondItem="hna-Lc-znY" secondAttribute="leading" id="10D-qa-flM"/>
                             <constraint firstItem="iOc-SZ-IWO" firstAttribute="top" secondItem="I8o-xD-N86" secondAttribute="bottom" constant="1" id="1oq-Cx-TRX"/>
@@ -1827,12 +1873,14 @@
                             <constraint firstItem="e6Q-nB-aPL" firstAttribute="leading" secondItem="gvY-FV-xAb" secondAttribute="trailing" constant="8" id="R15-Li-Lbq"/>
                             <constraint firstItem="I8o-xD-N86" firstAttribute="top" secondItem="fgn-Eg-kSZ" secondAttribute="bottom" constant="-4" id="Rjq-Xb-Qn0"/>
                             <constraint firstItem="PXG-TA-nU1" firstAttribute="trailing" secondItem="hna-Lc-znY" secondAttribute="trailing" id="SJE-8c-GDS"/>
+                            <constraint firstItem="hna-Lc-znY" firstAttribute="trailing" secondItem="9E6-XS-CNM" secondAttribute="trailing" constant="12" id="Uhn-Gg-qwV"/>
                             <constraint firstItem="vzh-3q-Wc4" firstAttribute="leading" secondItem="hna-Lc-znY" secondAttribute="leading" constant="16" id="XNg-wB-I0z"/>
                             <constraint firstItem="hna-Lc-znY" firstAttribute="trailing" secondItem="vzh-3q-Wc4" secondAttribute="trailing" constant="16" id="ZW3-th-mgL"/>
                             <constraint firstItem="8xe-7y-LES" firstAttribute="top" secondItem="PXG-TA-nU1" secondAttribute="bottom" constant="8" id="Zfa-5u-Zax"/>
                             <constraint firstItem="N5p-Of-OYy" firstAttribute="top" secondItem="fqc-t7-sYk" secondAttribute="bottom" constant="8" id="a90-Yy-NdQ"/>
                             <constraint firstItem="xUG-DN-eWK" firstAttribute="centerY" secondItem="fgn-Eg-kSZ" secondAttribute="centerY" id="bPu-Ba-niS"/>
                             <constraint firstItem="fqc-t7-sYk" firstAttribute="top" secondItem="iOc-SZ-IWO" secondAttribute="bottom" constant="8" id="bii-AP-MCQ"/>
+                            <constraint firstItem="9E6-XS-CNM" firstAttribute="centerY" secondItem="e6Q-nB-aPL" secondAttribute="centerY" id="c5F-b4-TCb"/>
                             <constraint firstItem="F7q-ve-8Sf" firstAttribute="leading" secondItem="hna-Lc-znY" secondAttribute="leading" constant="16" id="eTh-hi-lGN"/>
                             <constraint firstItem="pHJ-75-2zC" firstAttribute="top" secondItem="9sZ-vS-u6E" secondAttribute="bottom" constant="4" id="fEH-kL-IsP"/>
                             <constraint firstItem="xUG-DN-eWK" firstAttribute="leading" secondItem="fgn-Eg-kSZ" secondAttribute="trailing" constant="10" id="fuc-ef-Xfu"/>
@@ -1899,9 +1947,12 @@
             <point key="canvasLocation" x="134" y="861"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="whatsapp.png" width="1000" height="1000"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3SQ-eD-vWC"/>
         <segue reference="G5l-vv-7kg"/>
-        <segue reference="ocs-um-x2J"/>
+        <segue reference="Q6A-GF-6JH"/>
     </inferredMetricsTieBreakers>
 </document>

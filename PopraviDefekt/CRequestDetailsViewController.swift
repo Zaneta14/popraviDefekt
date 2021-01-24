@@ -184,6 +184,21 @@ class CRequestDetailsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func openWhatsapp(_ sender: Any) {
+        let phone =  phoneN.titleLabel?.text
+        let appURL = URL(string: "https://api.whatsapp.com/send?phone=\(phone!)")!
+        if UIApplication.shared.canOpenURL(appURL) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+            }
+            else {
+                UIApplication.shared.openURL(appURL)
+            }
+        } else {
+            displayAlert(title: NSLocalizedString("Failed", comment: ""), message: NSLocalizedString("WhatsApp is not installed.", comment: ""))
+        }
+    }
+    
     @objc func onTap() {
         self.view.endEditing(true)
     }

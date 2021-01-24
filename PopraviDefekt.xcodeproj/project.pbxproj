@@ -17,6 +17,7 @@
 		1E8915B425B4F04D003ECCB7 /* RateCraftsmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */; };
 		1E8D208F259261F4003F7E4C /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */; };
 		1E9709E525B116E90017E1CF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9709E425B116E80017E1CF /* ProfileViewController.swift */; };
+		1EA4311525BE1F18005DC3DD /* whatsapp.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA4311425BE1F17005DC3DD /* whatsapp.png */; };
 		1EA5784925BB87A400359327 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1EA5784B25BB87A400359327 /* Localizable.strings */; };
 		1EB39D5D2593D63D0001ED07 /* CraftsmanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB39D5C2593D63D0001ED07 /* CraftsmanTableViewController.swift */; };
 		1EC6C2C52590E8DE00256120 /* SeeCraftsmenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6C2C42590E8DE00256120 /* SeeCraftsmenTableViewController.swift */; };
@@ -46,6 +47,7 @@
 		1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCraftsmanViewController.swift; sourceTree = "<group>"; };
 		1E8D208E259261F4003F7E4C /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
 		1E9709E425B116E80017E1CF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1EA4311425BE1F17005DC3DD /* whatsapp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whatsapp.png; path = ../../../Downloads/whatsapp.png; sourceTree = "<group>"; };
 		1EA5784525BB870B00359327 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = mk.lproj/Main.strings; sourceTree = "<group>"; };
 		1EA5784625BB870C00359327 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = mk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1EA5784A25BB87A400359327 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				1EFB8C3825B341E6003FB968 /* RateJobViewController.swift */,
 				1E8915B325B4F04D003ECCB7 /* RateCraftsmanViewController.swift */,
 				1E07C9602586402D00F31493 /* LaunchScreen.storyboard */,
+				1EA4311425BE1F17005DC3DD /* whatsapp.png */,
 				1E2CEBE725BB59A10050307D /* logo.png */,
 				1E07C95E2586402D00F31493 /* Assets.xcassets */,
 				1E07C9632586402D00F31493 /* Info.plist */,
@@ -210,6 +213,7 @@
 				1EA5784925BB87A400359327 /* Localizable.strings in Resources */,
 				1E07C9622586402D00F31493 /* LaunchScreen.storyboard in Resources */,
 				1E2CEBE825BB59A10050307D /* logo.png in Resources */,
+				1EA4311525BE1F18005DC3DD /* whatsapp.png in Resources */,
 				1E07C95F2586402D00F31493 /* Assets.xcassets in Resources */,
 				1E07C95D2586402A00F31493 /* Main.storyboard in Resources */,
 			);

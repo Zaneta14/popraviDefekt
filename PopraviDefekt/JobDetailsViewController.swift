@@ -260,6 +260,21 @@ UIImagePickerControllerDelegate, UITextViewDelegate {
         }
     }
     
+    @IBAction func openWhatsapp(_ sender: Any) {
+        let phone =  telBroj.titleLabel?.text
+        let appURL = URL(string: "https://api.whatsapp.com/send?phone=\(phone!)")!
+        if UIApplication.shared.canOpenURL(appURL) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+            }
+            else {
+                UIApplication.shared.openURL(appURL)
+            }
+        } else {
+            displayAlert(title: NSLocalizedString("Failed", comment: ""), message: NSLocalizedString("WhatsApp is not installed.", comment: ""))
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "locationSegue" {
             let dVC = segue.destination as! MapViewController
